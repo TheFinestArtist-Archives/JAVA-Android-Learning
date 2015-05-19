@@ -1,7 +1,7 @@
 #Introduction to Gradle
 
 ###What is Gradle?
------------
+========================
 Gradle is a project automation tool that builds upon the concepts of Apache Ant and Apache Maven and introduces a Groovy-based domain-specific language (DSL) instead of the more traditional XML form of declaring the project configuration.
 
 ###Why Gradle?
