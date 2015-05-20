@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.pinterest.activity.web.view.WebViewPinItBar android:id="@id/browser_pin_bar" android:background="@color/bg_actionbar" android:paddingBottom="@dimen/list_cell_padding_topbottom" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_alignParentBottom="true"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <Button android:id="@id/pinit_bt" android:layout_marginLeft="@dimen/margin" android:layout_marginTop="@dimen/list_cell_padding_topbottom" android:layout_marginRight="@dimen/margin" android:layout_alignParentRight="true" style="@style/button_pinit" />
+    <com.pinterest.ui.text.PButton android:id="@id/open_in_browser_btn" android:layout_marginLeft="@dimen/margin" android:layout_marginTop="@dimen/list_cell_padding_topbottom" android:text="@string/open" style="@style/button_with_icon" />
+    <View style="@style/dropshadow_down" />
+</com.pinterest.activity.web.view.WebViewPinItBar>

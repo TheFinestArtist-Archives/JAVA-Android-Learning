@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout style="@style/board_grid_cell"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.pinterest.ui.grid.user.UserGridCellTitleView android:id="@id/title" android:layout_height="@dimen/list_cell_compact_height" style="@style/board_grid_cell_title" />
+    <com.pinterest.ui.grid.user.UserGridCellImageView android:id="@id/cover" style="@style/board_grid_cell_cover" />
+    <TextView android:id="@id/follow_tv" android:background="@drawable/touch_clear_bg" android:paddingBottom="2.0dip" android:text="@string/follow" style="@style/board_follow" />
+</LinearLayout>

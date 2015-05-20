@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.pinterest.ui.imageview.NonRoundWebImageView android:id="@id/image" android:scaleType="fitXY" style="@style/full_view" />
+    <LinearLayout android:gravity="center_horizontal" android:layout_gravity="top|center" android:orientation="vertical" android:id="@id/title_container" style="@style/fullline_view">
+        <com.pinterest.ui.text.PTextView android:gravity="center_horizontal" android:id="@id/title" android:layout_margin="@dimen/margin" android:text="Weekend campout" style="@style/interest_hero_title" />
+        <com.pinterest.ui.text.PTextView android:textStyle="bold" android:id="@id/subtitle" android:layout_marginLeft="@dimen/margin" android:layout_marginRight="@dimen/margin" android:layout_marginBottom="12.0dip" android:text="FOLLOW REI FOR CAMPING HACKS" style="@style/interest_hero_metadata" />
+        <com.pinterest.ui.text.PTextView android:id="@id/tip" android:layout_marginLeft="@dimen/margin" android:layout_marginRight="@dimen/margin" android:layout_marginBottom="12.0dip" android:text="Pin Picks is a new weekly collection of our favorite things. Hand-picked by us at Pinterest." style="@style/interest_hero_metadata" />
+        <com.pinterest.ui.grid.user.UserGridCell android:id="@id/user_cell" android:layout_width="180.0dip" android:layout_margin="12.0dip" style="@style/wrap_view" />
+    </LinearLayout>
+</merge>

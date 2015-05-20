@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.pinterest.ui.webview.PWebView android:id="@id/pwebview" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+    <com.pinterest.ui.scrollview.ObservableScrollView android:id="@id/pinscroll" android:background="@color/bg_grid" android:layout_below="@id/actionbar" style="@style/listview">
+        <LinearLayout style="@style/grid_container">
+            <include layout="@layout/gridview_pin_combo" />
+        </LinearLayout>
+    </com.pinterest.ui.scrollview.ObservableScrollView>
+    <com.pinterest.ui.actionbar.ActionBar android:id="@id/actionbar" style="@style/ActionBar" />
+</RelativeLayout>

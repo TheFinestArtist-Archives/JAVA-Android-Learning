@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:background="@color/bg_grid" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:pinterest="http://schemas.android.com/apk/res-auto">
+    <android.support.v4.widget.SwipeRefreshLayout android:id="@id/swipe_container" android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <com.pinterest.ui.grid.PinterestGridView android:id="@id/grid_vw" android:paddingTop="@dimen/digest_grid_padding_top" android:clipToPadding="false" android:layout_width="fill_parent" android:layout_height="fill_parent" pinterest:numColumns="@integer/digest_grid_cols" />
+    </android.support.v4.widget.SwipeRefreshLayout>
+    <include android:id="@id/digest_header" layout="@layout/grid_digest_cell" />
+    <com.pinterest.ui.actionbar.ActionBar android:id="@id/actionbar" style="@style/ActionBar" />
+</FrameLayout>

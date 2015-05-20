@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:background="@color/bg_grid" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.pinterest.activity.invitefriend.PinvitationalConfettiView android:layout_gravity="center_horizontal" android:id="@id/bg_container" android:clipChildren="false" android:clipToPadding="false" android:layout_width="fill_parent" android:layout_height="wrap_content" android:alpha="0.0">
+        <com.pinterest.activity.invitefriend.PinvitationalConfettiImageView android:id="@id/confetti_iv1" android:layout_width="fill_parent" android:layout_height="wrap_content" android:src="@drawable/pinvitational_confetti_long" android:scaleType="fitXY" />
+        <com.pinterest.activity.invitefriend.PinvitationalConfettiImageView android:id="@id/confetti_iv2" android:layout_width="fill_parent" android:layout_height="wrap_content" android:src="@drawable/pinvitational_confetti_long" android:scaleType="fitXY" android:layout_below="@id/confetti_iv1" />
+    </com.pinterest.activity.invitefriend.PinvitationalConfettiView>
+    <LinearLayout android:gravity="center" android:orientation="vertical" android:id="@id/fg_container" android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <ImageView android:layout_width="@dimen/pinvitational_confirm_icon" android:layout_height="@dimen/pinvitational_confirm_icon" android:layout_marginBottom="@dimen/pinvitational_modal_margin" android:src="@drawable/pinvitational_big_logo" />
+        <TextView android:textSize="@dimen/pinvitational_text_modal_title" android:textColor="@color/black" android:gravity="center_horizontal" android:layout_gravity="center_horizontal" android:id="@id/title_tv" android:visibility="gone" android:layout_marginLeft="@dimen/margin_half" android:layout_marginRight="@dimen/margin_half" android:layout_marginBottom="@dimen/margin_half" android:maxLines="3" android:singleLine="false" style="@style/text_title_large" />
+        <com.pinterest.ui.layout.NoTouchLayout android:id="@id/pin_summary_container" android:visibility="gone" android:layout_width="@dimen/pinvitational_pin_summary_width" android:layout_height="@dimen/pinvitational_pin_summary_height" android:layout_marginBottom="@dimen/pinvitational_modal_margin">
+            <FrameLayout android:id="@id/pin_summary_grid" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+            <ImageView android:layout_gravity="bottom" android:layout_width="fill_parent" android:layout_height="@dimen/pinvitational_pin_summary_height_half" android:src="@drawable/gradient_grid_to_transparent" />
+        </com.pinterest.ui.layout.NoTouchLayout>
+        <TextView android:gravity="center_horizontal" android:layout_gravity="center_horizontal" android:id="@id/desc_tv" android:visibility="gone" android:layout_marginLeft="@dimen/margin_double" android:layout_marginRight="@dimen/margin_double" android:layout_marginBottom="@dimen/margin_half" android:maxLines="3" android:singleLine="false" style="@style/text_base" />
+        <Button android:id="@id/complete_btn" android:visibility="gone" android:layout_marginTop="@dimen/margin" android:layout_marginBottom="@dimen/margin" style="@style/button_red" />
+        <TextView android:id="@id/dismiss_tv" android:visibility="gone" style="@style/text_subtitle" />
+    </LinearLayout>
+</FrameLayout>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <EditText android:id="@id/title_tv" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="8.0dip" android:hint="Description" style="@style/EditTextPinterest" />
+    <EditText android:id="@id/message_tv" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="8.0dip" android:hint="Steps to reproduce" android:maxLines="3" style="@style/EditTextPinterest" />
+    <TextView android:textSize="11.0dip" android:textColor="@color/text_light" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="4.0dip" android:text="* A screen shot will automatically be attached" style="@style/text_base" />
+</LinearLayout>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" style="@style/fullline_view"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:id="@id/text" android:layout_margin="@dimen/margin" style="@style/list_cell_text" />
+    <View android:id="@id/divider" style="@style/section_item_divider" />
+</LinearLayout>

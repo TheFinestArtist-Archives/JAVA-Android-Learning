@@ -1,0 +1,29 @@
+{
+    "display_data": {
+        "steps": [
+            {
+                "id": 34,
+                "title_text": "You've got great taste!",
+                "pin_summary": 6,
+                "description_text": "Help build Pinterest in the Philippines by inviting your most creative friends to join",
+                "complete_button_text": "Unlock your invites",
+                "dismiss_button_text": "Remind me later"
+            },
+            {
+                "id": 35,
+                "title_text": "Invites unlocked!",
+                "background_img": true,
+                "dismiss_after_seconds": 2
+            },
+            {
+                "id": 36,
+                "title_text": "Give your friends a chance to join Pinterest.",
+                "complete_button_text": "Invite 3 friends",
+                "complete_button_url": "pinterest://invite_friends",
+                "background_img": true
+            }
+        ]
+    },
+    "experience_id": 30050,
+    "id": "20008:30050"
+}

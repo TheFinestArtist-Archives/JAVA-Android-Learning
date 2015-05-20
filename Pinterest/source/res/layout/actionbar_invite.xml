@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge android:id="@id/invite_actionbar"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:pinterest="http://schemas.android.com/apk/res-auto">
+    <com.pinterest.ui.actionbar.ActionBar android:id="@id/actionbar" style="@style/ActionBar" />
+    <include layout="@layout/people_picker_searchbar" />
+    <com.pinterest.ui.tab.TabBar android:id="@id/tabbar" style="@style/TabBar">
+        <com.pinterest.ui.tab.Tab pinterest:text="@string/by_email" style="@style/TabEqual" />
+        <com.pinterest.ui.tab.Tab pinterest:text="@string/by_text" style="@style/TabEqual" />
+    </com.pinterest.ui.tab.TabBar>
+</merge>

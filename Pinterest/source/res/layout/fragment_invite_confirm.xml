@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:background="@color/bg_grid" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.pinterest.activity.invitefriend.PinvitationalConfettiView android:layout_gravity="center_horizontal" android:id="@id/bg_container" android:clipChildren="false" android:clipToPadding="false" android:layout_width="fill_parent" android:layout_height="wrap_content" android:alpha="0.0">
+        <com.pinterest.activity.invitefriend.PinvitationalConfettiImageView android:id="@id/confetti_iv1" android:layout_width="fill_parent" android:layout_height="wrap_content" android:src="@drawable/pinvitational_confetti_long" android:scaleType="fitXY" />
+        <com.pinterest.activity.invitefriend.PinvitationalConfettiImageView android:id="@id/confetti_iv2" android:layout_width="fill_parent" android:layout_height="wrap_content" android:src="@drawable/pinvitational_confetti_long" android:scaleType="fitXY" android:layout_below="@id/confetti_iv1" />
+    </com.pinterest.activity.invitefriend.PinvitationalConfettiView>
+    <LinearLayout android:gravity="center" android:orientation="vertical" android:id="@id/fg_container" android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <ImageView android:layout_width="@dimen/pinvitational_confirm_icon" android:layout_height="@dimen/pinvitational_confirm_icon" android:layout_marginBottom="@dimen/margin_double" android:src="@drawable/ic_checkmark" />
+        <TextView android:id="@id/title_tv" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/pinvitational_confirm_title_text" style="@style/text_base" />
+        <LinearLayout android:orientation="vertical" android:id="@id/invitee_container" android:paddingLeft="@dimen/margin_double" android:paddingRight="@dimen/margin_double" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_margin="@dimen/margin" />
+        <TextView android:id="@id/end_tv" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/pinvitational_confirm_end_text" style="@style/text_base" />
+    </LinearLayout>
+</FrameLayout>

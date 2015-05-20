@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.pinterest.activity.digest.ui.DigestHeaderView android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <View android:id="@id/top_separator" android:background="@android:color/black" android:layout_width="fill_parent" android:layout_height="@dimen/margin" />
+    <RelativeLayout android:orientation="horizontal" android:background="@color/bg_item_read" android:layout_width="fill_parent" android:layout_height="@dimen/story_header_height" android:layout_below="@id/top_separator">
+        <com.pinterest.ui.imageview.GrayWebImageView android:id="@id/cover_image" android:layout_width="@dimen/story_header_image_size" android:layout_height="@dimen/story_header_image_size" android:layout_marginLeft="@dimen/margin" android:layout_marginTop="@dimen/margin_half" android:layout_marginRight="@dimen/story_header_image_text_gap" android:layout_marginBottom="@dimen/margin_half" android:scaleType="centerCrop" android:layout_centerVertical="true" />
+        <com.pinterest.ui.text.PTextView android:id="@id/title" android:paddingTop="@dimen/margin_quarter" android:paddingBottom="@dimen/margin_quarter" android:layout_width="@dimen/story_header_text_width" android:layout_height="wrap_content" android:maxLines="2" android:layout_toRightOf="@id/cover_image" android:layout_centerVertical="true" style="@style/text_multiline" />
+        <com.pinterest.ui.text.IconView android:id="@id/remove_icon" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="@dimen/margin" android:src="@drawable/ic_cancel" android:scaleType="centerInside" android:minWidth="@dimen/button_height" android:minHeight="@dimen/button_height" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+        <com.pinterest.activity.interest.view.FollowInterestButton android:id="@id/follow_bt" android:layout_marginLeft="@dimen/margin_half" android:layout_toRightOf="@id/title" style="@style/button_plain" />
+    </RelativeLayout>
+</com.pinterest.activity.digest.ui.DigestHeaderView>

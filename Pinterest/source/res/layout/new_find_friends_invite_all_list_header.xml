@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_margin="@dimen/margin" style="@style/fullline_view"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:id="@id/friends_count" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1.0" style="@style/list_cell_text" />
+    <com.pinterest.ui.text.PButton android:id="@id/send_btn" android:text="@string/send" style="@style/button_red" />
+</LinearLayout>

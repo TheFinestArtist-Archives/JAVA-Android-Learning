@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" style="@style/fullline_view"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:layout_gravity="center_horizontal" android:id="@id/mail_iv" android:layout_margin="@dimen/margin" android:src="@drawable/ic_mail" style="@style/wrap_view" />
+    <RelativeLayout android:gravity="center_vertical" android:id="@id/invite_all_line" android:paddingLeft="@dimen/margin" android:paddingRight="@dimen/margin" android:layout_marginTop="@dimen/margin_half" android:layout_marginBottom="@dimen/margin_half" style="@style/fullline_view">
+        <TextView android:id="@id/contacts_num" android:layout_width="wrap_content" android:layout_height="wrap_content" style="@style/list_cell_text" />
+        <TextView android:id="@id/select_all_tv" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="@dimen/margin" android:text="@string/invite_all" android:layout_toLeftOf="@id/select_all_cb" style="@style/list_cell_text" />
+        <CheckBox android:id="@id/select_all_cb" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentRight="true" android:layout_centerVertical="true" style="@style/checkbox" />
+    </RelativeLayout>
+    <View style="@style/dialog_divider" />
+</LinearLayout>

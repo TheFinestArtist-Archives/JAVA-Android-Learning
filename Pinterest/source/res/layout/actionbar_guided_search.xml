@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="horizontal" android:id="@id/actionbar_search" style="@style/ABStyle.GuidedSearch"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.pinterest.ui.text.IconView android:layout_gravity="center_vertical" android:id="@id/back_bt" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/margin" android:src="@drawable/ic_back" />
+    <include layout="@layout/actionbar_guided_search_bar" />
+</LinearLayout>

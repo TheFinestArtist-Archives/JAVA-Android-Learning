@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <EditText android:id="@id/firstname_et" android:layout_marginBottom="@dimen/margin_half" android:hint="@string/firstname_hint" android:imeOptions="actionNext|flagNoExtractUi" style="@style/dialog_et" />
+    <EditText android:id="@id/lastname_et" android:layout_marginTop="@dimen/margin_half" android:hint="@string/lastname_hint" android:imeActionLabel="@string/save" style="@style/dialog_et" />
+</LinearLayout>

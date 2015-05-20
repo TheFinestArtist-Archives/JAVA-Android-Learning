@@ -1,0 +1,347 @@
+// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.geocities.com/kpdus/jad.html
+// Decompiler options: braces fieldsfirst space lnc 
+
+package com.pinterest.schemas.experiences;
+
+import org.apache.thrift.TEnum;
+
+public final class IOSView extends Enum
+    implements TEnum
+{
+
+    private static final IOSView $VALUES[];
+    public static final IOSView BOARD_FOLLOW_EDUCATION_BASE;
+    public static final IOSView BOARD_FOLLOW_EDUCATION_EXAMPLE_1;
+    public static final IOSView BOARD_FOLLOW_EDUCATION_EXAMPLE_2;
+    public static final IOSView BOARD_FOLLOW_EDUCATION_FOLLOW;
+    public static final IOSView CONTEXTUAL_MENU_EDUCATION_STEP_1;
+    public static final IOSView CONTEXTUAL_MENU_EDUCATION_STEP_2;
+    public static final IOSView CONTEXTUAL_MENU_EDUCATION_STEP_3;
+    public static final IOSView CONTEXTUAL_MENU_EDUCATION_STEP_4;
+    public static final IOSView EMPTY_BOARD_EDUCATION_BASE;
+    public static final IOSView EMPTY_BOARD_EDUCATION_FIND_PINS;
+    public static final IOSView EMPTY_BOARD_EDUCATION_GREENHOUSE_EXAMPLE;
+    public static final IOSView EMPTY_BOARD_EDUCATION_RECIPE_EXAMPLE;
+    public static final IOSView EMPTY_PROFILE_EDUCATION_BASE;
+    public static final IOSView EMPTY_PROFILE_EDUCATION_EXAMPLE_1;
+    public static final IOSView EMPTY_PROFILE_EDUCATION_EXAMPLE_2;
+    public static final IOSView EMPTY_PROFILE_EDUCATION_EXIT;
+    public static final IOSView EMPTY_PROFILE_EDUCATION_MAKE_BOARD;
+    public static final IOSView EMPTY_PROFILE_EDUCATION_PIN_EDUCATION;
+    public static final IOSView HOME_FEED_EDUCATION_BASE;
+    public static final IOSView HOME_FEED_EDUCATION_EXAMPLE_1;
+    public static final IOSView HOME_FEED_EDUCATION_EXAMPLE_2;
+    public static final IOSView HOME_FEED_EDUCATION_EXIT;
+    public static final IOSView HOME_FEED_EDUCATION_GRID;
+    public static final IOSView MSGS_SEND_PIN_EDUCATION_BASE;
+    public static final IOSView MSGS_SEND_PIN_EDUCATION_END;
+    public static final IOSView MSGS_SEND_PIN_EDUCATION_EXAMPLE_1;
+    public static final IOSView MSGS_SEND_PIN_EDUCATION_EXAMPLE_2;
+    public static final IOSView NUX_FIRST_BOARD_LOADING;
+    public static final IOSView NUX_FIRST_BOARD_NAME_PICKER;
+    public static final IOSView NUX_FIRST_BOARD_SEARCH;
+    public static final IOSView NUX_FRIEND_SELECTOR;
+    public static final IOSView NUX_INTEREST_SELECTOR;
+    public static final IOSView NUX_INTRO;
+    public static final IOSView PERMISSIONS_CONTACTS;
+    public static final IOSView PERMISSIONS_CONTACTS_STEP;
+    public static final IOSView PERMISSIONS_FACEBOOK_STEP;
+    public static final IOSView PINVITATIONAL_HOME_FEED_MODAL_STEP_1;
+    public static final IOSView PINVITATIONAL_HOME_FEED_MODAL_STEP_2;
+    public static final IOSView PINVITATIONAL_HOME_FEED_MODAL_STEP_3;
+    public static final IOSView PIN_CLICKTHROUGH_EDUCATION_BASE;
+    public static final IOSView PIN_CLICKTHROUGH_EDUCATION_END;
+    public static final IOSView PIN_CLICKTHROUGH_EDUCATION_EXAMPLE;
+    public static final IOSView PIN_CLICKTHROUGH_EDUCATION_TIP;
+    public static final IOSView PROFILE_FOLLOW_EDUCATION_BASE;
+    public static final IOSView PROFILE_FOLLOW_EDUCATION_END;
+    public static final IOSView PROFILE_FOLLOW_EDUCATION_EXAMPLE_1;
+    public static final IOSView PROFILE_FOLLOW_EDUCATION_EXAMPLE_2;
+    public static final IOSView PROFILE_FOLLOW_EDUCATION_EXIT;
+    public static final IOSView REPIN_EDUCATION_BASE;
+    public static final IOSView REPIN_EDUCATION_EXAMPLE_1;
+    public static final IOSView REPIN_EDUCATION_EXAMPLE_2;
+    public static final IOSView REPIN_EDUCATION_PIN_IT;
+    public static final IOSView SEARCH_EDUCATION_BASE;
+    public static final IOSView SEARCH_EDUCATION_END;
+    public static final IOSView SEARCH_EDUCATION_EXAMPLE_1;
+    public static final IOSView SEARCH_EDUCATION_EXAMPLE_2;
+    public static final IOSView SEARCH_EDUCATION_GUIDES;
+    private final int value;
+
+    private IOSView(String s, int i, int j)
+    {
+        super(s, i);
+        value = j;
+    }
+
+    public static IOSView findByValue(int i)
+    {
+        switch (i)
+        {
+        case 17: // '\021'
+        case 18: // '\022'
+        case 19: // '\023'
+        case 20: // '\024'
+        case 21: // '\025'
+        default:
+            return null;
+
+        case 1: // '\001'
+            return NUX_INTRO;
+
+        case 2: // '\002'
+            return NUX_FRIEND_SELECTOR;
+
+        case 3: // '\003'
+            return NUX_INTEREST_SELECTOR;
+
+        case 4: // '\004'
+            return PERMISSIONS_CONTACTS_STEP;
+
+        case 5: // '\005'
+            return PERMISSIONS_FACEBOOK_STEP;
+
+        case 6: // '\006'
+            return PERMISSIONS_CONTACTS;
+
+        case 7: // '\007'
+            return EMPTY_BOARD_EDUCATION_BASE;
+
+        case 8: // '\b'
+            return EMPTY_BOARD_EDUCATION_GREENHOUSE_EXAMPLE;
+
+        case 9: // '\t'
+            return EMPTY_BOARD_EDUCATION_RECIPE_EXAMPLE;
+
+        case 10: // '\n'
+            return EMPTY_BOARD_EDUCATION_FIND_PINS;
+
+        case 11: // '\013'
+            return EMPTY_PROFILE_EDUCATION_BASE;
+
+        case 12: // '\f'
+            return EMPTY_PROFILE_EDUCATION_PIN_EDUCATION;
+
+        case 13: // '\r'
+            return EMPTY_PROFILE_EDUCATION_EXAMPLE_1;
+
+        case 14: // '\016'
+            return EMPTY_PROFILE_EDUCATION_EXAMPLE_2;
+
+        case 15: // '\017'
+            return EMPTY_PROFILE_EDUCATION_MAKE_BOARD;
+
+        case 16: // '\020'
+            return EMPTY_PROFILE_EDUCATION_EXIT;
+
+        case 22: // '\026'
+            return REPIN_EDUCATION_BASE;
+
+        case 23: // '\027'
+            return REPIN_EDUCATION_EXAMPLE_1;
+
+        case 24: // '\030'
+            return REPIN_EDUCATION_EXAMPLE_2;
+
+        case 25: // '\031'
+            return REPIN_EDUCATION_PIN_IT;
+
+        case 26: // '\032'
+            return HOME_FEED_EDUCATION_BASE;
+
+        case 27: // '\033'
+            return HOME_FEED_EDUCATION_EXAMPLE_1;
+
+        case 28: // '\034'
+            return HOME_FEED_EDUCATION_EXAMPLE_2;
+
+        case 29: // '\035'
+            return HOME_FEED_EDUCATION_GRID;
+
+        case 30: // '\036'
+            return HOME_FEED_EDUCATION_EXIT;
+
+        case 31: // '\037'
+            return BOARD_FOLLOW_EDUCATION_BASE;
+
+        case 32: // ' '
+            return BOARD_FOLLOW_EDUCATION_EXAMPLE_1;
+
+        case 33: // '!'
+            return BOARD_FOLLOW_EDUCATION_EXAMPLE_2;
+
+        case 34: // '"'
+            return BOARD_FOLLOW_EDUCATION_FOLLOW;
+
+        case 35: // '#'
+            return PIN_CLICKTHROUGH_EDUCATION_BASE;
+
+        case 36: // '$'
+            return PIN_CLICKTHROUGH_EDUCATION_TIP;
+
+        case 37: // '%'
+            return PIN_CLICKTHROUGH_EDUCATION_END;
+
+        case 38: // '&'
+            return PIN_CLICKTHROUGH_EDUCATION_EXAMPLE;
+
+        case 39: // '\''
+            return SEARCH_EDUCATION_BASE;
+
+        case 40: // '('
+            return SEARCH_EDUCATION_GUIDES;
+
+        case 41: // ')'
+            return SEARCH_EDUCATION_EXAMPLE_1;
+
+        case 42: // '*'
+            return SEARCH_EDUCATION_EXAMPLE_2;
+
+        case 43: // '+'
+            return SEARCH_EDUCATION_END;
+
+        case 44: // ','
+            return CONTEXTUAL_MENU_EDUCATION_STEP_1;
+
+        case 45: // '-'
+            return CONTEXTUAL_MENU_EDUCATION_STEP_2;
+
+        case 46: // '.'
+            return CONTEXTUAL_MENU_EDUCATION_STEP_3;
+
+        case 47: // '/'
+            return CONTEXTUAL_MENU_EDUCATION_STEP_4;
+
+        case 48: // '0'
+            return MSGS_SEND_PIN_EDUCATION_BASE;
+
+        case 49: // '1'
+            return MSGS_SEND_PIN_EDUCATION_EXAMPLE_1;
+
+        case 50: // '2'
+            return MSGS_SEND_PIN_EDUCATION_EXAMPLE_2;
+
+        case 51: // '3'
+            return MSGS_SEND_PIN_EDUCATION_END;
+
+        case 52: // '4'
+            return PROFILE_FOLLOW_EDUCATION_BASE;
+
+        case 53: // '5'
+            return PROFILE_FOLLOW_EDUCATION_EXAMPLE_1;
+
+        case 54: // '6'
+            return PROFILE_FOLLOW_EDUCATION_EXAMPLE_2;
+
+        case 55: // '7'
+            return PROFILE_FOLLOW_EDUCATION_END;
+
+        case 56: // '8'
+            return PROFILE_FOLLOW_EDUCATION_EXIT;
+
+        case 57: // '9'
+            return PINVITATIONAL_HOME_FEED_MODAL_STEP_1;
+
+        case 58: // ':'
+            return PINVITATIONAL_HOME_FEED_MODAL_STEP_2;
+
+        case 59: // ';'
+            return PINVITATIONAL_HOME_FEED_MODAL_STEP_3;
+
+        case 60: // '<'
+            return NUX_FIRST_BOARD_NAME_PICKER;
+
+        case 61: // '='
+            return NUX_FIRST_BOARD_SEARCH;
+
+        case 62: // '>'
+            return NUX_FIRST_BOARD_LOADING;
+        }
+    }
+
+    public static IOSView valueOf(String s)
+    {
+        return (IOSView)Enum.valueOf(com/pinterest/schemas/experiences/IOSView, s);
+    }
+
+    public static IOSView[] values()
+    {
+        return (IOSView[])$VALUES.clone();
+    }
+
+    public final int getValue()
+    {
+        return value;
+    }
+
+    static 
+    {
+        NUX_INTRO = new IOSView("NUX_INTRO", 0, 1);
+        NUX_FRIEND_SELECTOR = new IOSView("NUX_FRIEND_SELECTOR", 1, 2);
+        NUX_INTEREST_SELECTOR = new IOSView("NUX_INTEREST_SELECTOR", 2, 3);
+        PERMISSIONS_CONTACTS_STEP = new IOSView("PERMISSIONS_CONTACTS_STEP", 3, 4);
+        PERMISSIONS_FACEBOOK_STEP = new IOSView("PERMISSIONS_FACEBOOK_STEP", 4, 5);
+        PERMISSIONS_CONTACTS = new IOSView("PERMISSIONS_CONTACTS", 5, 6);
+        EMPTY_BOARD_EDUCATION_BASE = new IOSView("EMPTY_BOARD_EDUCATION_BASE", 6, 7);
+        EMPTY_BOARD_EDUCATION_GREENHOUSE_EXAMPLE = new IOSView("EMPTY_BOARD_EDUCATION_GREENHOUSE_EXAMPLE", 7, 8);
+        EMPTY_BOARD_EDUCATION_RECIPE_EXAMPLE = new IOSView("EMPTY_BOARD_EDUCATION_RECIPE_EXAMPLE", 8, 9);
+        EMPTY_BOARD_EDUCATION_FIND_PINS = new IOSView("EMPTY_BOARD_EDUCATION_FIND_PINS", 9, 10);
+        EMPTY_PROFILE_EDUCATION_BASE = new IOSView("EMPTY_PROFILE_EDUCATION_BASE", 10, 11);
+        EMPTY_PROFILE_EDUCATION_PIN_EDUCATION = new IOSView("EMPTY_PROFILE_EDUCATION_PIN_EDUCATION", 11, 12);
+        EMPTY_PROFILE_EDUCATION_EXAMPLE_1 = new IOSView("EMPTY_PROFILE_EDUCATION_EXAMPLE_1", 12, 13);
+        EMPTY_PROFILE_EDUCATION_EXAMPLE_2 = new IOSView("EMPTY_PROFILE_EDUCATION_EXAMPLE_2", 13, 14);
+        EMPTY_PROFILE_EDUCATION_MAKE_BOARD = new IOSView("EMPTY_PROFILE_EDUCATION_MAKE_BOARD", 14, 15);
+        EMPTY_PROFILE_EDUCATION_EXIT = new IOSView("EMPTY_PROFILE_EDUCATION_EXIT", 15, 16);
+        REPIN_EDUCATION_BASE = new IOSView("REPIN_EDUCATION_BASE", 16, 22);
+        REPIN_EDUCATION_EXAMPLE_1 = new IOSView("REPIN_EDUCATION_EXAMPLE_1", 17, 23);
+        REPIN_EDUCATION_EXAMPLE_2 = new IOSView("REPIN_EDUCATION_EXAMPLE_2", 18, 24);
+        REPIN_EDUCATION_PIN_IT = new IOSView("REPIN_EDUCATION_PIN_IT", 19, 25);
+        HOME_FEED_EDUCATION_BASE = new IOSView("HOME_FEED_EDUCATION_BASE", 20, 26);
+        HOME_FEED_EDUCATION_EXAMPLE_1 = new IOSView("HOME_FEED_EDUCATION_EXAMPLE_1", 21, 27);
+        HOME_FEED_EDUCATION_EXAMPLE_2 = new IOSView("HOME_FEED_EDUCATION_EXAMPLE_2", 22, 28);
+        HOME_FEED_EDUCATION_GRID = new IOSView("HOME_FEED_EDUCATION_GRID", 23, 29);
+        HOME_FEED_EDUCATION_EXIT = new IOSView("HOME_FEED_EDUCATION_EXIT", 24, 30);
+        BOARD_FOLLOW_EDUCATION_BASE = new IOSView("BOARD_FOLLOW_EDUCATION_BASE", 25, 31);
+        BOARD_FOLLOW_EDUCATION_EXAMPLE_1 = new IOSView("BOARD_FOLLOW_EDUCATION_EXAMPLE_1", 26, 32);
+        BOARD_FOLLOW_EDUCATION_EXAMPLE_2 = new IOSView("BOARD_FOLLOW_EDUCATION_EXAMPLE_2", 27, 33);
+        BOARD_FOLLOW_EDUCATION_FOLLOW = new IOSView("BOARD_FOLLOW_EDUCATION_FOLLOW", 28, 34);
+        PIN_CLICKTHROUGH_EDUCATION_BASE = new IOSView("PIN_CLICKTHROUGH_EDUCATION_BASE", 29, 35);
+        PIN_CLICKTHROUGH_EDUCATION_TIP = new IOSView("PIN_CLICKTHROUGH_EDUCATION_TIP", 30, 36);
+        PIN_CLICKTHROUGH_EDUCATION_END = new IOSView("PIN_CLICKTHROUGH_EDUCATION_END", 31, 37);
+        PIN_CLICKTHROUGH_EDUCATION_EXAMPLE = new IOSView("PIN_CLICKTHROUGH_EDUCATION_EXAMPLE", 32, 38);
+        SEARCH_EDUCATION_BASE = new IOSView("SEARCH_EDUCATION_BASE", 33, 39);
+        SEARCH_EDUCATION_GUIDES = new IOSView("SEARCH_EDUCATION_GUIDES", 34, 40);
+        SEARCH_EDUCATION_EXAMPLE_1 = new IOSView("SEARCH_EDUCATION_EXAMPLE_1", 35, 41);
+        SEARCH_EDUCATION_EXAMPLE_2 = new IOSView("SEARCH_EDUCATION_EXAMPLE_2", 36, 42);
+        SEARCH_EDUCATION_END = new IOSView("SEARCH_EDUCATION_END", 37, 43);
+        CONTEXTUAL_MENU_EDUCATION_STEP_1 = new IOSView("CONTEXTUAL_MENU_EDUCATION_STEP_1", 38, 44);
+        CONTEXTUAL_MENU_EDUCATION_STEP_2 = new IOSView("CONTEXTUAL_MENU_EDUCATION_STEP_2", 39, 45);
+        CONTEXTUAL_MENU_EDUCATION_STEP_3 = new IOSView("CONTEXTUAL_MENU_EDUCATION_STEP_3", 40, 46);
+        CONTEXTUAL_MENU_EDUCATION_STEP_4 = new IOSView("CONTEXTUAL_MENU_EDUCATION_STEP_4", 41, 47);
+        MSGS_SEND_PIN_EDUCATION_BASE = new IOSView("MSGS_SEND_PIN_EDUCATION_BASE", 42, 48);
+        MSGS_SEND_PIN_EDUCATION_EXAMPLE_1 = new IOSView("MSGS_SEND_PIN_EDUCATION_EXAMPLE_1", 43, 49);
+        MSGS_SEND_PIN_EDUCATION_EXAMPLE_2 = new IOSView("MSGS_SEND_PIN_EDUCATION_EXAMPLE_2", 44, 50);
+        MSGS_SEND_PIN_EDUCATION_END = new IOSView("MSGS_SEND_PIN_EDUCATION_END", 45, 51);
+        PROFILE_FOLLOW_EDUCATION_BASE = new IOSView("PROFILE_FOLLOW_EDUCATION_BASE", 46, 52);
+        PROFILE_FOLLOW_EDUCATION_EXAMPLE_1 = new IOSView("PROFILE_FOLLOW_EDUCATION_EXAMPLE_1", 47, 53);
+        PROFILE_FOLLOW_EDUCATION_EXAMPLE_2 = new IOSView("PROFILE_FOLLOW_EDUCATION_EXAMPLE_2", 48, 54);
+        PROFILE_FOLLOW_EDUCATION_END = new IOSView("PROFILE_FOLLOW_EDUCATION_END", 49, 55);
+        PROFILE_FOLLOW_EDUCATION_EXIT = new IOSView("PROFILE_FOLLOW_EDUCATION_EXIT", 50, 56);
+        PINVITATIONAL_HOME_FEED_MODAL_STEP_1 = new IOSView("PINVITATIONAL_HOME_FEED_MODAL_STEP_1", 51, 57);
+        PINVITATIONAL_HOME_FEED_MODAL_STEP_2 = new IOSView("PINVITATIONAL_HOME_FEED_MODAL_STEP_2", 52, 58);
+        PINVITATIONAL_HOME_FEED_MODAL_STEP_3 = new IOSView("PINVITATIONAL_HOME_FEED_MODAL_STEP_3", 53, 59);
+        NUX_FIRST_BOARD_NAME_PICKER = new IOSView("NUX_FIRST_BOARD_NAME_PICKER", 54, 60);
+        NUX_FIRST_BOARD_SEARCH = new IOSView("NUX_FIRST_BOARD_SEARCH", 55, 61);
+        NUX_FIRST_BOARD_LOADING = new IOSView("NUX_FIRST_BOARD_LOADING", 56, 62);
+        $VALUES = (new IOSView[] {
+            NUX_INTRO, NUX_FRIEND_SELECTOR, NUX_INTEREST_SELECTOR, PERMISSIONS_CONTACTS_STEP, PERMISSIONS_FACEBOOK_STEP, PERMISSIONS_CONTACTS, EMPTY_BOARD_EDUCATION_BASE, EMPTY_BOARD_EDUCATION_GREENHOUSE_EXAMPLE, EMPTY_BOARD_EDUCATION_RECIPE_EXAMPLE, EMPTY_BOARD_EDUCATION_FIND_PINS, 
+            EMPTY_PROFILE_EDUCATION_BASE, EMPTY_PROFILE_EDUCATION_PIN_EDUCATION, EMPTY_PROFILE_EDUCATION_EXAMPLE_1, EMPTY_PROFILE_EDUCATION_EXAMPLE_2, EMPTY_PROFILE_EDUCATION_MAKE_BOARD, EMPTY_PROFILE_EDUCATION_EXIT, REPIN_EDUCATION_BASE, REPIN_EDUCATION_EXAMPLE_1, REPIN_EDUCATION_EXAMPLE_2, REPIN_EDUCATION_PIN_IT, 
+            HOME_FEED_EDUCATION_BASE, HOME_FEED_EDUCATION_EXAMPLE_1, HOME_FEED_EDUCATION_EXAMPLE_2, HOME_FEED_EDUCATION_GRID, HOME_FEED_EDUCATION_EXIT, BOARD_FOLLOW_EDUCATION_BASE, BOARD_FOLLOW_EDUCATION_EXAMPLE_1, BOARD_FOLLOW_EDUCATION_EXAMPLE_2, BOARD_FOLLOW_EDUCATION_FOLLOW, PIN_CLICKTHROUGH_EDUCATION_BASE, 
+            PIN_CLICKTHROUGH_EDUCATION_TIP, PIN_CLICKTHROUGH_EDUCATION_END, PIN_CLICKTHROUGH_EDUCATION_EXAMPLE, SEARCH_EDUCATION_BASE, SEARCH_EDUCATION_GUIDES, SEARCH_EDUCATION_EXAMPLE_1, SEARCH_EDUCATION_EXAMPLE_2, SEARCH_EDUCATION_END, CONTEXTUAL_MENU_EDUCATION_STEP_1, CONTEXTUAL_MENU_EDUCATION_STEP_2, 
+            CONTEXTUAL_MENU_EDUCATION_STEP_3, CONTEXTUAL_MENU_EDUCATION_STEP_4, MSGS_SEND_PIN_EDUCATION_BASE, MSGS_SEND_PIN_EDUCATION_EXAMPLE_1, MSGS_SEND_PIN_EDUCATION_EXAMPLE_2, MSGS_SEND_PIN_EDUCATION_END, PROFILE_FOLLOW_EDUCATION_BASE, PROFILE_FOLLOW_EDUCATION_EXAMPLE_1, PROFILE_FOLLOW_EDUCATION_EXAMPLE_2, PROFILE_FOLLOW_EDUCATION_END, 
+            PROFILE_FOLLOW_EDUCATION_EXIT, PINVITATIONAL_HOME_FEED_MODAL_STEP_1, PINVITATIONAL_HOME_FEED_MODAL_STEP_2, PINVITATIONAL_HOME_FEED_MODAL_STEP_3, NUX_FIRST_BOARD_NAME_PICKER, NUX_FIRST_BOARD_SEARCH, NUX_FIRST_BOARD_LOADING
+        });
+    }
+}

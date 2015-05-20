@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:gravity="center_vertical" android:layout_gravity="center_vertical" android:orientation="vertical" android:padding="@dimen/margin" android:layout_width="fill_parent" android:layout_height="wrap_content" android:minHeight="48.0dip">
+        <TextView android:id="@id/title_tv" style="@style/dialog_title" />
+        <TextView android:id="@id/subtitle_tv" android:visibility="gone" style="@style/dialog_subtitle" />
+        <TextView android:id="@id/text_tv" android:paddingTop="@dimen/margin_half" android:visibility="gone" style="@style/dialog_pinterest_text" />
+    </LinearLayout>
+    <View android:id="@id/title_divder" style="@style/dialog_divider" />
+</merge>

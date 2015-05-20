@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <Button android:id="@id/login_bt" android:layout_width="0.0dip" android:layout_marginRight="@dimen/margin" android:text="@string/login" android:layout_weight="1.0" style="@style/button_plain" />
+    <Button android:id="@id/signup_bt" android:layout_width="0.0dip" android:text="@string/signup" android:layout_weight="1.0" style="@style/button_red" />
+</merge>

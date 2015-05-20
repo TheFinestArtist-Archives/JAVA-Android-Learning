@@ -1,0 +1,35 @@
+// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.geocities.com/kpdus/jad.html
+// Decompiler options: braces fieldsfirst space lnc 
+
+package com.pinterest.api.remote;
+
+import com.pinterest.api.PinterestJsonObject;
+import com.pinterest.api.model.CategoryFeed;
+import com.pinterest.kit.tasks.BackgroundTask;
+
+class a extends BackgroundTask
+{
+
+    final PinterestJsonObject a;
+    final b b;
+    private CategoryFeed c;
+
+    public void onFinish()
+    {
+        super.onFinish();
+        b.Success(c);
+    }
+
+    public void run()
+    {
+        c = new CategoryFeed(a, cess._mth000(b), cess._mth100(b));
+    }
+
+    ( , PinterestJsonObject pinterestjsonobject)
+    {
+        b = ;
+        a = pinterestjsonobject;
+        super();
+    }
+}

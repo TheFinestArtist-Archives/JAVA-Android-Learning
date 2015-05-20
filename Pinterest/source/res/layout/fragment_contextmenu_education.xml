@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:orientation="vertical" android:background="@color/bg_grid" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.pinterest.ui.grid.PinGridCell android:id="@id/pin" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+    <TextView android:textColor="@color/text_light" android:id="@id/skipText" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="@dimen/contextmenu_edu_skip_bottom_margin" android:text="@string/contextmenu_edu_skip_tip" android:layout_alignParentBottom="true" android:layout_centerHorizontal="true" style="@style/text_base" />
+    <com.pinterest.ui.text.PButton android:id="@id/doneBtn" android:layout_marginBottom="@dimen/contextmenu_edu_skip_bottom_margin" android:text="@string/done" android:layout_alignParentBottom="true" android:layout_centerHorizontal="true" style="@style/button_plain" />
+    <com.pinterest.ui.menu.ContextMenuView android:id="@id/context_menu" android:clipChildren="false" android:clipToPadding="false" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+</RelativeLayout>
