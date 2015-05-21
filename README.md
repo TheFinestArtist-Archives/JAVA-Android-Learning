@@ -18,9 +18,7 @@
   * Make more than one post for a topic if it needs
   * Effective JAVA
     * 2 rules per day
-    * Each rule will be summarized in [EffectiveJava.md](https://github.com/TheFinestArtist/Relam-JAVA-Android-Learning/blob/master/EffectiveJava/EffectiveJava.md)
-
-
+    * Each rule will be summarized in [Wiki](https://github.com/TheFinestArtist/Relam-JAVA-Android-Learning/wiki)
 
 ##Topics
 
