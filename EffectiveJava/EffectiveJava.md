@@ -38,7 +38,7 @@ Consider to make static factory method for each class because it has lots of adv
 
 ---
 ####Consider to use builder pattern if there is too many fields in constructor
-Telescoping Constructor Pattern <=> Builder Pattern
+Telescoping Constructor Pattern, Using Setter Method, Builder Pattern
 
 [Telescoping Constructor Pattern](http://www.captaindebug.com/2011/05/telescoping-constructor-antipattern.html#.VV1RdVmeDRY)
 ```
@@ -106,6 +106,7 @@ public class FoodTelescopingDemo {
 
 }
 ```
+
 [Builder Pattern](http://en.wikipedia.org/wiki/Builder_pattern)
 ```
 class Car is
