@@ -1,7 +1,14 @@
 #Introduction to Gradle
 
+**This post is for the developers who just started using Gradle.**
+
+
 ###What is Gradle?
-Gradle is one of the most famous project build automation system. Android introduced Gradle-based Android SDK build system on May 2013.
+
+   * [Gradle](https://gradle.org/) is a project automation tool that builds upon the concepts of [Apache Ant](http://en.wikipedia.org/wiki/Apache_Ant) and [Apache Maven](http://en.wikipedia.org/wiki/Apache_Maven).
+   * Gradle introduced [Groovy](http://groovy-lang.org/)-based [domain-specific language (DSL)](http://en.wikipedia.org/wiki/Domain-specific_language) instead of the more traditional XML form of declaring the project configuration
+   * Android introduced Gradle-based Android SDK build system on May 2013.
+
 
 ###Why Gradle?
 ####Gradle v/s Maven v/s Ant
