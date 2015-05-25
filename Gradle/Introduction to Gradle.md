@@ -127,7 +127,7 @@ Build automation tool are consists of two main parts: configuration and build. C
    </project>
    ```
 
-**[Gradle's compelling feature set](http://www.drdobbs.com/jvm/why-build-your-java-projects-with-gradle/240168608)**
+**[Gradle's compelling features](http://www.drdobbs.com/jvm/why-build-your-java-projects-with-gradle/240168608)**
 
    * Expensive build language and deep API
    * Gradle is Groovy
@@ -155,6 +155,8 @@ It's hard to discuss Gradle without Groovy language. [Groovy](goo.gl/rQ0WkW) is 
 ###What is Gradle Wrapper?
 
 ### Author
-   Name     : Leonardo Taehwan Kim
-   Email    : contact@thefinestartist.com
-   Website  : https://www.thefinestartist.com
+```
+Name     : Leonardo Taehwan Kim
+Email    : contact@thefinestartist.com
+Website  : https://www.thefinestartist.com
+```
