@@ -56,14 +56,12 @@
          </target>
       </project>
       ```
-      
       * Maven
       ```
-      <?xml version="1.0" encoding="UTF-8"?>
-      <project xmlns="http://maven.apache.org/POM/4.0.0" 
-               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"     
-               xsi:schemaLocation="http://maven.apache.org/POM/4.0.0  
-               http://maven.apache.org/maven-v4_0_0.xsd">
+      <project xmlns="http://maven.apache.org/POM/4.0.0"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                 http://maven.apache.org/maven-v4_0_0.xsd">
          <modelVersion>4.0.0</modelVersion>
          <groupId>com.technologyconversations</groupId>
          <artifactId>java-build-tools</artifactId>
@@ -87,48 +85,6 @@
                   <groupId>org.apache.maven.plugins</groupId>
                   <artifactId>maven-compiler-plugin</artifactId>
                   <version>2.3.2</version>
-               </plugin>
-               <!--verify-->
-               <plugin>
-                  <groupId>org.apache.maven.plugins</groupId>
-                  <artifactId>maven-checkstyle-plugin</artifactId>
-                  <version>2.12.1</version>
-                  <executions>
-                     <execution>
-                        <configuration>
-                           <configLocation>config/checkstyle/checkstyle.xml</configLocation>
-                           <consoleOutput>true</consoleOutput>
-                           <failsOnError>true</failsOnError>
-                        </configuration>
-                        <goals>
-                           <goal>check</goal>
-                        </goals>
-                     </execution>
-                  </executions>
-               </plugin>
-               <plugin>
-                  <groupId>org.codehaus.mojo</groupId>
-                  <artifactId>findbugs-maven-plugin</artifactId>
-                  <version>2.5.4</version>
-                  <executions>
-                     <execution>
-                        <goals>
-                           <goal>check</goal>
-                        </goals>
-                     </execution>
-                  </executions>
-               </plugin>
-               <plugin>
-                  <groupId>org.apache.maven.plugins</groupId>
-                  <artifactId>maven-pmd-plugin</artifactId>
-                  <version>3.1</version>
-                  <executions>
-                     <execution>
-                        <goals>
-                           <goal>check</goal>
-                        </goals>
-                     </execution>
-                  </executions>
                </plugin>
             </plugins>
          </build>
