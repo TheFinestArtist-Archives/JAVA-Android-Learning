@@ -1,6 +1,24 @@
 #Gradle in Android
 
-###How is the folder structured?
+###Project structure
+```
+Project
+├── gradle
+│   └── wrapper
+│       ├── gradle-wrapper.jar
+│       └── gradle-wrapper.properties
+│
+├── app
+│   └── build.gradle
+│   └── proguard-rules.pro
+│
+├── build.gradle
+├── gradle.properties
+├── local.properties
+└── settings.gradle
+
+~/.gradle/gradle.properties
+```
 
 ###What is setting.gradle, build.gradle, local.properties, gradle.properties?
 
