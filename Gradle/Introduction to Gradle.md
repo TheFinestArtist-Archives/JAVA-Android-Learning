@@ -139,7 +139,7 @@ Build automation tool are consists of two main parts: configuration and build. C
    * Community-driven and company-backend
 
 
-###Gradle Installation
+###How to install Gradle?
    * https://docs.gradle.org/current/userguide/installation.html
       1. Download 'Complete distribution' or 'Binary only distribution' from http://gradle.org/downloads/ and unpack it.
       2. Create an environment variable GRADLE_HOME where your 'gradle-x.x' is located.
@@ -150,9 +150,10 @@ Build automation tool are consists of two main parts: configuration and build. C
 
 
 ###Groovy?
-It's hard to discuss Gradle without Groovy language. [Groovy](goo.gl/rQ0WkW) is object-oriented programming language and also is a dynamic language for JAVA platform.
+It's hard to discuss Gradle without Groovy language. [Groovy](goo.gl/rQ0WkW) is object-oriented programming language and also is a dynamic language and scripting language for JAVA platform.
 
 ###What is Gradle Wrapper?
+[Gradle Wrapper](https://docs.gradle.org/current/userguide/gradle_wrapper.html) is the preferred way of starting a Gradle build. The wrapper is a batch script on Windows, and a shell script for other operating systems. When you start a Gradle build via the wrapper, Gradle will be automatically downloaded and used to run the build.
 
 ### Author
 ```
