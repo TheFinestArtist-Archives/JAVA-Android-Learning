@@ -1,6 +1,8 @@
 #Gradle in Android
 
 ###Project structure
+
+When you make a Android project through Android Studio. Gradle script will be generated automatically. Gradle related files are located like this:
 ```
 Project
 ├── gradle
@@ -12,6 +14,10 @@ Project
 │   └── build.gradle
 │   └── proguard-rules.pro
 │
+├── library
+│   └── build.gradle
+│   └── proguard-rules.pro
+│
 ├── build.gradle
 ├── gradle.properties
 ├── local.properties
@@ -20,13 +26,43 @@ Project
 ~/.gradle/gradle.properties
 ```
 
-###What is setting.gradle, build.gradle, local.properties, gradle.properties?
+
+####setting.gradle?
+####build.gradle?
+####local.properties?
+####gradle.properties?
+
 
 ###How the build.gradle structured?
 
-###Integrating some open sources?
+
+###Integrating open sources
+
 ####Android Support Packages
+```
+ // Google Play Services
+ compile 'com.google.android.gms:play-services:7.3.+'
+
+ // Support Libraries
+ compile 'com.android.support:appcompat-v7:22.0.+'
+ compile 'com.android.support:cardview-v7:22.0.+'
+ compile 'com.android.support:gridlayout-v7:22.0.+'
+ compile 'com.android.support:leanback-v17:22.0.+'
+ compile 'com.android.support:mediarouter-v7:22.0.+'
+ compile 'com.android.support:palette-v7:22.0.+'
+ compile 'com.android.support:recyclerview-v7:22.0.+'
+ compile 'com.android.support:support-annotations:22.0.+'
+ compile 'com.android.support:support-v13:22.0.+'
+ compile 'com.android.support:support-v4:22.0.+'
+```
+You can find latest Android support package version from [here](http://developer.android.com/tools/support-library/index.html)
+
 ####Realm
+```
+compile 'io.realm:realm-android:0.80.+'
+```
+You can find more ways to integrating Realm from [here](http://realm.io/docs/java/latest/#installation)
+
 ####Crashlytics
 
 ###Customisation Gradle Settings
