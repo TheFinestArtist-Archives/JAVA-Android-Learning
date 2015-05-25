@@ -3,18 +3,87 @@
 **This post is for the developers who just started using Gradle.**
 
 
-###What is Gradle?
+###Build automation?
+[Build automation](http://en.wikipedia.org/wiki/Build_automation) is the act of scripting or automating a wide variety of tasks that software developers do in their day-to-day activities including things like:
 
-   * [Gradle](https://gradle.org/) is a project automation tool that combines [Ant](http://en.wikipedia.org/wiki/Apache_Ant)'s power and flexibility with [Maven](http://en.wikipedia.org/wiki/Apache_Maven)'s the dependency management system and conventions into a more effective way to build.
+   * compiling computer source code into binary code
+   * packaging binary code
+   * running automated tests
+   * deploying to production systems
+   * creating documentation and/or release notes
+
+###Gradle?
+
+   * [Gradle](https://gradle.org/) is a build automation tool that combines [Ant](http://en.wikipedia.org/wiki/Apache_Ant)'s power and flexibility with [Maven](http://en.wikipedia.org/wiki/Apache_Maven)'s build life cycle and dependency management conventions into a more effective way to build.
    * Gradle has it's own [domain-specific language (DSL)](http://en.wikipedia.org/wiki/Domain-specific_language) based on [Groovy](http://groovy-lang.org/) instead of the more traditional XML form of declaring the project configuration.
    * Google adopted Gradle as the default build tool for the Android OS.
 ￼
 
-###Why Gradle?
+###Why Gradle? (Gradle v/s Maven v/s Ant)
 
-   * Gradle build scripts tend to be much shorter and clearer than those written for Ant or Maven.
+Build automation tool are consists of two main parts: configuration and build. Configuration is static information about the build such as build scripts and build is dynamic action.
+   * Gradle uses Groovy DSL for it's configuration and Groovy language for customizing it's build.
+   * Maven is focused on configuration, hard to customize.
+   * Ant is focused on build, hard to configure.
 
-      * Ant with Ivy
+####Gradle build scripts
+   * Gradle build scripts tend to be much shorter and clearer than those written for Maven or Ant.
+      * Gradle (build.gradle)
+      ```
+      // build.gradle
+      apply plugin: 'java'
+      apply plugin: 'checkstyle'
+      apply plugin: 'findbugs'
+      apply plugin: 'pmd'
+
+      version = '1.0'
+
+      repositories {
+          mavenCentral()
+      }
+
+      dependencies {
+          testCompile group: 'junit', name: 'junit', version: '4.11'
+          testCompile group: 'org.hamcrest', name: 'hamcrest-all', version: '1.3'
+      }
+      ```
+
+      * Maven (pom.xml)
+      ```
+      <!--[pom.xml]-->
+      <project xmlns="http://maven.apache.org/POM/4.0.0"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                 http://maven.apache.org/maven-v4_0_0.xsd">
+         <modelVersion>4.0.0</modelVersion>
+         <groupId>com.technologyconversations</groupId>
+         <artifactId>java-build-tools</artifactId>
+         <packaging>jar</packaging>
+         <version>1.0</version>
+         <dependencies>
+            <dependency>
+               <groupId>junit</groupId>
+               <artifactId>junit</artifactId>
+               <version>4.11</version>
+            </dependency>
+            <dependency>
+               <groupId>org.hamcrest</groupId>
+               <artifactId>hamcrest-all</artifactId>
+               <version>1.3</version>
+            </dependency>
+         </dependencies>
+         <build>
+            <plugins>
+               <plugin>
+                  <groupId>org.apache.maven.plugins</groupId>
+                  <artifactId>maven-compiler-plugin</artifactId>
+                  <version>2.3.2</version>
+               </plugin>
+            </plugins>
+         </build>
+      </project>
+      ```
+      * Ant (build.xml) with Ivy (ivy.xml)
       ```
       <!--[ivy.xml]-->
       <ivy-module version="2.0">
@@ -56,62 +125,6 @@
          </target>
       </project>
       ```
-
-      * Maven
-      ```
-      <project xmlns="http://maven.apache.org/POM/4.0.0"
-                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
-                 http://maven.apache.org/maven-v4_0_0.xsd">
-         <modelVersion>4.0.0</modelVersion>
-         <groupId>com.technologyconversations</groupId>
-         <artifactId>java-build-tools</artifactId>
-         <packaging>jar</packaging>
-         <version>1.0</version>
-         <dependencies>
-            <dependency>
-               <groupId>junit</groupId>
-               <artifactId>junit</artifactId>
-               <version>4.11</version>
-            </dependency>
-            <dependency>
-               <groupId>org.hamcrest</groupId>
-               <artifactId>hamcrest-all</artifactId>
-               <version>1.3</version>
-            </dependency>
-         </dependencies>
-         <build>
-            <plugins>
-               <plugin>
-                  <groupId>org.apache.maven.plugins</groupId>
-                  <artifactId>maven-compiler-plugin</artifactId>
-                  <version>2.3.2</version>
-               </plugin>
-            </plugins>
-         </build>
-      </project>
-      ```
-      
-      * Gradle
-      ```
-      apply plugin: 'java'
-      apply plugin: 'checkstyle'
-      apply plugin: 'findbugs'
-      apply plugin: 'pmd'
-
-      version = '1.0'
-
-      repositories {
-          mavenCentral()
-      }
-
-      dependencies {
-          testCompile group: 'junit', name: 'junit', version: '4.11'
-          testCompile group: 'org.hamcrest', name: 'hamcrest-all', version: '1.3'
-      }
-      ```
-
-####Gradle v/s Maven v/s Ant
 
 ###What is Gradle Wrapper?
 
