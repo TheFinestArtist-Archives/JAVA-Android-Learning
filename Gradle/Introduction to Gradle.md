@@ -12,6 +12,7 @@
    * deploying to production systems
    * creating documentation and/or release notes
 
+
 ###Gradle?
 
    * [Gradle](https://gradle.org/) is a build automation tool that combines [Ant](http://en.wikipedia.org/wiki/Apache_Ant)'s power and flexibility with [Maven](http://en.wikipedia.org/wiki/Apache_Maven)'s build life cycle and dependency management conventions into a more effective way to build.
@@ -82,6 +83,7 @@ Build automation tool are consists of two main parts: configuration and build. C
       </build>
    </project>
    ```
+
    * Ant (build.xml) with Ivy (ivy.xml)
    ```
    <!--[ivy.xml]-->
@@ -125,20 +127,34 @@ Build automation tool are consists of two main parts: configuration and build. C
    </project>
    ```
 
+**[Gradle's compelling feature set](http://www.drdobbs.com/jvm/why-build-your-java-projects-with-gradle/240168608)**
+
+   * Expensive build language and deep API
+   * Gradle is Groovy
+   * Flexible conventions
+   * Robust and powerful dependency management
+   * Scalable builds
+   * Effortless extendibility
+   * Integration with other build tool
+   * Community-driven and company-backend
+
+
 ###Gradle Installation
    * https://docs.gradle.org/current/userguide/installation.html
-   * http://rominirani.com/2014/07/28/gradle-tutorial-part-1-installation-setup/
-   * http://codetutr.com/2013/03/23/how-to-install-gradle/
+      1. Download 'Complete distribution' or 'Binary only distribution' from http://gradle.org/downloads/ and unpack it.
+      2. Create an environment variable GRADLE_HOME where your 'gradle-x.x' is located.
+      3. Add GRADLE_HOME/bin to your PATH environment variable.
+      4. Verify if Gradle set up properly with simple command ```gradle -v```.
+
+*Gradle is shipped in Android Studio. No external installation is required if you are using Android Studio.*
+
 
 ###Groovy?
+It's hard to discuss Gradle without Groovy language. [Groovy](goo.gl/rQ0WkW) is object-oriented programming language and also is a dynamic language for JAVA platform.
 
 ###What is Gradle Wrapper?
 
-### Test Version
-    Android Studio Version: 1.2.11
-    Gradle Version: 1.2.2
-
 ### Author
-    Name     : Leonardo Taehwan Kim
-    Email    : contact@thefinestartist.com
-    Website  : https://www.thefinestartist.com
+   Name     : Leonardo Taehwan Kim
+   Email    : contact@thefinestartist.com
+   Website  : https://www.thefinestartist.com

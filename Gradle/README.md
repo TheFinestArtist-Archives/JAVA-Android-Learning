@@ -13,6 +13,8 @@ EN
    * Gradle New Android Build System https://gradle.org/gradle-the-new-android-build-system/
    * Build Tool http://technologyconversations.com/2014/06/18/build-tools/
    * Gradle Tutorial Series http://rominirani.com/2014/07/28/gradle-tutorial-series-an-overview/
+   * Why Gradle http://www.drdobbs.com/jvm/why-build-your-java-projects-with-gradle/240168608
+   * Gradle Installation http://rominirani.com/2014/07/28/gradle-tutorial-part-1-installation-setup/
 
 KR
    * Gradle 권남 Wiki http://kwonnam.pe.kr/wiki/gradle

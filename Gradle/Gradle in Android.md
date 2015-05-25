@@ -22,3 +22,12 @@
 ###Library Module Setting
 
 ###Testing
+
+### Test Version
+   Android Studio Version: 1.2.11
+   Gradle Version: 1.2.2
+
+### Author
+   Name     : Leonardo Taehwan Kim
+   Email    : contact@thefinestartist.com
+   Website  : https://www.thefinestartist.com

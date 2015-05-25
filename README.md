@@ -16,6 +16,7 @@
   * EN/KR Blog Post for each Topic
   * Blog Post in [Markdown](http://daringfireball.net/projects/markdown/), [Markdown Cheat Sheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
   * Make more than one post for a topic if it needs
+  * Translate in Korean after writing all the posts.
   * Effective JAVA
     * 2 rules per day
     * Each rule will be summarized in [Wiki](https://github.com/TheFinestArtist/Relam-JAVA-Android-Learning/wiki)
