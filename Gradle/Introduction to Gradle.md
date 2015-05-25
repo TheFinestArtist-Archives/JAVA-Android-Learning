@@ -3,7 +3,7 @@
 **This post is for the developers who just started using Gradle.**
 
 
-###Build automation?
+##Build automation?
 [Build automation](http://en.wikipedia.org/wiki/Build_automation) is the act of scripting or automating a wide variety of tasks that software developers do in their day-to-day activities including things like:
 
    * compiling computer source code into binary code
@@ -13,14 +13,14 @@
    * creating documentation and/or release notes
 
 
-###Gradle?
+##Gradle?
 
    * [Gradle](https://gradle.org/) is a build automation tool that combines [Ant](http://en.wikipedia.org/wiki/Apache_Ant)'s power and flexibility with [Maven](http://en.wikipedia.org/wiki/Apache_Maven)'s build life cycle and dependency management conventions into a more effective way to build.
    * Gradle has it's own [domain-specific language (DSL)](http://en.wikipedia.org/wiki/Domain-specific_language) based on [Groovy](http://groovy-lang.org/) instead of the more traditional XML form of declaring the project configuration.
    * Google adopted Gradle as the default build tool for the Android OS.
 ￼
 
-###Why Gradle? (Gradle v/s Maven v/s Ant)
+##Why Gradle? (Gradle v/s Maven v/s Ant)
 
 Build automation tool are consists of two main parts: configuration and build. Configuration is static information about the build such as build scripts and build is dynamic part which actual action happens.
    * Gradle uses Groovy DSL for it's configuration and Groovy language for customizing it's build.
@@ -139,7 +139,7 @@ Build automation tool are consists of two main parts: configuration and build. C
    * Community-driven and company-backend
 
 
-###How to install Gradle?
+##How to install Gradle?
    * https://docs.gradle.org/current/userguide/installation.html
       1. Download 'Complete distribution' or 'Binary only distribution' from http://gradle.org/downloads/ and unpack it.
       2. Create an environment variable GRADLE_HOME where your 'gradle-x.x' is located.
@@ -149,13 +149,13 @@ Build automation tool are consists of two main parts: configuration and build. C
 *Gradle is shipped in Android Studio. No external installation is required if you are using Android Studio.*
 
 
-###Groovy?
+##Groovy?
 It's hard to discuss Gradle without Groovy language. [Groovy](goo.gl/rQ0WkW) is object-oriented programming language and also is a dynamic language and scripting language for JAVA platform.
 
-###Gradle Wrapper?
+##Gradle Wrapper?
 [Gradle Wrapper](https://docs.gradle.org/current/userguide/gradle_wrapper.html) is the preferred way of starting a Gradle build. The wrapper is a batch script on Windows, and a shell script for other operating systems. When you start a Gradle build via the wrapper, Gradle will be automatically downloaded and used to run the build.
 
-### Author
+##Author
 ```
 Name     : Leonardo Taehwan Kim
 Email    : contact@thefinestartist.com

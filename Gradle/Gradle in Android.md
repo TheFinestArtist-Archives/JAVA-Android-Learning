@@ -1,6 +1,6 @@
 #Gradle in Android
 
-###Project structure
+##Project structure
 
 When you make a Android project through Android Studio. Gradle script will be generated automatically. Gradle related files are located like this:
 ```
@@ -27,18 +27,18 @@ Project
 ```
 
 
-####setting.gradle?
-####build.gradle?
-####local.properties?
-####gradle.properties?
+###setting.gradle?
+###build.gradle?
+###local.properties?
+###gradle.properties?
 
 
-###How the build.gradle structured?
+##build.gradle structure?
 
 
-###Integrating open sources
+##Integrating open sources
 
-####Android Support Packages
+###Android Support Packages
 ```
  // Google Play Services
  compile 'com.google.android.gms:play-services:7.3.+'
@@ -57,27 +57,27 @@ Project
 ```
 You can find latest Android support package version from [here](http://developer.android.com/tools/support-library/index.html)
 
-####Realm
+###Realm
 ```
 compile 'io.realm:realm-android:0.80.+'
 ```
 You can find more ways to integrating Realm from [here](http://realm.io/docs/java/latest/#installation)
 
-####Crashlytics
+###Crashlytics
 
-###Customisation Gradle Settings
-####Version Name Suffix
-####https://www.youtube.com/watch?t=608&v=LCJAgPkpmR0
+##Customisation Gradle Settings
+###Version Name Suffix
+###https://www.youtube.com/watch?t=608&v=LCJAgPkpmR0
 
-###What is repositories and why there is so many repositories?
+##What is repositories and why there is so many repositories?
 
-###What is difference between jcenter, maven, mavenCentral, etc?
+##What is difference between jcenter, maven, mavenCentral, etc?
 
-###Library Module Setting
+##Library Module Setting
 
-###Testing
+##Testing
 
-### Author
+## Author
 ```
 Name     : Leonardo Taehwan Kim
 Email    : contact@thefinestartist.com
