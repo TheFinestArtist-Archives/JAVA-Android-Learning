@@ -12,6 +12,7 @@ EN
    * Groovy Syntax http://www.groovy-lang.org/syntax.html
    * Gradle New Android Build System https://gradle.org/gradle-the-new-android-build-system/
    * Build Tool http://technologyconversations.com/2014/06/18/build-tools/
+   * Gradle Tutorial Series http://rominirani.com/2014/07/28/gradle-tutorial-series-an-overview/
 
 KR
    * Gradle 권남 Wiki http://kwonnam.pe.kr/wiki/gradle
