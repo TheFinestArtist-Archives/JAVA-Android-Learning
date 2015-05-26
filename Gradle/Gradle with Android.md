@@ -1,4 +1,4 @@
-#Gradle in Android
+#Gradle with Android
 
 **This post is for the developers who want to understand how Gradle works with Android.**
 
@@ -230,11 +230,15 @@ dependencies {
 
 ##Library Module Setting
 
-##Testing
-
 ## Author
 ```
 Name     : Leonardo Taehwan Kim
 Email    : contact@thefinestartist.com
 Website  : https://www.thefinestartist.com
+```
+
+####Tested Version
+```
+Android Studio: 1.2.11
+Gradle: 1.2.2
 ```
