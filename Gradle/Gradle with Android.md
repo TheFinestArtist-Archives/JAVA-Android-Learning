@@ -2,35 +2,39 @@
 
 **This post is for the developers who want to understand how Gradle works with Android.**
 
+##Module?
+Android Studio is build on IntelliJ IDEA which supports module-based project structure. There is new keyword called "Module" in Android Studio. [Intellij defines module as:](https://www.jetbrains.com/idea/features/project_configuration.html)
+> Module is a separate logical part of a project that incorporates your working sources, libraries, reference to target Java SDK, etc. It can be compiled, run or debugged as a standalone entity.
+
 ##Project structure
 
 When you make a Android project through Android Studio. Gradle script will be generated automatically. Gradle related files are located like this:
 ```
 Project
+├── settings.gradle
+├── build.gradle
+├── app
+│   └── build.gradle
+├── libraries
+│   └── lib1
+│       └── build.gradle
+│   └── lib2
+│       └── build.gradle
+│
 ├── gradle
 │   └── wrapper
 │       ├── gradle-wrapper.jar
 │       └── gradle-wrapper.properties
-│
-├── app
-│   └── build.gradle
-│   └── proguard-rules.pro
-│
-├── library
-│   └── build.gradle
-│   └── proguard-rules.pro
-│
-├── build.gradle
 ├── gradle.properties
-├── local.properties
-└── settings.gradle
+└── local.properties
 
 ~/.gradle/gradle.properties
 ```
 
-
 ####setting.gradle?
+For multi-projects setup
 ####build.gradle?
+####app/build.gradle?
 ####local.properties?
 ####gradle.properties?
 
