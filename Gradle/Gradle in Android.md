@@ -109,7 +109,9 @@ You can find more ways to integrating Realm from [here](http://realm.io/docs/jav
 | (,2.0]    | all versions lower or equal to 2.0                             |
 | (,2.0[    | all versions lower than 2.0                                    |
 
+*By default, Gradle caches dynamic versions for 24 hours*  
 You can find more about dynamic versions and changing modules from [here](https://docs.gradle.org/current/userguide/dependency_management.html#sub:dynamic_versions_and_changing_modules)
+
 
 ##Customisation Gradle Settings
 ###Version Name Suffix
