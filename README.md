@@ -6,8 +6,8 @@
     * Advanced Android Libraries
     * Annotation Processors
     * Databases
-    * Java Garbage Collection
   * Topics for Week #2
+    * Java Garbage Collection
     * What is an ORM?
     * RecyclerView
     * Basics of NDK, JNI
