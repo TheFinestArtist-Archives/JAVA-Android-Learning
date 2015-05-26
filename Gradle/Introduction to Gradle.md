@@ -150,7 +150,10 @@ Build automation tool are consists of two main parts: configuration and build. C
 
 
 ##Groovy?
-It's hard to discuss Gradle without Groovy language. [Groovy](goo.gl/rQ0WkW) is object-oriented programming language and also is a dynamic language and scripting language for JAVA platform.
+It's hard to discuss Gradle without Groovy language. [Groovy](goo.gl/rQ0WkW) is object-oriented programming language and also is a dynamic language and scripting language for JAVA platform. Gradle choose Groovy for it's language because of two main [reasons](https://docs.gradle.org/current/userguide/overview.html#sec:why_groovy):
+   * The advantages of an internal DSL
+   * Groovy is similar with JAVA
+      * Highest transparency and lowest learning curve especially for developers who are familiar with JAVA
 
 ##Gradle Wrapper?
 [Gradle Wrapper](https://docs.gradle.org/current/userguide/gradle_wrapper.html) is the preferred way of starting a Gradle build. The wrapper is a batch script on Windows, and a shell script for other operating systems. When you start a Gradle build via the wrapper, Gradle will be automatically downloaded and used to run the build.
