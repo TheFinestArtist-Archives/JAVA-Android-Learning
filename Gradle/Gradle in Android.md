@@ -29,10 +29,10 @@ Project
 ```
 
 
-###setting.gradle?
-###build.gradle?
-###local.properties?
-###gradle.properties?
+####setting.gradle?
+####build.gradle?
+####local.properties?
+####gradle.properties?
 
 
 ##build.gradle structure?
