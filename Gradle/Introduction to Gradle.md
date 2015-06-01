@@ -149,8 +149,6 @@ Build automation tool are consists of two main parts: configuration and build. C
 *Gradle is shipped in Android Studio. No external installation is required if you are using Android Studio.*
 
 
-##Gradle Building Steps
-
 ##Groovy?
 It's hard to discuss Gradle without Groovy language. [Groovy](goo.gl/rQ0WkW) is object-oriented programming language and also is a dynamic language and scripting language for JAVA platform. Gradle choose Groovy for it's language because of two main [reasons](https://docs.gradle.org/current/userguide/overview.html#sec:why_groovy):
    * The advantages of an internal DSL

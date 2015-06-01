@@ -25,21 +25,78 @@ Project
 │   └── wrapper
 │       ├── gradle-wrapper.jar
 │       └── gradle-wrapper.properties
-├── gradle.properties
-└── local.properties
+└── gradle.properties
 
 ~/.gradle/gradle.properties
 ```
 
-####setting.gradle?
-For multi-projects setup
-####build.gradle?
-####app/build.gradle?
-####local.properties?
 ####gradle.properties?
+Project-wide Gradle settings
+
+####setting.gradle?
+To define a multi-project build, you need to create a settings file. The settings file lives in the root directory of the source tree, and specifies which projects to include in the build. It must be called settings.gradle. For this example, we are using a simple hierarchical layout.
+```
+Project
+├── settings.gradle
+├── app
+└── libraries
+    └── lib1
+    └── lib2
+```
+settings.gradle
+```
+include "app", "libraries:lib1", "libraries:lib2"
+```
+
+####Top-level build.gradle?
+Top-level build file where you can add configuration options common to all sub-projects/modules
+
+####build.gradle for each module?
+Build file for each module  
+In most cases, you only need to edit the build files at the module level
 
 
 ##build.gradle structure?
+```
+// This adds Android-specific build tasks to the top-level build tasks and makes the android {...} element available to specify Android-specific build options.
+apply plugin: 'com.android.application'
+
+// configures all the Android-specific build options
+android {
+   // the compilation target
+   compileSdkVersion 19
+   // what version of the build tools to use
+   buildToolsVersion "19.0.0"
+
+   // element configures core settings and entries in the manifest file
+   defaultConfig {
+      minSdkVersion 8
+      targetSdkVersion 19
+      versionCode 1
+      versionName "1.0"
+   }
+
+   // how to build and package your app. By default, the build system defines two build types: debug and release
+   buildTypes {
+      release {
+         minifyEnabled true
+         proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+      }
+   }
+}
+
+// the dependencies for this module
+dependencies {
+   // Module dependency
+   compile project(":lib")
+
+   // Remote binary dependency
+   compile 'com.android.support:appcompat-v7:19.0.1'
+
+   // Local binary dependency
+   compile fileTree(dir: 'libs', include: ['*.jar'])
+}
+```
 
 
 ##Integrating open sources
@@ -205,6 +262,7 @@ Project
     └── build.gradle
     └── proguard-rules.pro
 ```
+Codes in each build type folder will be compiled automatically for each build type. (i.e. if current buid type is release, the codes in app/src/release folder will be compiled with codes in app/src/main)
 
 ####Build Type Dependencies
 You can use different compile options for each build types.
@@ -226,13 +284,89 @@ dependencies {
 }
 ```
 
-###https://www.youtube.com/watch?t=608&v=LCJAgPkpmR0
+##Product Flavors
+A product flavor defines a customized version of the application build by the project. A single project can have different flavors which change the generated application.
 
-##What is repositories and why there is so many repositories?
+####Build Variants
+In fact, the output of a project can only be the cross product of the Build Type and, if applicable, the Product Flavor. This is call a build variant.
+*You can set your build variant for each module in Android Studio. There is a button to open build variant window on the left side of Android Studio.*
 
-##What is difference between jcenter, maven, mavenCentral, etc?
+####Product Flavor Groups
+In some case it is useful to be able to have several dimensions of flavors such as 'abi' and 'version'
 
-##Library Module Setting
+```
+android {
+   flavorGroups 'version', 'abi'
+   productFlavors {
+      free {
+         flavorGroup 'version'
+      }
+      paid {
+         flavorGroup 'version'
+      }
+      arm {
+         flavorGroup 'abi'
+      }
+      x86 {
+         flavorGroup 'abi'
+      }
+      mips {
+         flavorGroup 'abi'
+      }
+   }
+}
+```
+There is two flavorGroups ('version', 'abi') and 'version' has 2 productFlavors and 'abi' has 3 productFlavors. Assume we have 2 kinds of build types ('debug', 'release'). We will have 2 ('version') * 3 ('abi') * 2 ('build types') = 12 kinds of build variants.
+
+|      |      | debug           | release           |
+|------|------|-----------------|-------------------|
+| free | arm  | free-arm-debug  | free-arm-release  |
+| free | x86  | free-x86-debug  | free-x86-release  |
+| free | mips | free-mips-debug | free-mips-release |
+| paid | arm  | paid-arm-debug  | paid-arm-release  |
+| paid | x86  | paid-x86-debug  | paid-x86-release  |
+| paid | mips | paid-mips-debug | paid-mips-release |
+
+##Combining sources
+Assume we are building a application with **'debug'** build type and **'mips'** as 'abi' productFlavors and **'free'** as 'version' productFlavors.
+
+####Source code
+Combine all source codes in each folders to build
+```
+src/debug/java
+src/free/java
+src/mips/java
+src/main/java
+```
+
+####Resources
+**Overriding mechanisms**
+```
+src/debug/res (top)
+src/free/res
+src/mips/res
+src/main/res (base)
+```
+
+####Signing configuration
+**Priority Order**
+```
+android.buildTypes.debug.signingConfig (top)
+android.productFlavors.free.signingConfig
+android.productFlavors.mips.signingConfig
+android.defaultConfig.signingConfig (base)
+```
+
+####Package Name
+**Overriding mechanisms + Suffix**
+```
+android.productFlavors.free.packageName (top)
+android.productFlavors.mips.packageName
+android.defaultConfig.packageName
+src/main/AndroidMenifest.xml (base)
+
++ android.buildTypes.debug.packageNameSuffix
+```
 
 ## Author
 ```

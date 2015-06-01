@@ -4,11 +4,11 @@
     * Gradle
     * Android App Architecture
     * Advanced Android Libraries
-    * Annotation Processors
     * Databases
+    * What is an ORM?
   * Topics for Week #2
     * Java Garbage Collection
-    * What is an ORM?
+    * Annotation Processors
     * RecyclerView
     * Basics of NDK, JNI
     * Dalvik, ART

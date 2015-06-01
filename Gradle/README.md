@@ -1,3 +1,10 @@
+####Gradle
+
+Write a blogpost about what Gradle is and how it works. Should be a perfect deep introduction for a new Android developer
+
+Gradle plugins: How do you write a Gradle plugin for Android? Why would that be useful?
+
+
 EN
    * Wikipedia http://en.wikipedia.org/wiki/Gradle
    * Android Tool Project Site http://tools.android.com/tech-docs/new-build-system/user-guide
@@ -15,6 +22,11 @@ EN
    * Gradle Tutorial Series http://rominirani.com/2014/07/28/gradle-tutorial-series-an-overview/
    * Why Gradle http://www.drdobbs.com/jvm/why-build-your-java-projects-with-gradle/240168608
    * Gradle Installation http://rominirani.com/2014/07/28/gradle-tutorial-part-1-installation-setup/
+   * Build Variants http://stackoverflow.com/questions/22068731/android-studio-doesnt-recognise-source-folders
+   * Custom Plugin https://www.youtube.com/watch?v=xoSkz0ICWG4
+   * Building The Android Plugin https://www.youtube.com/watch?t=1645&v=luQntt_4TeM
+   * New Android SDK build system https://www.youtube.com/watch?t=608&v=LCJAgPkpmR0
+   * Gradle for Android https://www.youtube.com/watch?v=rXww768LUUM
 
 KR
    * Gradle 권남 Wiki http://kwonnam.pe.kr/wiki/gradle
