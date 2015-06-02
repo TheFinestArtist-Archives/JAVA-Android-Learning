@@ -1,7 +1,6 @@
 #Introduction to Gradle
 
-**This post is for the developers who just started using Gradle.**
-
+####Basic introduction about Gradle
 
 ##Build automation?
 [Build automation](http://en.wikipedia.org/wiki/Build_automation) is the act of scripting or automating a wide variety of tasks that software developers do in their day-to-day activities including things like:

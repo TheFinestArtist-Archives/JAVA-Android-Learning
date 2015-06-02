@@ -1,6 +1,6 @@
 #Gradle with Android
 
-**This post is for the developers who want to understand how Gradle works with Android.**
+####Understanding how Gradle works with Android
 
 ##Module?
 Android Studio is build on IntelliJ IDEA which supports module-based project structure. There is new keyword called "Module" in Android Studio. [Intellij defines module as:](https://www.jetbrains.com/idea/features/project_configuration.html)
@@ -123,7 +123,7 @@ compile 'com.android.support:support-annotations:22.+'
 compile 'com.android.support:support-v13:22.+'
 compile 'com.android.support:support-v4:22.+'
 ```
-You can find latest Android support package version from [here](http://developer.android.com/tools/support-library/index.html)
+You can find latest Android support package version from [here](http://developer.android.com/tools/support-library/features.html)
 
 ####Realm
 ```
@@ -279,7 +279,6 @@ dependencies {
    releaseCompile 'io.realm:realm-android:0.80.0'
 
    // We are using robolectric for testing projects
-   testCompile "org.robolectric:robolectric:3.0"
    instrumentTestCompile "org.robolectric:robolectric:3.0"
 }
 ```
@@ -365,7 +364,24 @@ android.productFlavors.mips.packageName
 android.defaultConfig.packageName
 src/main/AndroidMenifest.xml (base)
 
-+ android.buildTypes.debug.packageNameSuffix
++ android.buildTypes.debug.applicationIdSuffix
+```
+
+####Testing
+Source Sets
+```
+src/androidTest
+src/androidTestFree
+src/androidTestMips
+```
+
+Dependencies
+```
+dependencies {
+   androidTestCompile "org.robolectric:robolectric:3.0"
+   androidTestFreeCompile "org.robolectric:robolectric:3.0"
+   androidTestMipsCompile "org.robolectric:robolectric:3.0"
+}
 ```
 
 ## Author
