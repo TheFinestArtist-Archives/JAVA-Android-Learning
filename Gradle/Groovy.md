@@ -1,6 +1,6 @@
 #Groovy
 
-####Little bit about Groovy Language before start writing Gradle Plugin
+####Basic [Syntax](http://www.groovy-lang.org/syntax.html) and [Semantics](http://www.groovy-lang.org/semantics.html) of Groovy
 
 ##Difference with JAVA
 
@@ -112,7 +112,7 @@
 
       * Quoted identifiers
 
-   3. Strings
+   3. Strings  
    java.lang.String is plain String object and groovy.lang.GString is [interpolated strings](http://en.wikipedia.org/wiki/String_interpolation).
 
       * Single quoted string
@@ -173,7 +173,7 @@
       assert template.toString().contains('Groovy')
       ```
 
-   4. Lists
+   4. Lists  
    Groovy uses a comma-separated list of values, surrounded by square brackets.  
    Groovy lists are plain JDK ```java.util.List```.  
    The concrete list implementation used when defining list literals are ```java.util.ArrayList``` by default.
@@ -220,7 +220,7 @@
    assert letters[2..4] == ['C', 'd', 'e']
    ```
 
-   5. Arrays
+   5. Arrays  
    Groovy reuses the list notation for arrays, but to make such literals arrays, you need to explicitely define the type of the array through coercion or type declaration.
    ```
    String[] arrStr = ['Ananas', 'Banana', 'Kiwi']  
@@ -234,7 +234,7 @@
    assert numArr.size() == 3
    ```
 
-   6. Maps
+   6. Maps  
    Maps associate keys to values, separating keys and values with colons, and each key/value pairs with commas, and the whole keys and values surrounded by square brackets.
    ```
    def colors = [red: '#FF0000', green: '#00FF00', blue: '#0000FF']
@@ -252,7 +252,7 @@
    ```
 
 ##Semantics
-   1. Variable definition
+   1. Variable definition  
    Variables can be defined using either their type (like String) or by using the keyword def
    ```
    String x
@@ -361,3 +361,10 @@
    }
    assert list == ["a", "b", "c"]
    ```
+
+## Author
+```
+Name     : Leonardo Taehwan Kim
+Email    : contact@thefinestartist.com
+Website  : https://www.thefinestartist.com
+```
