@@ -45,7 +45,9 @@ Project
 ```
 settings.gradle
 ```
-include "app", "libraries:lib1", "libraries:lib2"
+include "app"
+include "libraries:lib1"
+include "libraries:lib2"
 ```
 
 ####Top-level build.gradle?

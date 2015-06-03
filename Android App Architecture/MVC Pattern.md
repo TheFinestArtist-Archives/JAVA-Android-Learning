@@ -1,12 +1,12 @@
 #MVC Pattern
 
-##App architecture
+##Design Pattern
 
 ##Tools & Libraries
 
 ##MVC in Android
 
-##MVC in Realm
+##MVC with Realm
 
 ##Author
 ```

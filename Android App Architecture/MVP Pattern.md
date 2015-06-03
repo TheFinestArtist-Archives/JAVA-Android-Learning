@@ -1,12 +1,12 @@
 #MVP Pattern
 
-##App architecture
+##Design Pattern
 
 ##Tools & Libraries
 
 ##MVP in Android
 
-##MVP in Realm
+##MVP with Realm
 
 ##Author
 ```
