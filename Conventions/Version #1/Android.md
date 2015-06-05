@@ -252,6 +252,7 @@ Realm.getDatabase().updateAllInBackground(user, pet, pets, new OnRealmDatbaseUpd
 ```
 
 ##RealmQuery
+**RealmQuery can't be modified after it's build**
 ```
 RealmQuery.Builder queryBuilder = new RealmQuery.Builder()
                                                 .from(SecondaryDatabase.class)
