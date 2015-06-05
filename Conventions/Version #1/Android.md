@@ -252,7 +252,7 @@ Realm.getDatabase().updateAllInBackground(user, pet, pets, new OnRealmDatbaseUpd
 ```
 
 ##RealmQuery
-**RealmQuery can't be modified after it's build**
+**RealmQuery can't be modified after it's build** (Mainly because of RealmObserver)
 ```
 RealmQuery.Builder queryBuilder = new RealmQuery.Builder()
                                                 .from(SecondaryDatabase.class)
@@ -267,8 +267,6 @@ RealmQuery.Builder queryBuilder = new RealmQuery.Builder()
                                                 .whereGreaterThanOrEqualTo("wins", 50)
                                                 .whereLessThan("wins", 50)
                                                 .whereLessThanOrEqualTo("wins", 50)
-                                                .setLimit(10)
-                                                .setSkip(10)
                                                 .orderByAscending("score", "playerName")
                                                 .orderByDescending("score", "playerName")
                                                 .whereContainedIn("playerName", Arrays.asList({"Jonathan Walsh", "Dario Wunsch", "Shawn Simon"}))
@@ -288,7 +286,12 @@ query.findAllInBackground(new OnRealmListFoundListener<User>() {
 });
 
 // Paging
-queryBuilder.setSkip(20).build().findNextInBackground(new OnRealmListFoundListener<User>() {
+RealmList<User> friends = query.findSome(10); // Find maximum 10 users
+RealmList<User> friends = query.findSome(10, 30); // Find maximum 10 users skipping first 30 users
+query.findSomeInBackground(10, new OnRealmListFoundListener<User>() {
+   public void onFound(RealmList<User> friends, RealmQueryError error) {}
+});
+query.findSomeInBackground(10, 30, new OnRealmListFoundListener<User>() {
    public void onFound(RealmList<User> friends, RealmQueryError error) {}
 });
 ```
