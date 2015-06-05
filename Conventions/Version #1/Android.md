@@ -307,10 +307,11 @@ RealmObserver observer = new RealmObserver(query, new OnRealmListUpdatedListener
 ##Gson & Json Support
 ```
 User user = User.fromJson();
-User user = User.fromJsonString();
 User user = User.fromGson();
+User user = User.fromJsonString();
 user.toJson();
 user.toGson();
+user.toJsonString();
 
 OldUser oldUser = new OldUser();
 User user = User.fromObject(oldUser);
