@@ -163,7 +163,7 @@ public class Pet extends BaseObject {
 }
 ```
 
-####Create RealmObject
+####Construct RealmObject
 ```
 User user = new User();
 user.setId(1);
@@ -304,16 +304,34 @@ RealmObserver observer = new RealmObserver(query, new OnRealmListUpdatedListener
 });
 ```
 
+##Gson & Json Support
+```
+User user = User.fromJson();
+User user = User.fromJsonString();
+User user = User.fromGson();
+user.toJson();
+user.toGson();
 
+OldUser oldUser = new OldUser();
+User user = User.fromObject(oldUser);
+```
 
+##Migration
+```
+// Auto Migration
+public class BaseApplication extends Application {
 
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        Realm.startWith(this);
+        Realm.setAutoMigration();
+        Realm.setAutoMigration(SecondaryDatabase.class);
+    }
+}
+```
 
-
-
-
-
-
-
+##More
 
 
 ##Author
