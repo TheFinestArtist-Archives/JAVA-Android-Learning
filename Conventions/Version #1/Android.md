@@ -296,11 +296,11 @@ queryBuilder.setSkip(20).build().findNextInBackground(new OnRealmListFoundListen
 ```
 RealmQuery query = queryBuilder.build();
 RealmObserver observer = new RealmObserver(query, new OnRealmObjectUpdatedListener<User>() {
-   public void onUpdated(User user, RealmUpdateError error) {}
+   public void onUpdated(RealmQuery query, User user, RealmUpdateError error) {}
 });
 
 RealmObserver observer = new RealmObserver(query, new OnRealmListUpdatedListener<User>() {
-   public void onUpdated(RealmList<User> users, RealmUpdateError error) {}
+   public void onUpdated(RealmQuery query, RealmList<User> users, RealmUpdateError error) {}
 });
 ```
 
