@@ -289,6 +289,7 @@ RealmObserver observer = new RealmObserver(friends, new OnRealmUpdatedListener<R
 ```
 
 ##OnRealmUpdatedListener
+One single listener for all. The `onUpdated` method will be run in the UI thread.
 ```java
 public interface OnRealmUpdatedListener<E extends RealmBaseObject> {
    void onUpdated(E baseObject, RealmException exception);
