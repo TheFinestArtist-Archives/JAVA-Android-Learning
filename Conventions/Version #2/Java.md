@@ -303,7 +303,8 @@ public class RealmException extends exception {}
 public class RealmObject extends RealmBaseObject{}
 public class RealmList<E extends RealmObject> extends RealmBaseObject implements List {}
 ```
-Usage
+
+####Usage
 ```java
 public class RealmAdapter extends BaseAdapter implements OnRealmListener<RealmList<Post>> {
    public RealmAdapter() {}
