@@ -176,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
 Original MVC Pattern is not appropriate design pattern for Android in such reasons.
 
 1. Activity and Fragment is not exactly a controller.
-   Activity and Fragment is a kind of controller which has View life cycle in it. So, some developer makes controller class for Activity or Fragment (i.e. MainController for MainActivity). Sometimes, it is useful way but mostly it is a very redundant work and makes file structure complicated and also has maintenance issue.
+   * Activity and Fragment is a kind of controller which has View life cycle in it. So, some developer makes controller class for Activity or Fragment (i.e. MainController for MainActivity). Sometimes, it is useful way but mostly it is a very redundant work and makes file structure complicated and also has maintenance issue.
 
 2. Letting model to update view can cause serious problems.
    * Thread Handling
