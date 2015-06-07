@@ -61,6 +61,16 @@ RealmList<? extends RealmObject>
 
 ####Models
 ```java
+/**
+ * Annotations
+ * @RealmClassName
+ * @RealmPrimaryKey
+ * @RealmUnique
+ * @RealmIndex
+ * @RealmIgnore
+ * @RealmValidation
+ */
+
 public class BaseObject extends RealmObject {
 
    @RealmPrimaryKey
@@ -94,7 +104,7 @@ public class User extends BaseObject {
 
    // Working On
    @RealmUnique
-   @RealmValidation(5, 20)
+   @RealmValidation({Min: 5, Max: 20})
    private String username;
 
    private Settings settings;
@@ -120,6 +130,7 @@ public class Payment extends BaseObject {
    private int cvc;
 }
 
+// Using with Enum
 public class Pet extends BaseObject {
 
    private String name;
@@ -176,30 +187,37 @@ User user;
 Pet pet;
 RealmList<Pet> pets;
 
+user.save();
 user.saveInBackground();
-user.saveInBackground(new OnRealmUpdatedListener<User>() {
-   public void onUpdated(User user, RealmUpdateError error) {}
+user.saveInBackground(new OnRealmListener<User>() {
+   public void onListened(RealmListenerType type, User user, RealmException exception) {}
 });
 
+user.save(SecondaryDatabase.class);
 user.saveInBackground(SecondaryDatabase.class);
-user.saveInBackground(SecondaryDatabase.class, new OnRealmUpdatedListener<User>() {
-   public void onUpdated(User user, RealmUpdateError error) {}
+user.saveInBackground(SecondaryDatabase.class, new OnRealmListener<User>() {
+   public void onListened(RealmListenerType type, User user, RealmException exception) {}
 });
 
+pets.save();
 pets.saveInBackground();
-pets.saveInBackground(new OnRealmUpdatedListener<RealmList<Pet>>() {
-   public void onUpdated(RealmList<Pet> pets, RealmUpdateError error) {}
+pets.saveInBackground(new OnRealmListener<RealmList<Pet>>() {
+   public void onListened(RealmListenerType type, RealmList<Pet> pets, RealmException exception) {}
 });
 
 // Saving Multiple RealmObjects and RealmList at once
-new RealmList<RealmObject>(user, pet, pets).saveInBackground(new OnRealmUpdatedListener<RealmList<RealmObject>>() {
-   public void onUpdated(RealmList<RealmObject> updates, RealmUpdateError error) {}
+new RealmList<RealmObject>(user, pet, pets).save();
+new RealmList<RealmObject>(user, pet, pets).saveInBackground(new OnRealmListener<RealmList<RealmObject>>() {
+   public void onListened(RealmListenerType type, RealmList<RealmObject> updates, RealmException exception) {}
 });
 
-// You can also set whether to create or update or createOrUpdate to make transaction faster (doesn't mean create or update isn't fast enough)
-user.saveInBackground(RealmTransaction.CREATE);
-user.saveInBackground(RealmTransaction.UPDATE);
-user.saveInBackground(RealmTransaction.CREATE_OR_UPDATE); // default option
+// You can also set whether to create or update or createOrUpdate to make transaction faster
+user.save(RealmTransaction.CREATE);
+user.save(RealmTransaction.UPDATE);
+user.save(RealmTransaction.CREATE_OR_UPDATE); // default option
+
+public void save (Class<? extends RealmDatabase> clazz, RealmTransaction transaction, RealmBaseObject baseObject);
+public void saveInBackground (Class<? extends RealmDatabase> clazz, RealmTransaction transaction, RealmBaseObject baseObject, OnRealmListener listener);
 ```
 
 ##RealmQuery
@@ -227,47 +245,79 @@ RealmQuery.Builder queryBuilder = new RealmQuery.Builder()
 RealmQuery query = queryBuilder.build();
 
 User user = query.findFirst();
-query.findFirstInBackground(new OnRealmFindListener<User>() {
-   public void onFound(User user, RealmQueryError error) {}
+query.findFirstInBackground(new OnRealmListener<User>() {
+   public void onListened(RealmListenerType type, User user, RealmException exception) {}
 });
 
 RealmList<User> friends = query.findAll();
-query.findAllInBackground(new OnRealmFindListener<RealmList<User>>() {
-   public void onFound(RealmList<User> friends, RealmQueryError error) {}
+query.findAllInBackground(new OnRealmListener<RealmList<User>>() {
+   public void onListened(RealmListenerType type, RealmList<User> friends, RealmException exception) {}
 });
 
 // Paging
 RealmList<User> friends = query.findSome(10); // Find maximum 10 users
 RealmList<User> friends = query.findSome(10, 30); // Find maximum 10 users skipping first 30 users
-query.findSomeInBackground(10, new OnRealmFindListener<User>() {
-   public void onFound(RealmList<User> friends, RealmQueryError error) {}
+query.findSomeInBackground(10, new OnRealmListener<User>() {
+   public void onListened(RealmListenerType type, RealmList<User> friends, RealmException exception) {}
 });
-query.findSomeInBackground(10, 30, new OnRealmFindListener<RealmList<User>>() {
-   public void onFound(RealmList<User> friends, RealmQueryError error) {}
+query.findSomeInBackground(10, 30, new OnRealmListener<RealmList<User>>() {
+   public void onListened(RealmListenerType type, RealmList<User> friends, RealmException exception) {}
 });
 ```
 
 ##RealmObserver
 ```java
 RealmQuery query = queryBuilder.build();
-RealmObserver observer = new RealmObserver(query, new OnRealmUpdatedListener<User>() {
-   public void onUpdated(User user, RealmUpdateError error) {}
+RealmObserver observer = new RealmObserver(query, new OnRealmListener<User>() {
+   public void onListened(RealmListenerType type, User user, RealmException exception) {}
 });
 
 User user = query.findFirst();
-RealmObserver observer = new RealmObserver(user, new OnRealmUpdatedListener<User>() {
-   public void onUpdated(User user, RealmUpdateError error) {}
+RealmObserver observer = new RealmObserver(user, new OnRealmListener<User>() {
+   public void onListened(RealmListenerType type, User user, RealmException exception) {}
 });
 
-RealmObserver observer = new RealmObserver(query, new OnRealmUpdatedListener<RealmList<User>>() {
-   public void onUpdated(RealmList<User> users, RealmUpdateError error) {}
+RealmObserver observer = new RealmObserver(query, new OnRealmListener<RealmList<User>>() {
+   public void onListened(RealmListenerType type, RealmList<User> users, RealmException exception) {}
 });
 
 // This would have different results from the upper RealmObserver
 RealmList<User> friends = query.findAll();
-RealmObserver observer = new RealmObserver(friends, new OnRealmUpdatedListener<RealmList<User>>() {
-   public void onUpdated(RealmList<User> users, RealmUpdateError error) {}
+RealmObserver observer = new RealmObserver(friends, new OnRealmListener<RealmList<User>>() {
+   public void onListened(RealmListenerType type, RealmList<User> users, RealmException exception) {}
 });
+```
+
+##OnRealmListener
+```
+public interface OnRealmListener<E extends RealmBaseObject> {
+   void onListened(RealmListenerType type, E baseObject, RealmException exception);
+}
+
+public enum RealmListenerType {
+   SAVE, FIND, OBSERVER
+}
+
+public class RealmException extends exception {}
+
+public class RealmObject extends RealmBaseObject{}
+public class RealmList<E extends RealmObject> extends RealmBaseObject implements List {}
+```
+Usage
+```
+public class RealmAdapter extends BaseAdapter implements OnRealmListener<RealmList<Post>> {
+   public RealmAdapter() {}
+}
+
+RealmAdapter adapter = new RealmAdapter();
+
+Post post = new Post();
+new RealmList<Post>(post).saveInBackground(adapter);
+
+RealmQuery query = new RealmQuery.Builder().of(Post.class).build();
+query.findAllInBackground(adapter);
+
+RealmObserver observer = new RealmObserver(query, adapter);
 ```
 
 ##Gson & Json Support
