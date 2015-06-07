@@ -289,7 +289,7 @@ RealmObserver observer = new RealmObserver(friends, new OnRealmListener<RealmLis
 ```
 
 ##OnRealmListener
-```
+```java
 public interface OnRealmListener<E extends RealmBaseObject> {
    void onListened(RealmListenerType type, E baseObject, RealmException exception);
 }
@@ -304,7 +304,7 @@ public class RealmObject extends RealmBaseObject{}
 public class RealmList<E extends RealmObject> extends RealmBaseObject implements List {}
 ```
 Usage
-```
+```java
 public class RealmAdapter extends BaseAdapter implements OnRealmListener<RealmList<Post>> {
    public RealmAdapter() {}
 }
