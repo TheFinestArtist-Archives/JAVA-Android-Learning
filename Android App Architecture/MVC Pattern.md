@@ -172,14 +172,19 @@ public class MainActivity extends AppCompatActivity {
 }
 ```
 
-##MVC with Realm
-Realm doesn't support extending
+##Conclusion
+Original MVC Pattern is not appropriate design pattern for Android in such reasons.
+1. Activity and Fragment is not exactly a controller.
+   Activity and Fragment is a kind of controller which has View life cycle in it. So, some developer makes controller class for Activity or Fragment (i.e. MainController for MainActivity). Sometimes, it is useful way but mostly it is a very redundant work and makes file structure complicated and also has maintenance issue.
 
-Are there any pitfalls?
-How are we going to set Observer to the RealmObjects?
+2. Letting model to update view can cause serious problems.
+   * Thread Handling
+      Only UIThread can update views in Android, but model usually updates in background thread.
+   * Listeners
+      There can be many kinds of Views subscribing or listening to one model such as ```User``` or ```Post```. It is really difficult to know which view should be updated whenever each model has been updated.
 
-##Testing
-Testing
+3. Views are very flexible which means they are created many times and also destroyed many times.
+   * Handling listeners or observers whenever each views are created or destroyed are very complicated and also sophisticated work.
 
 ##Author
 ```

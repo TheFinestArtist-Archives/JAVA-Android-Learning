@@ -16,7 +16,6 @@ Best fit in Android also
 
 Show specific pattern with network/service
 
-##MVP with Realm
 
 ##Author
 ```

@@ -266,12 +266,12 @@ RealmObserver observer = new RealmObserver(friends, new OnRealmUpdatedListener<R
 
 ##Gson & Json Support
 ```java
+User user = User.fromJsonString();
 User user = User.fromJson();
 User user = User.fromGson();
-User user = User.fromJsonString();
+user.toJsonString();
 user.toJson();
 user.toGson();
-user.toJsonString();
 
 OldUser oldUser = new OldUser();
 User user = User.fromObject(oldUser);
