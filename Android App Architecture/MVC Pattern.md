@@ -187,6 +187,8 @@ Original MVC Pattern is not appropriate design pattern for Android in such reaso
 3. Views are very flexible which means they are created many times and also destroyed many times.
    * Handling listeners or observers whenever each views are created or destroyed are very complicated and also sophisticated work.
 
+4. Each view has to implements observer. So you have to make custom views to implements observer.
+
 ##Author
 ```
 Name     : Leonardo Taehwan Kim
