@@ -31,7 +31,17 @@ Project
 ```
 
 ####gradle.properties?
-Project-wide Gradle settings
+`gradle.properties` is a Gradle settings in project folder and `~/.gradle/gradle.properties` is a Gradle settings in Gradle user home.  
+You can set password or gradle settings in both files, but gradle.properties in project folder will be shared with your collaborators.
+```
+mavenUser=admin
+mavenPassword=admin123
+```
+```
+org.gradle.jvmargs=-Xmx8192m -XX:MaxPermSize=2048m -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8
+org.gradle.parallel=true
+org.gradle.daemon=true
+```
 
 ####setting.gradle?
 To define a multi-project build, you need to create a settings file. The settings file lives in the root directory of the source tree, and specifies which projects to include in the build. It must be called settings.gradle. For this example, we are using a simple hierarchical layout.
@@ -383,6 +393,18 @@ dependencies {
    androidTestCompile "org.robolectric:robolectric:3.0"
    androidTestFreeCompile "org.robolectric:robolectric:3.0"
    androidTestMipsCompile "org.robolectric:robolectric:3.0"
+}
+```
+
+##Using Java 7
+
+With Android KitKat (buildToolsVersion 19) you can use the diamond operator, multi-catch, strings in switches, try with resources, etc. To do this, add the following to your build file:
+```java
+android {
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
 }
 ```
 
