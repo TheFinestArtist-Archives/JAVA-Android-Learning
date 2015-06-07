@@ -1,4 +1,4 @@
-#Convention for Android
+#Convention Design
 
 ##Application
 ```java
@@ -170,7 +170,7 @@ user.setFullname("Leonardo Taehwan Kim");
 ```
 
 ####Save RealmObject
-Basically, it create or update each object in Database.
+Basically, saving does createOrUpdate.
 ```java
 User user;
 Pet pet;
@@ -195,6 +195,11 @@ pets.saveInBackground(new OnRealmUpdatedListener<RealmList<Pet>>() {
 new RealmList<RealmObject>(user, pet, pets).saveInBackground(new OnRealmUpdatedListener<RealmList<RealmObject>>() {
    public void onUpdated(RealmList<RealmObject> updates, RealmUpdateError error) {}
 });
+
+// You can also set whether to create or update or createOrUpdate to make transaction faster (doesn't mean create or update isn't fast enough)
+user.saveInBackground(RealmTransaction.CREATE);
+user.saveInBackground(RealmTransaction.UPDATE);
+user.saveInBackground(RealmTransaction.CREATE_OR_UPDATE); // default option
 ```
 
 ##RealmQuery
@@ -270,6 +275,7 @@ RealmObserver observer = new RealmObserver(friends, new OnRealmUpdatedListener<R
 User user = User.fromJsonString();
 User user = User.fromJson();
 User user = User.fromGson();
+
 user.toJsonString();
 user.toJson();
 user.toGson();
