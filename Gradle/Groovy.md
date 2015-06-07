@@ -5,20 +5,20 @@
 ##Difference with JAVA
 
    1. Default imports
-   ```
-   java.io.*
-   java.lang.*
-   java.math.BigDecimal
-   java.math.BigInteger
-   java.net.*
-   java.util.*
-   groovy.lang.*
-   groovy.util.*
+   ```java
+   import java.io.*
+   import java.lang.*
+   import java.math.BigDecimal
+   import java.math.BigInteger
+   import java.net.*
+   import java.util.*
+   import groovy.lang.*
+   import groovy.util.*
    ```
 
    2. Multi-Methods
    In Groovy, the methods which will be invoked are chosen at runtime.
-   ```
+   ```java
    int method(String arg) {
       return 1;
    }
@@ -32,14 +32,14 @@
 
    3. Array initializers
    In Groovy, the { …​ } block is reserved for closures.
-   ```
+   ```java
    // Cannot create array literals with this syntax:
    int[] array = { 1, 2, 3}
    int[] array = [1,2,3]
    ```
 
    4. Static Inner classes
-   ```
+   ```java
    class A {
       static class B {}
    }
@@ -48,7 +48,7 @@
    ```
 
    5. Anonymous Inner Classes
-   ```
+   ```java
    import java.util.concurrent.CountDownLatch
    import java.util.concurrent.TimeUnit
 
@@ -65,7 +65,7 @@
    ```
 
    6. Lambdas
-   ```
+   ```java
    // Java 8 Lambda support
    Runnable run = () -> System.out.println("Run");
    list.forEach(System.out::println);
@@ -82,7 +82,7 @@
 ##Syntax
 
    1. Comments
-   ```
+   ```java
    // a standalone single line comment
    println "hello" // a comment till the end of the line
 
@@ -97,7 +97,7 @@
 
       * Normal Identifiers
       Identifiers start with a letter, a dollar or an underscore. They cannot start with a number.
-      ```
+      ```java
       // valid identifiers
       def name
       def item3
@@ -117,18 +117,18 @@
 
       * Single quoted string
       Single quoted strings are plain java.lang.String and don’t support interpolation.
-      ```
+      ```java
       'a single quoted string'
       ```
 
       * String concatenation
-      ```
+      ```java
       assert 'ab' == 'a' + 'b'
       ```
 
       * Triple single quoted string
       Triple single quoted strings are for multiline.
-      ```
+      ```java
       def startingAndEndingWithANewline = '''
       line one
       line two
@@ -138,13 +138,13 @@
 
       * Double quoted string
       Double quoted strings are plain java.lang.String if there’s no interpolated expression, but are groovy.lang.GString instances if interpolation is present.
-      ```
+      ```java
       "a double quoted string"
       ```
 
       * String interpolation
       Any Groovy expression can be interpolated in all string literals, apart from single and triple single quoted strings. Interpolation is the act of replacing a placeholder in the string with its value upon evaluation of the string. The placeholder expressions are surrounded by ${} or prefixed with $ for dotted expressions. The expression value inside the placeholder is evaluated to its string representation when the GString is passed to a method taking a String as argument by calling toString() on that expression.
-      ```
+      ```java
       def name = 'Guillaume' // a plain string
       def greeting = "Hello ${name}"
       assert greeting.toString() == 'Hello Guillaume'
@@ -158,7 +158,7 @@
 
       * Triple double quoted string
       Triple double quoted strings behave like double quoted strings, with the addition that they are multiline, like the triple single quoted strings.
-      ```
+      ```java
       def name = 'Groovy'
       def template = """
           Dear Mr ${name},
@@ -177,7 +177,7 @@
    Groovy uses a comma-separated list of values, surrounded by square brackets.  
    Groovy lists are plain JDK ```java.util.List```.  
    The concrete list implementation used when defining list literals are ```java.util.ArrayList``` by default.
-   ```
+   ```java
    def numbers = [1, 2, 3]
 
    // list is an instance of Java’s java.util.List interface
@@ -199,7 +199,7 @@
    ```
 
    You can access elements of the list with the [] subscript operator (both for reading and setting values).  
-   ```
+   ```java
    def letters = ['a', 'b', 'c', 'd']
 
    assert letters[0] == 'a'
@@ -222,7 +222,7 @@
 
    5. Arrays  
    Groovy reuses the list notation for arrays, but to make such literals arrays, you need to explicitely define the type of the array through coercion or type declaration.
-   ```
+   ```java
    String[] arrStr = ['Ananas', 'Banana', 'Kiwi']  
 
    assert arrStr instanceof String[]
@@ -236,7 +236,7 @@
 
    6. Maps  
    Maps associate keys to values, separating keys and values with colons, and each key/value pairs with commas, and the whole keys and values surrounded by square brackets.
-   ```
+   ```java
    def colors = [red: '#FF0000', green: '#00FF00', blue: '#0000FF']
 
    assert colors['red'] == '#FF0000'
@@ -254,13 +254,13 @@
 ##Semantics
    1. Variable definition  
    Variables can be defined using either their type (like String) or by using the keyword def
-   ```
+   ```java
    String x
    def o
    ```
 
    2. Variable assignment
-   ```
+   ```java
    x = 1
    x = new java.util.Date()
    x = -3.1499392
@@ -275,7 +275,7 @@
    ```
 
    3. If/Else
-   ```
+   ```java
    if ( ... ) {
        ...
    } else if (...) {
@@ -286,7 +286,7 @@
    ```
 
    4. Switch/Case
-   ```
+   ```java
    def x = 1.23
    def result = ""
 
@@ -315,7 +315,7 @@
    ```
 
    5. For in loop
-   ```
+   ```java
    // iterate over a range
    def x = 0
    for ( i in 0..9 ) {

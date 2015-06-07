@@ -7,7 +7,7 @@ public class BaseApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        Realm.startWith(this);
+        Realm.initialize(this);
     }
 }
 ```
@@ -28,10 +28,6 @@ public class SecondaryDatabase extends RealmDatabase {
 
    public String getFileName() {
       return "secondary";
-   }
-
-   public String getExtension() {
-      return "realm";
    }
 
    // Cached database will only use memory (not using file system)
@@ -303,7 +299,18 @@ RealmObserver observer = new RealmObserver(query, new OnRealmObjectUpdatedListen
    public void onUpdated(RealmQuery query, User user, RealmUpdateError error) {}
 });
 
+User user = query.findFirst();
+RealmObserver observer = new RealmObserver(user, new OnRealmObjectUpdatedListener<User>() {
+   public void onUpdated(RealmQuery query, User user, RealmUpdateError error) {}
+});
+
 RealmObserver observer = new RealmObserver(query, new OnRealmListUpdatedListener<User>() {
+   public void onUpdated(RealmQuery query, RealmList<User> users, RealmUpdateError error) {}
+});
+
+// This would have different results from the upper RealmObserver
+RealmList<User> friends = query.findAll();
+RealmObserver observer = new RealmObserver(friends, new OnRealmListUpdatedListener<User>() {
    public void onUpdated(RealmQuery query, RealmList<User> users, RealmUpdateError error) {}
 });
 ```

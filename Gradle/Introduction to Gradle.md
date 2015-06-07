@@ -28,7 +28,7 @@ Build automation tool are consists of two main parts: configuration and build. C
 
 **Gradle build scripts tend to be much shorter and clearer** than those written for Maven or Ant.
    * Gradle (build.gradle)
-   ```
+   ```java
    // build.gradle
    apply plugin: 'java'
    apply plugin: 'checkstyle'
@@ -48,7 +48,7 @@ Build automation tool are consists of two main parts: configuration and build. C
    ```
 
    * Maven (pom.xml)
-   ```
+   ```xml
    <!--[pom.xml]-->
    <project xmlns="http://maven.apache.org/POM/4.0.0"
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -84,7 +84,7 @@ Build automation tool are consists of two main parts: configuration and build. C
    ```
 
    * Ant (build.xml) with Ivy (ivy.xml)
-   ```
+   ```xml
    <!--[ivy.xml]-->
    <ivy-module version="2.0">
       <info organisation="org.apache" module="java-build-tools"/>

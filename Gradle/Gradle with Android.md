@@ -44,7 +44,7 @@ Project
     └── lib2
 ```
 settings.gradle
-```
+```java
 include "app"
 include "libraries:lib1"
 include "libraries:lib2"
@@ -59,7 +59,7 @@ In most cases, you only need to edit the build files at the module level
 
 
 ##build.gradle structure?
-```
+```java
 // This adds Android-specific build tasks to the top-level build tasks and makes the android {...} element available to specify Android-specific build options.
 apply plugin: 'com.android.application'
 
@@ -104,12 +104,12 @@ dependencies {
 ##Integrating open sources
 
 ####Common Integration Rule
-```
+```java
 compile 'groupId:artifactId:version'
 ```
 
 ####Android Support Packages
-```
+```java
 // Google Play Services
 compile 'com.google.android.gms:play-services:7.3.+'
 
@@ -128,7 +128,7 @@ compile 'com.android.support:support-v4:22.+'
 You can find latest Android support package version from [here](http://developer.android.com/tools/support-library/features.html)
 
 ####Realm
-```
+```java
 compile 'io.realm:realm-android:0.80.+'
 ```
 You can find more ways to integrating Realm from [here](http://realm.io/docs/java/latest/#installation)
@@ -180,7 +180,7 @@ You can find more about dynamic versions and changing modules from [here](https:
 
 ####Multiple Java Folders & Resource Folders
 You can create multiple Java folders and multiple resource folders. It is very useful if you want to manage different type of sources or resources in different folders.
-```
+```java
 // module build.gradle
 android {
    sourceSets {
@@ -194,7 +194,7 @@ android {
 
 ####Basic Customization
 You can create your own groovy method and customize build setting with your method.
-```
+```java
 // module build.gradle
 def getVersionCode() {
    def code = ...
@@ -214,7 +214,7 @@ android {
 
 ####Build Type Configurations
 You can set custom build types in gradle such as 'beta' and if you build your project in 'beta' version, Gradle will automatically add 'src/beta' folder for building it. You can set API keys for each build types. You can also make different signing configurations for each build type or you can use other build types signing configurations. You can make debuggable release version simply by setting gradle options.
-```
+```java
 // module build.gradle
 android {
    signingConfigs {
@@ -268,7 +268,7 @@ Codes in each build type folder will be compiled automatically for each build ty
 
 ####Build Type Dependencies
 You can use different compile options for each build types.
-```
+```java
 android {
    ...
 }
@@ -295,7 +295,7 @@ In fact, the output of a project can only be the cross product of the Build Type
 ####Product Flavor Groups
 In some case it is useful to be able to have several dimensions of flavors such as 'abi' and 'version'
 
-```
+```java
 android {
    flavorGroups 'version', 'abi'
    productFlavors {
@@ -378,7 +378,7 @@ src/androidTestMips
 ```
 
 Dependencies
-```
+```java
 dependencies {
    androidTestCompile "org.robolectric:robolectric:3.0"
    androidTestFreeCompile "org.robolectric:robolectric:3.0"

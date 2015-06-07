@@ -14,7 +14,7 @@ Gradle uses gradle command and ```-q``` to suppress Gradle's log messages. ```ta
 ```
 
 ####Basic Examples
-```
+```java
 // Output: Hello world!
 task hello {
     doLast {
@@ -49,7 +49,7 @@ task count << {
 
 ####Task dependencies
 You can declare tasks that depend on other tasks. (i.e. If task A is depend on task B, task B have to run before task A runs.)
-```
+```java
 // Output: Hello world!
            I'm Gradle
 task hello << {
@@ -70,7 +70,7 @@ task hello << {
 
 ####Dynamic tasks
 You can also use it to dynamically create tasks
-```
+```java
 // Output of gradle -q task1: I'm task number 1
 // Output of gradle -q task2: I'm task number 2
 4.times { counter ->
@@ -81,7 +81,7 @@ You can also use it to dynamically create tasks
 ```
 
 ####Manipulating existing tasks
-```
+```java
 // Output of gradle -q task0: I'm task number 2
 //                            I'm task number 3
 //                            I'm task number 0
@@ -95,7 +95,7 @@ task0.dependsOn task2, task3
 
 ####Extra task properties
 You can add your own properties to a task. To add a property named myProperty, set ext.myProperty to an initial value. From that point on, the property can be read and set like a predefined task property.
-```
+```java
 // Output: myValue
 task myTask {
     ext.myProperty = "myValue"
@@ -108,7 +108,7 @@ task printTaskProperties << {
 
 ####Default tasks
 Gradle allows you to define one or more default tasks for your build.
-```
+```java
 // Output: Default Cleaning!
            Default Running!
 defaultTasks 'clean', 'run'
@@ -134,7 +134,7 @@ You can implement a custom plugin in any language you like, provided the impleme
 
 ####Writing a simple plugin
 To create a custom plugin, you need to write an implementation of Plugin. Gradle instantiates the plugin and calls the plugin instance's Plugin.apply() method when the plugin is used with a project. The project object is passed as a parameter, which the plugin can use to configure the project however it needs to. The following sample contains a greeting plugin, which adds a hello task to the project.
-```
+```java
 apply plugin: GreetingPlugin
 
 class GreetingPlugin implements Plugin<Project> {
@@ -148,7 +148,7 @@ class GreetingPlugin implements Plugin<Project> {
 
 ####Getting input from the build
 Most plugins need to obtain some configuration from the build script. One method for doing this is to use extension objects. The Gradle Project has an associated ExtensionContainer object that helps keep track of all the settings and properties being passed to plugins. You can capture user input by telling the extension container about your plugin. To capture input, simply add a Java Bean compliant class into the extension container's list of extensions. Groovy is a good language choice for a plugin because plain old Groovy objects contain all the getter and setter methods that a Java Bean requires.
-```
+```java
 apply plugin: GreetingPlugin
 
 greeting.message = 'Hi from Gradle'
@@ -172,7 +172,7 @@ class GreetingPluginExtension {
 In this example, GreetingPluginExtension is a plain old Groovy object with a field called message. The extension object is added to the plugin list with the name greeting. This object then becomes available as a project property with the same name as the extension object.
 
 Oftentimes, you have several related properties you need to specify on a single plugin. Gradle adds a configuration closure block for each extension object, so you can group settings together. The following example shows you how this works.
-```
+```java
 apply plugin: GreetingPlugin
 
 greeting {
@@ -198,7 +198,7 @@ class GreetingPluginExtension {
 ####Working with files in custom tasks and plugins
 When developing custom tasks and plugins, it's a good idea to be very flexible when accepting input configuration for file locations. To do this, you can leverage the Project.file() method to resolve values to files as late as possible.
 
-```
+```java
 class GreetingToFileTask extends DefaultTask {
 
     def destination
