@@ -56,7 +56,7 @@ String
 Date
 byte[]
 RealmObject
-List<? extends RealmObject>
+RealmList<? extends RealmObject>
 ```
 
 ####Models
@@ -99,7 +99,7 @@ public class User extends BaseObject {
 
    private Settings settings;
 
-   private List<Pet> pets;
+   private RealmList<Pet> pets;
 }
 
 public class Settings extends RealmObject {
@@ -107,7 +107,7 @@ public class Settings extends RealmObject {
    @RelamDefault(true)
    private boolean isNotificationOn;
 
-   private List<Payment> payments;
+   private RealmList<Payment> payments;
 }
 
 public class Payment extends BaseObject {
@@ -174,7 +174,7 @@ Basically, it create or update each object in Database.
 ```java
 User user;
 Pet pet;
-List<Pet> pets;
+RealmList<Pet> pets;
 
 user.saveInBackground();
 user.saveInBackground(new OnRealmUpdatedListener<User>() {
@@ -187,12 +187,13 @@ user.saveInBackground(SecondaryDatabase.class, new OnRealmUpdatedListener<User>(
 });
 
 pets.saveInBackground();
-pets.saveInBackground(new OnRealmUpdatedListener<List<Pet>>() {
-   public void onUpdated(List<Pet> pets, RealmUpdateError error) {}
+pets.saveInBackground(new OnRealmUpdatedListener<RealmList<Pet>>() {
+   public void onUpdated(RealmList<Pet> pets, RealmUpdateError error) {}
 });
 
-Realm.getDatabase().saveAllInBackground(user, pet, pets, new OnRealmUpdatedListener<List<RealmObject>>() {
-   public void onUpdated(List<RealmObject> updates, RealmUpdateError error) {}
+// Saving Multiple RealmObjects and RealmList at once
+new RealmList<RealmObject>(user, pet, pets).saveInBackground(new OnRealmUpdatedListener<RealmList<RealmObject>>() {
+   public void onUpdated(RealmList<RealmObject> updates, RealmUpdateError error) {}
 });
 ```
 
@@ -225,19 +226,19 @@ query.findFirstInBackground(new OnRealmFindListener<User>() {
    public void onFound(User user, RealmQueryError error) {}
 });
 
-List<User> friends = query.findAll();
-query.findAllInBackground(new OnRealmFindListener<List<User>>() {
-   public void onFound(List<User> friends, RealmQueryError error) {}
+RealmList<User> friends = query.findAll();
+query.findAllInBackground(new OnRealmFindListener<RealmList<User>>() {
+   public void onFound(RealmList<User> friends, RealmQueryError error) {}
 });
 
 // Paging
-List<User> friends = query.findSome(10); // Find maximum 10 users
-List<User> friends = query.findSome(10, 30); // Find maximum 10 users skipping first 30 users
+RealmList<User> friends = query.findSome(10); // Find maximum 10 users
+RealmList<User> friends = query.findSome(10, 30); // Find maximum 10 users skipping first 30 users
 query.findSomeInBackground(10, new OnRealmFindListener<User>() {
-   public void onFound(List<User> friends, RealmQueryError error) {}
+   public void onFound(RealmList<User> friends, RealmQueryError error) {}
 });
-query.findSomeInBackground(10, 30, new OnRealmFindListener<List<User>>() {
-   public void onFound(List<User> friends, RealmQueryError error) {}
+query.findSomeInBackground(10, 30, new OnRealmFindListener<RealmList<User>>() {
+   public void onFound(RealmList<User> friends, RealmQueryError error) {}
 });
 ```
 
@@ -253,14 +254,14 @@ RealmObserver observer = new RealmObserver(user, new OnRealmUpdatedListener<User
    public void onUpdated(User user, RealmUpdateError error) {}
 });
 
-RealmObserver observer = new RealmObserver(query, new OnRealmUpdatedListener<List<User>>() {
-   public void onUpdated(List<User> users, RealmUpdateError error) {}
+RealmObserver observer = new RealmObserver(query, new OnRealmUpdatedListener<RealmList<User>>() {
+   public void onUpdated(RealmList<User> users, RealmUpdateError error) {}
 });
 
 // This would have different results from the upper RealmObserver
-List<User> friends = query.findAll();
-RealmObserver observer = new RealmObserver(friends, new OnRealmUpdatedListener<List<User>>() {
-   public void onUpdated(List<User> users, RealmUpdateError error) {}
+RealmList<User> friends = query.findAll();
+RealmObserver observer = new RealmObserver(friends, new OnRealmUpdatedListener<RealmList<User>>() {
+   public void onUpdated(RealmList<User> users, RealmUpdateError error) {}
 });
 ```
 
