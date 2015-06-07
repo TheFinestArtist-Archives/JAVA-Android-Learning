@@ -1,4 +1,4 @@
-#New Convention for Android
+#New Convention for Objective-C (Deprecated)
 
 ##RLMDatabase
 

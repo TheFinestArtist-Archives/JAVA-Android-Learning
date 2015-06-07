@@ -1,4 +1,4 @@
-#New Convention for Android
+#New Convention for Objective-C (Under-Construction)
 
 ##RLMDatabase
 
@@ -6,7 +6,7 @@
 ```[Realm database]``` or ```[Realm defaultDatabase]``` to retrieve default RLMDatabase.
 
 ####Custom Database
-```
+```objectivec
 @interface SecondaryDatabase : RLMDatabase
 @end
 @implementation
@@ -28,14 +28,14 @@
 ```
 
 ####getDatabase
-```
+```objectivec
 [Realm database:[SecondaryDatabase class]];
 ```
 
 ##RLMObject
 
 ####Fields
-```
+```objectivec
 BOOL
 bool
 int
@@ -53,7 +53,7 @@ RLMArray<Object>
 ```
 
 ####Models
-```
+```objectivec
 public class BaseObject extends RealmObject {
 
    @RealmPrimaryKey
@@ -152,7 +152,7 @@ public class Pet extends BaseObject {
 ```
 
 ####Construct RealmObject
-```
+```objectivec
 User user = new User();
 user.setId(1);
 user.setCreatedAt(new Date());
@@ -162,7 +162,7 @@ user.setFullname("Leonardo Taehwan Kim");
 ```
 
 ####Create RealmObject
-```
+```objectivec
 User user;
 Pet pet;
 RealmList<Pet> pets;
@@ -188,7 +188,7 @@ Realm.getDatabase().createAllInBackground(user, pet, pets, new OnRealmDatbaseUpd
 ```
 
 ####Update RealmObject
-```
+```objectivec
 User user;
 Pet pet;
 RealmList<Pet> pets;
@@ -214,7 +214,7 @@ Realm.getDatabase().updateAllInBackground(user, pet, pets, new OnRealmDatbaseUpd
 ```
 
 ####CreateOrUpdate RealmObject
-```
+```objectivec
 User user;
 Pet pet;
 RealmList<Pet> pets;
@@ -241,7 +241,7 @@ Realm.getDatabase().updateAllInBackground(user, pet, pets, new OnRealmDatbaseUpd
 
 ##RealmQuery
 **RealmQuery can't be modified after it's build** (Mainly because of RealmObserver)
-```
+```objectivec
 RealmQuery.Builder queryBuilder = new RealmQuery.Builder()
                                                 .from(SecondaryDatabase.class)
                                                 .of(User.class)
@@ -285,7 +285,7 @@ query.findSomeInBackground(10, 30, new OnRealmListFoundListener<User>() {
 ```
 
 ##RealmObserver
-```
+```objectivec
 RealmQuery query = queryBuilder.build();
 RealmObserver observer = new RealmObserver(query, new OnRealmObjectUpdatedListener<User>() {
    public void onUpdated(RealmQuery query, User user, RealmUpdateError error) {}
@@ -308,7 +308,7 @@ RealmObserver observer = new RealmObserver(friends, new OnRealmListUpdatedListen
 ```
 
 ##Migration
-```
+```objectivec
 // Auto Migration
 public class BaseApplication extends Application {
 

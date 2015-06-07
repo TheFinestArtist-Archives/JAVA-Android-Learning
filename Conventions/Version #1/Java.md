@@ -1,4 +1,4 @@
-#New Convention for Android
+#New Convention for Android (Deprecated)
 
 ##Application
 ```
@@ -7,7 +7,7 @@ public class BaseApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        Realm.initialize(this);
+        Realm.startWith(this);
     }
 }
 ```
