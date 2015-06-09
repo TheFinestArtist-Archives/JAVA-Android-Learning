@@ -1,5 +1,4 @@
 #MVP Pattern
-
 Model–view–presenter (MVP) is a derivation of the model–view–controller (MVC) architectural pattern, and is used mostly for building user interfaces.
 
 **Presenter**  
@@ -29,13 +28,17 @@ fullName.addTextChangedListener(new TextWatcher() {
 ```
 
 ###Presenter -> View
-Sim
+Simply by calling methods to update views such as `setText()` or `setBackgroundColor()`.
 
 ###Model -> Presenter
+Usually model is updated by calling network service Apis. Whenever data has been retrieved from server, you can notify model has been changed to Presenter by callbacks such as `OnDataRecieved()`.
+
 ###Presenter -> Model
+This part is redundant with `Controller -> Model` in MVC Pattern. Presenter handles users user actions is related to updating model, controller also takes care of it. It will update the data by calling setters such as `user.setEmail("contact@thefinestartist.com")`.
+
 
 ##MVP in Android
-Developer usually uses Activity or Fragment as a presenter but here shows a better way to  an Android Application with same feature as the example in MVC Pattern. [Github](https://github.com/TheFinestArtist/MVP-Example)
+Developer usually uses Activity or Fragment as a presenter but here shows a better way to distinguish between View and Presenter more strictly by making presenter class for each Activity and Fragment. This way Activity and Fragment only handles actions from User and updating views, therefore Activity and Fragment can concentrate on more Front-End work and Presenter actually handles other works except Front-End. This is an Android Application with same feature as the example in MVC Pattern. [Github](https://github.com/TheFinestArtist/MVP-Example)
 ```
 // Model
 public class User {
@@ -139,17 +142,13 @@ public class MainPresenter {
 }
 ```
 
-##Tools & Libraries
-Otto (Eventbus)
 
-Main Design Pattern in iOS
-Best fit in Android also
-
-Show specific pattern with network/service
+##Other Android Examples follows MVP Pattern
+https://github.com/antoniolg/androidmvp
+https://github.com/pedrovgs/EffectiveAndroidUI
 
 
 ##MVP in iOS/OSX
-
 Apple also suggests to follow [MVC Pattern](https://developer.apple.com/library/mac/documentation/General/Conceptual/DevPedia-CocoaCore/MVC.html) which is actually MVP Pattern, to their iOS/OSX developers.  
 
 ![](https://developer.apple.com/library/mac/documentation/General/Conceptual/DevPedia-CocoaCore/Art/model_view_controller.jpg)

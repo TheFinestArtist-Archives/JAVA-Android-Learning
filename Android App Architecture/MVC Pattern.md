@@ -1,5 +1,4 @@
 #MVC Pattern
-
 Model–view–controller (MVC) is a software architectural pattern for implementing user interfaces. It divides a given software application into three interconnected parts, so as to separate internal representations of information from the ways that information is presented to or accepted from the user.  
 
 **Model**  
@@ -16,7 +15,7 @@ Send commands to the model to update the model's state (e.g., editing a document
 ![](http://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/MVC-Process.svg/200px-MVC-Process.svg.png)
 
 ###User -> Controller
-Handles by simple event listeners.
+Whenever user action occurs, controller will take care if this. It will receives these actions by callbacks such as `OnClickListener` or `TextWatcher`.
 ```
 fullName.addTextChangedListener(new TextWatcher() {
    @Override
@@ -27,7 +26,7 @@ fullName.addTextChangedListener(new TextWatcher() {
 ```
 
 ###Controller -> Model
-Whenever user interaction occurs, controller will take care if this. It will receives these interactions by callbacks such as ```OnClicked()``` or ```OnTextUpdated()```. And if these interactions is related to updating model, controller also takes care of it. It will update the data by calling setters such as ```user.setEmail("contact@thefinestartist.com")```.
+And if these user actions is related to updating model, controller also takes care of it. It will update the data by calling setters such as `user.setEmail("contact@thefinestartist.com")`.
 
 ###Model -> View
 Model and View uses **Observer Pattern**. There is two kind of class helping this relation. One is Observer and another is Observable. As you can see from it's naming, Observer is a kind of callback and Observable is a class which every model should extends and notify to their observer whenever the data has been changed.  

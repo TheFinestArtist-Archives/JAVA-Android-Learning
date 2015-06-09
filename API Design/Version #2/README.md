@@ -8,3 +8,5 @@ Observer is kind of iOS system stuff.
 For Android we use subscribing system.
 
 Need more research on Observer and take the strong point from each OS system
+
+Observer in Android is so powerful, it is very hard to implements it perfectly
