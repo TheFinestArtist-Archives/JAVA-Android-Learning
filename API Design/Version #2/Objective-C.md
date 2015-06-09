@@ -1,4 +1,4 @@
-#New Convention for Objective-C (Under-Construction)
+#iOS API Design
 
 ##RLMDatabase
 
@@ -6,7 +6,7 @@
 ```[Realm database]``` or ```[Realm defaultDatabase]``` to retrieve default RLMDatabase.
 
 ####Custom Database
-```objectivec
+```objective-c
 @interface SecondaryDatabase : RLMDatabase
 @end
 @implementation
@@ -28,14 +28,14 @@
 ```
 
 ####getDatabase
-```objectivec
+```objective-c
 [Realm database:[SecondaryDatabase class]];
 ```
 
 ##RLMObject
 
 ####Fields
-```objectivec
+```objective-c
 BOOL
 bool
 int
@@ -47,122 +47,98 @@ double
 CGFloat
 NSString
 NSDate truncated to the second
-NSData.
+NSData
 RLMObject
-RLMArray<Object>
+RLMArray<RLMObject>
 ```
 
 ####Models
-```objectivec
-public class BaseObject extends RealmObject {
+```objective-c
+@interface BaseObject : RLMObject
+@property int id;
+@property (retain) NDDate *createdAt;
+@property (retain) NDDate *updatedAt;
+@end
 
-   @RealmPrimaryKey
-   @RealmFieldName("id")
-   private int id;
+@implementation BaseObject
+@dynamic id;
+@dynamic createdAt;
+@dynamic updatedAt;
+@end
 
-   private Date createdAt;
-   private Date updatedAt;
+@interface User : BaseObject
++ (NSString *)RLMClassName;
+@property (retain) NSString *email;
+@property (retain) NSString *fullname;
+@property (retain) NSString *fullnameUpper;
+@property (retain) NSString *profileUrl;
+@property (retain) NSString *username;
+@property (retain) Settings *settings;
+@property (retain) RLMArray<Pet> *pets;
+@end
 
-   public int getId() { return this.id; }
-   public Date getCreatedAt() { return this.createdAt; }
-   public Date getUpdatedAt() { return this.updatedAt; }
+@implementation User
+@dynamic email;
+@dynamic fullname;
+@dynamic fullnameUpper;
+@dynamic profileUrl;
+@dynamic username;
+@dynamic settings;
++ (NSString *)RLMClassName {
+   return @”_User”;
 }
+@end
 
-public class User extends BaseObject {
+@interface Settings : RLMObject
+@property BOOL isNotificationOn;
+@property (retain) RLMArray<Payment> *payments;
+@end
 
-   @RealmUnique
-   private String email;
+@implementation Settings
+@dynamic isNotificationOn;
+@dynamic payments;
+@end
 
-   @RealmIndex
-   private String fullname;
+@interface Payment : BaseObject
+@property (retain) NSString *cardType;
+@property (retain) NSString *cardNumber;
+@property (retain) NSString *cardHolderName;
+@property int expiredYear;
+@property int expiredMonth;
+@property int cvc;
 
-   @RealmIgnore
-   private String fullnameUpper;
+@implementation Payment
+@dynamic cardType;
+@dynamic cardNumber;
+@dynamic cardHolderName;
+@dynamic expiredYear;
+@dynamic expiredMonth;
+@dynamic cvc;
+@end
 
-   // Working On
-   private static final String VALIDATION_REGEX_URL = "(@)?(href=')?(HREF=')?(HREF=\")?(href=\")?(http://)?[a-zA-Z_0-9\\-]+(\\.\\w[a-zA-Z_0-9\\-]+)+(/[#&\\n\\-=?\\+\\%/\\.\\w]+)?";
-   @RealmValidation(VALIDATION_REGEX_URL)
-   private String profileUrl;
+@interface Pet : BaseObject
+@property (retain) NSString *name;
+@property (retain) NSString *type;
+@end
 
-   // Working On
-   @RealmUnique
-   @RealmValidation(5, 20)
-   private String username;
-
-   private Settings settings;
-
-   private RealmList<Pet> pets;
-}
-
-public class Settings extends RealmObject {
-
-   @RelamDefault(true)
-   private boolean isNotificationOn;
-
-   private RealmList<Payment> payments;
-}
-
-public class Payment extends BaseObject {
-
-   private String cardType;
-   private String cardNumber;
-   private String cardHolderName;
-   private int expiredYear;
-   private int expiredMonth;
-   private int cvc;
-}
-
-public class Pet extends BaseObject {
-
-   private String name;
-   private String type;
-
-   public PetType getType() {
-      return PetType.fromAttribute(this.type);
-   }
-
-   public setType(PetType petType) {
-       this.type = petType.toAttribute();
-   }
-
-   public enum PetType {
-      GIRL("girl"),
-      DOG("dog"),
-      CAT("cat");
-
-      private String attribute;
-
-      PetType(String attribute) {
-        this.attribute = attribute;
-      }
-
-      public String toAttribute() {
-         return this.attribute;
-      }
-
-      public static PetType fromAttribute(String attribute) {
-         for (PetType petType : values())
-            if (petType.toAttribute().equals(attribute))
-               return petType.toAttribute();
-
-         return null;
-      }
-   }
-}
+@implementation Pet
+@dynamic name;
+@dynamic type;
+@end
 ```
 
 ####Construct RealmObject
-```objectivec
-User user = new User();
-user.setId(1);
-user.setCreatedAt(new Date());
-user.setUpdatedAt(new Date());
-user.setEmail("contact@thefinestartist.com");
-user.setFullname("Leonardo Taehwan Kim");
+```objective-c
+User *user = [User object];
+user.id = 1;
+user.createdAt = [NSDate date];
+user.updatedAt = [NSDate date];
+user.email = @"contact@thefinestartist.com";
+user.fullname = @"Leonardo Taehwan Kim";
 ```
 
 ####Create RealmObject
-```objectivec
+```objective-c
 User user;
 Pet pet;
 RealmList<Pet> pets;
@@ -188,7 +164,7 @@ Realm.getDatabase().createAllInBackground(user, pet, pets, new OnRealmDatbaseUpd
 ```
 
 ####Update RealmObject
-```objectivec
+```objective-c
 User user;
 Pet pet;
 RealmList<Pet> pets;
@@ -214,7 +190,7 @@ Realm.getDatabase().updateAllInBackground(user, pet, pets, new OnRealmDatbaseUpd
 ```
 
 ####CreateOrUpdate RealmObject
-```objectivec
+```objective-c
 User user;
 Pet pet;
 RealmList<Pet> pets;
@@ -241,7 +217,7 @@ Realm.getDatabase().updateAllInBackground(user, pet, pets, new OnRealmDatbaseUpd
 
 ##RealmQuery
 **RealmQuery can't be modified after it's build** (Mainly because of RealmObserver)
-```objectivec
+```objective-c
 RealmQuery.Builder queryBuilder = new RealmQuery.Builder()
                                                 .from(SecondaryDatabase.class)
                                                 .of(User.class)
@@ -285,7 +261,7 @@ query.findSomeInBackground(10, 30, new OnRealmListFoundListener<User>() {
 ```
 
 ##RealmObserver
-```objectivec
+```objective-c
 RealmQuery query = queryBuilder.build();
 RealmObserver observer = new RealmObserver(query, new OnRealmObjectUpdatedListener<User>() {
    public void onUpdated(RealmQuery query, User user, RealmUpdateError error) {}
@@ -308,7 +284,7 @@ RealmObserver observer = new RealmObserver(friends, new OnRealmListUpdatedListen
 ```
 
 ##Migration
-```objectivec
+```objective-c
 // Auto Migration
 public class BaseApplication extends Application {
 

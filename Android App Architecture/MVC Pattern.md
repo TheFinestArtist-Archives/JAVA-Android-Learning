@@ -1,9 +1,6 @@
 #MVC Pattern
 
-Model–view–controller (MVC) is a software architectural pattern for implementing user interfaces. It divides a given software application into three interconnected parts, so as to separate internal representations of information from the ways that information is presented to or accepted from the user.
-
-**Controller**  
-Send commands to the model to update the model's state (e.g., editing a document). It can also send commands to its associated view to change the view's presentation of the model (e.g., by scrolling through a document).  
+Model–view–controller (MVC) is a software architectural pattern for implementing user interfaces. It divides a given software application into three interconnected parts, so as to separate internal representations of information from the ways that information is presented to or accepted from the user.  
 
 **Model**  
 Stores data that is retrieved by the controller and displayed in the view. Whenever there is a change to the data it is updated by the controller.  
@@ -11,9 +8,23 @@ Stores data that is retrieved by the controller and displayed in the view. Whene
 **View**  
 Requests information from the model that it uses to generate an output representation to the user.  
 
+**Controller**  
+Send commands to the model to update the model's state (e.g., editing a document). It can also send commands to its associated view to change the view's presentation of the model (e.g., by scrolling through a document).  
 
-##Interactions
+
+##Diagram
 ![](http://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/MVC-Process.svg/200px-MVC-Process.svg.png)
+
+###User -> Controller
+Handles by simple event listeners.
+```
+fullName.addTextChangedListener(new TextWatcher() {
+   @Override
+   public void onTextChanged(CharSequence s, int start, int before, int count) {
+       user.setFullName(String.valueOf(fullName.getText()));
+   }
+});
+```
 
 ###Controller -> Model
 Whenever user interaction occurs, controller will take care if this. It will receives these interactions by callbacks such as ```OnClicked()``` or ```OnTextUpdated()```. And if these interactions is related to updating model, controller also takes care of it. It will update the data by calling setters such as ```user.setEmail("contact@thefinestartist.com")```.
@@ -64,6 +75,10 @@ public class EmailTextView implements Observer {
    }
 }
 ```
+
+###View -> User
+Users can see the views from their phone screen.
+
 
 ##MVC in Android
 Android suggests many pre-defined classes such as Activity, Fragment, Service, SharedPreference, SQLiteDatabase, ContentProvider and so on. We can match each classes into Model, View or Controller. We can assume Activity and Fragment as a View, Service as a Controller and SharedPreference, SQLiteDatabase or ContentProvider as Model.  
@@ -172,6 +187,7 @@ public class MainActivity extends AppCompatActivity {
 }
 ```
 
+
 ##Conclusion
 Original MVC Pattern is not appropriate design pattern for Android in such reasons.
 
@@ -188,6 +204,7 @@ Original MVC Pattern is not appropriate design pattern for Android in such reaso
    * Handling listeners or observers whenever each views are created or destroyed are very complicated and also sophisticated work.
 
 4. Each view has to implements observer. So you have to make custom views to implements observer.
+
 
 ##Author
 ```
