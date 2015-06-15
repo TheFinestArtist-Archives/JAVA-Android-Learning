@@ -227,9 +227,9 @@ RealmQuery.Builder queryBuilder = new RealmQuery.Builder()
                                                 .from(SecondaryDatabase.class)
                                                 .of(User.class)
                                                 .include("settings", "pets")
-                                                .includeDeeply("settings", "payments")
+                                                // .includeDeeply("settings", "payments")
                                                 .includeAll() // Try not to use this methods
-                                                .includeAllDeeply() // Don't ever use this methods
+                                                // .includeAllDeeply() // Don't ever use this methods
                                                 .whereEqualTo("playerName", "Dan Stemkoski")
                                                 .whereNotEqualTo("playerName", "Michael Yabuti")
                                                 .whereGreaterThan("playerAge", 18)

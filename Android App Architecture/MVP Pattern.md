@@ -154,6 +154,12 @@ Apple also suggests to follow [MVC Pattern](https://developer.apple.com/library/
 ![](https://developer.apple.com/library/mac/documentation/General/Conceptual/DevPedia-CocoaCore/Art/model_view_controller.jpg)
 
 
+##MVP with Testing
+
+
+##Realm with MVP
+
+
 ##Author
 ```
 Name     : Leonardo Taehwan Kim
