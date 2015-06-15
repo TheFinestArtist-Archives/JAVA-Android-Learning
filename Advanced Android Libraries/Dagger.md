@@ -27,7 +27,7 @@ public class Manager {
 * We necessarily need to modify the code of the coupled module
 * Hard to make test classes
 
-##Dependency inversion
+##Dependency Inversion
 High level modules should not depend upon low-level modules. Both should depend upon abstractions.  
 Abstractions should never depend upon details. Details should depend upon abstractions.
 ```java
@@ -47,12 +47,18 @@ public class Manager {
 ```
 
 
-##Dependency Injector
+##Dependency Injection
 Dependency injection is a style of object configuration in which an objects fields and collaborators are set by an external entity. In other words objects are configured by an external entity. Dependency injection is an alternative to having the object configure itself.
 
 Dependency injection is a software design pattern that implements inversion of control for software libraries. Caller delegates to an external framework the control flow of discovering and importing a service or software module specified or "injected" by the caller. Dependency injection allows a program design to follow the dependency inversion principle where modules are loosely coupled. With dependency injection, the client which uses a module or service doesn't need to know all its details, and typically the module can be replaced by another one of similar characteristics without altering the client.
 
 It consists of passing dependencies (inject them) via constructor in order to extract the task of creating modules out from other modules. Objects are instantiated somewhere else and passed as constructor attributes when creating the current object.
+
+####Dependency injection (as a pattern not a library) benefits almost all code.
+* It promotes designing modular components which expose only the necessary APIs required to perform a specific action. When you are forced to break up pieces of your applications you have to consider how much implementation detail to expose, how the API behaves, and the visibility of classes and methods.
+* It promotes logical abstractions of components (think: interfaces and their implementations). You certainly don't have to do this, but it ends up occurring organically anyway the more you DI things.
+* It facilitates testability by creating a single point of type consumption through which a class obtains something it needs. Need to swap out a Foo for a TestFoo? No problem.
+* It helps you avoid boilerplate codes.
 
 ##Directed Acyclic Graph
 ![](https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Directed_acyclic_graph_3.svg/356px-Directed_acyclic_graph_3.svg.png)  
@@ -60,10 +66,26 @@ Directed Acyclic Graph is a directed graph with no directed cycles. That is, it 
 
 Dependency graph in programming is always directed acyclic. So Dagger is named after DAG(Directed Acyclic Graph).
 
-##Dagger
+##Dagger (v1)
 **A fast dependency injector for Android and Java**
 
-###Why Dagger?
+###Annotations
+**@Module**
+Annotation for class which provides instance of objects we will need to inject.
+
+**@Provides**
+Annotation for methods in Module which provides dependency. Each method's name usually starts with "provides".
+
+**@Singleton**
+If it’s present, the method will return always the same instance of the object, which is far better than regular singletons.
+
+**@Inject**
+There are three kinds of injection whic are constructor, field and methods. Injection order is also from constructor, field to methods. You can inject dependencies by using @Inject annoation.
+
+####ObjectGraph
+The object graph is the place where all these dependencies live. The object graph contains the created instances and is able to inject them to the objects we add to it.
+
+For example, we have 4 kind of classes which are coupled in dependency (e.g. OkHttpClient, TwitterApi, Tweeter, Timeline) and they have such a dependency relationship (Tweeter<=TwitterApi<=OkHttpClient and Timeline<=TwitterApi<=OkHttpClient). We can group these 4 classes in 2 groups. One is for Network and another is for Twitter. Each group is matched for group. Network group is named as NetworkModule and it provides OkHttpClient and TwitterApi. Twitter group is named as TwitterModule and it provides Twetter and Timeline.
 
 ###How to use?
 **build.gradle**
@@ -75,17 +97,6 @@ dependencies {
 }
 ```
 
-###Annotations
-**@Module**
-
-**@Provides**
-
-**@Singleton**
-
-**@Inject**
-
-####ObjectGraph
-
 ###Example
 *You can find whole source code from [here](https://github.com/TheFinestArtist/Dagger1-Example)*  
 
@@ -96,6 +107,7 @@ public class OkHttpClient {
 }
 
 public class TwitterApi {
+
     private final OkHttpClient okHttpClient;
 
     @Inject public TwitterApi(OkHttpClient okHttpClient) {
@@ -129,8 +141,7 @@ public class Tweeter {
     private final TwitterApi twitterApi;
     private final String username;
 
-    @Inject
-    public Tweeter(TwitterApi twitterApi, String username) {
+    @Inject public Tweeter(TwitterApi twitterApi, String username) {
         this.twitterApi = twitterApi;
         this.username = username;
     }
@@ -218,13 +229,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 ```
 
 
-##Dagger2
+##Dagger (v2)
 
 ###Annotations
 **@Component**
-**@Subcomponent**
+Annotates an interface or abstract class for which a fully-formed, dependency-injected implementation is to be generated from a set of modules(). The generated class will have the name of the type annotated with @Component prepended with Dagger. For example, @Component interface MyComponent {...} will produce an implementation named DaggerMyComponent.
 
-####Lazy
+**@Subcomponent**
+A subcomponent that inherits the bindings from a parent Component or Subcomponent. The details of how to associate a subcomponent with a parent are described in the documentation for Component.
 
 ###How to use?
 **Top-level build.gradle**
@@ -404,9 +416,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 }
 ```
 
-##Any tradeoffs?
+##Guice v/s Dagger (v1) v/s Dagger (v2)
+###Guice
+* Powerful, dynamic, well-tested, wide-spread
+* Configuration problem occurs at runtime.
+* Slow initialization, slow injection, memory concerns
 
-##Dagger with Realm
+###Dagger (v1)
+**Goal**
+* Static analysis of all dependencies and injection points
+* Fail as early as possible (compile time, not runtime)
+* Eliminate reflection on methods, fields and annotations
+
+**Still have some problem**
+* Triggers over-eager class loading on graph injection (Some structure takes unsatisfactory time consumed to create graph)
+* Fully qualified class name string-based keys in map-like data structure (Can't obfuscate Dagger related codes)
+* Lack of full static scope analysis and scope annotations (Still have some builds in runtime)
+* Still uses reflection to load generated classes (Still a bit of reflection using for Dagger)
+
+###Dagger (v2)
+* Eliminate runtime library and generated code overhead
+* Shift remaining runtime analysis to compile time
+* Scoping with annotations and associated static analysis
+
+
+##Any tradeoffs?
+* Dagger 1 still has some problems to use.
+* Dagger surely have a high learning curve and hard to understand basic concept which can cause a maintenance issue.
 
 ## Author
 ```
