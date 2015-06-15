@@ -22,12 +22,12 @@ public class Manager {
    }
 }
 ```
-**Dependencies are dangerous**
+####Dependencies are dangerous
 * Whenever we create an object of ClassA, object of ClassB automatically created
 * We necessarily need to modify the code of the coupled module
 * Hard to make test classes
 
-####Dependency inversion
+##Dependency inversion
 High level modules should not depend upon low-level modules. Both should depend upon abstractions.  
 Abstractions should never depend upon details. Details should depend upon abstractions.
 ```java
@@ -75,7 +75,7 @@ dependencies {
 }
 ```
 
-####Annotations
+###Annotations
 **@Module**
 
 **@Provides**
@@ -86,7 +86,9 @@ dependencies {
 
 ####ObjectGraph
 
-####Example
+###Example
+*You can find whole source code from [here](https://github.com/TheFinestArtist/Dagger1-Example)*  
+
 **NetworkModule**
 ```java
 public class OkHttpClient {
@@ -218,7 +220,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 ##Dagger2
 
-###What's new?
+###Annotations
+**@Component**
+**@Subcomponent**
+
+####Lazy
 
 ###How to use?
 **Top-level build.gradle**
@@ -253,9 +259,9 @@ dependencies {
 }
 ```
 
-####Annotations
+###Example
+*You can find whole source code from [here](https://github.com/TheFinestArtist/Dagger2-Example)*  
 
-####Example
 **NetworkModule**
 ```java
 public class OkHttpClient {
@@ -370,7 +376,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 }
 ```
-
 
 ##Any tradeoffs?
 
