@@ -343,12 +343,38 @@ public class TwitterModule {
     }
 }
 ```
-**TwitterComponent**
+**Component**
 ```java
-@Singleton @Component(modules = {TwitterModule.class})
+@Singleton @Component(modules = {NetworkModule.class})
+public interface NetworkComponent {
+    OkHttpClient okHttpClient();
+    TwitterApi twitterApi();
+    TwitterComponent plus(TwitterModule twitterModule);
+}
+
+@Singleton @Subcomponent(modules = {TwitterModule.class})
 public interface TwitterComponent {
     Tweeter tweeter();
     Timeline timeline();
+}
+```
+**Using Component**
+```java
+public class BaseApplication extends Application {
+
+    private NetworkComponent networkComponent;
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        networkComponent = DaggerNetworkComponent.builder()
+                .networkModule(new NetworkModule())
+                .build();
+    }
+
+    public NetworkComponent getNetworkComponent() {
+        return networkComponent;
+    }
 }
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -359,9 +385,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // ...do something
-        TwitterComponent twitterComponent = DaggerTwitterComponent.builder()
-                .twitterModule(new TwitterModule("TheFinestArtist"))
-                .build();
+
+        BaseApplication app = (BaseApplication) getApplication();
+        NetworkComponent networkComponent = app.getNetworkComponent();
+        TwitterComponent twitterComponent = networkComponent.plus(new TwitterModule("TheFinestArtist"));
 
         tweeter = twitterComponent.tweeter();
         timeline = twitterComponent.timeline();
