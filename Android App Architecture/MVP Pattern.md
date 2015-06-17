@@ -18,7 +18,7 @@ In MVP the presenter assumes the functionality of the "middle-man". In MVP, all 
 
 ###View -> Presenter
 This part is redundant with `User -> Controller` in MVC Pattern. Presenter handles users action by UI event listeners.
-```
+```java
 fullName.addTextChangedListener(new TextWatcher() {
    @Override
    public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -39,7 +39,7 @@ This part is redundant with `Controller -> Model` in MVC Pattern. Presenter hand
 
 ##MVP in Android
 Developer usually uses Activity or Fragment as a presenter but here shows a better way to distinguish between View and Presenter more strictly by making presenter class for each Activity and Fragment. This way Activity and Fragment only handles actions from User and updating views, therefore Activity and Fragment can concentrate on more Front-End work and Presenter actually handles other works except Front-End. This is an Android Application with same feature as the example in MVC Pattern. [Github](https://github.com/TheFinestArtist/MVP-Example)
-```
+```java
 // Model
 public class User {
 
@@ -154,10 +154,9 @@ Apple also suggests to follow [MVC Pattern](https://developer.apple.com/library/
 ![](https://developer.apple.com/library/mac/documentation/General/Conceptual/DevPedia-CocoaCore/Art/model_view_controller.jpg)
 
 
-##MVP with Testing
-
-
-##Realm with MVP
+##Tools for MVP Pattern
+* Dagger
+* RxJava//Otto
 
 
 ##Author

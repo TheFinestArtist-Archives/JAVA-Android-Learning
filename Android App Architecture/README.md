@@ -6,8 +6,7 @@ How does it effect:
 
   * Testing
   * App architecture
-  * **Are there tools/libraries that can help with implementing these architectures?**
-  * **How does Realm fit into these kind of architectures? Are there any pitfalls?**
+  * Are there tools/libraries that can help with implementing these architectures?
 
 
   EN

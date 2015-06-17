@@ -16,7 +16,7 @@ Send commands to the model to update the model's state (e.g., editing a document
 
 ###User -> Controller
 Whenever user action occurs, controller will take care if this. It will receives these actions by callbacks such as `OnClickListener` or `TextWatcher`.
-```
+```java
 fullName.addTextChangedListener(new TextWatcher() {
    @Override
    public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -32,7 +32,7 @@ And if these user actions is related to updating model, controller also takes ca
 Model and View uses **Observer Pattern**. There is two kind of class helping this relation. One is Observer and another is Observable. As you can see from it's naming, Observer is a kind of callback and Observable is a class which every model should extends and notify to their observer whenever the data has been changed.  
 
 Here shows simple Java code of Observer and Observable.
-```
+```java
 public interface Observer {
    void update(Observable o, Object object);
 }
@@ -51,7 +51,7 @@ public class Observable {
 ```
 
 Theoretically every model should extends Observable like this
-```
+```java
 public class User extends Observable {
 
    private String email;
@@ -65,7 +65,7 @@ public class User extends Observable {
 ```
 
 And the view will add their Observer to related models and receives updates from it.
-```
+```java
 public class EmailTextView implements Observer {
 
    // implements methods
@@ -84,7 +84,7 @@ Android suggests many pre-defined classes such as Activity, Fragment, Service, S
 
 Here shows simple example how you can uses these component in MVC pattern. [Github](https://github.com/TheFinestArtist/MVC-Example)
 
-```
+```java
 // Model
 public class User extends Observable {
 

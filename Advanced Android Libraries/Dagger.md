@@ -87,7 +87,7 @@ The object graph is the place where all these dependencies live. The object grap
 
 For example, we have 4 kind of classes which are coupled in dependency (e.g. OkHttpClient, TwitterApi, Tweeter, Timeline) and they have such a dependency relationship (Tweeter<=TwitterApi<=OkHttpClient and Timeline<=TwitterApi<=OkHttpClient). We can group these 4 classes in 2 groups. One is for Network and another is for Twitter. Each group is matched for group. Network group is named as NetworkModule and it provides OkHttpClient and TwitterApi. Twitter group is named as TwitterModule and it provides Twetter and Timeline.
 
-###How to use?
+###Set ups
 **build.gradle**
 ```java
 dependencies {
@@ -232,13 +232,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 ##Dagger (v2)
 
 ###Annotations
+**@Module**
+In Dagger 1 terms, Dagger 2 modules are all declared as complete = false and library = true.
+
 **@Component**
 Annotates an interface or abstract class for which a fully-formed, dependency-injected implementation is to be generated from a set of modules(). The generated class will have the name of the type annotated with @Component prepended with Dagger. For example, @Component interface MyComponent {...} will produce an implementation named DaggerMyComponent.
 
 **@Subcomponent**
 A subcomponent that inherits the bindings from a parent Component or Subcomponent. The details of how to associate a subcomponent with a parent are described in the documentation for Component.
 
-###How to use?
+###Set ups
 **Top-level build.gradle**
 ```java
 buildscript {
