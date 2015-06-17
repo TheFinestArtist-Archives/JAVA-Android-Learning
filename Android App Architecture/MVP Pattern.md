@@ -158,6 +158,9 @@ Apple also suggests to follow [MVC Pattern](https://developer.apple.com/library/
 * Dagger
 * RxJava//Otto
 
+##Tests
+Designing structure more like object-oriented makes it easy to test. MVP pattern also helps you test your android application much easier. [Here](https://github.com/TheFinestArtist/Robolectric-Example) shows example to use Robolectric to test current MVP model example.
+
 
 ##Author
 ```
