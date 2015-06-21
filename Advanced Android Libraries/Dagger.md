@@ -87,7 +87,7 @@ The object graph is the place where all these dependencies live. The object grap
 
 For example, we have 4 kind of classes which are coupled in dependency (e.g. OkHttpClient, TwitterApi, Tweeter, Timeline) and they have such a dependency relationship (Tweeter<=TwitterApi<=OkHttpClient and Timeline<=TwitterApi<=OkHttpClient). We can group these 4 classes in 2 groups. One is for Network and another is for Twitter. Each group is matched for group. Network group is named as NetworkModule and it provides OkHttpClient and TwitterApi. Twitter group is named as TwitterModule and it provides Twetter and Timeline.
 
-###Set ups
+###Setup
 **build.gradle**
 ```java
 dependencies {
@@ -241,7 +241,7 @@ Annotates an interface or abstract class for which a fully-formed, dependency-in
 **@Subcomponent**
 A subcomponent that inherits the bindings from a parent Component or Subcomponent. The details of how to associate a subcomponent with a parent are described in the documentation for Component.
 
-###Set ups
+###Setup
 **Top-level build.gradle**
 ```java
 buildscript {

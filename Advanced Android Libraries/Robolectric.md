@@ -56,7 +56,8 @@ Test doubles are not only useful in state verification but also in behavior veri
 ###Dummy
 Dummy is simple of all. It’s a placeholder required to pass the unit test. Unit in the context (SUT) doesn’t exercise this placeholder. Dummy can be something as simple as passing ‘null’ or a void implementation with exceptions to ensure it’s never leveraged.
 
-```java
+```cs
+[TestMethod]
 public void PlayerRollDieWithMaxFaceValue()
 {
    var dummyBoard = new Mock<IBoard>();
@@ -68,7 +69,8 @@ public void PlayerRollDieWithMaxFaceValue()
 
 While the above test would work just fine, it won’t throw any exceptions if RollDie implementation is invoking Board Object. To ensure that Board object isn’t exercised at  all you can leverage strict mock. Strict Mock with throw an exception if no expectation is set for member.
 
-```java
+```cs
+[TestMethod]
 public void PlayerRollDieWithMaxFaceValueStrictTest()
 {
    var dummyBoard = new Mock<IBoard>(MockBehavior.Strict); //Ensure Board class is never invoked
@@ -81,7 +83,8 @@ public void PlayerRollDieWithMaxFaceValueStrictTest()
 ###Fake
 Fake is used to simplify a dependency so that unit test can pass easily. There is very thin line between Fake and Stub which is best described here as – “a Test Stub acts as a control point to inject indirect inputs into the SUT the Fake Object does not. It merely provides a way for the interactions to occur in a self-consistent manner. These interactions (between the SUT and the Fake Object) will typically be many and the values passed in as arguments of earlier method calls will often be returned as results of later method calls“. A common place where you would use fake is database access. Below sample shows the same by creating a FakeProductRepository instead of using live database.
 
-```java
+```cs
+[TestMethod]
 public interface IProductRepository
 {
    void AddProduct(IProduct product);
@@ -103,7 +106,8 @@ public class FakeProductRepository : IProductRepository
 }
 ```
 
-```java
+```cs
+[TestMethod]
 public void BillingManagerCalcuateTax()
 {
 var fakeProductRepository = new FakeProductRepository();
@@ -117,7 +121,8 @@ Fakes can be also be implemented by moq using callbacks.
 ###Stub
 Stub is used to provide indirect inputs to the SUT coming from its collaborators / dependencies. These inputs could be in form of objects, exceptions or primitive values. Unlike Fake, stubs are exercised by SUT. Going back to the Die example, we can use a Stub to return a fixed face value. This could simply our tests by taking out the randomness associated with rolling a Die.
 
-```java
+```cs
+[TestMethod]
 public void PlayerRollDieWithMaxFaceValue()
 {
    var stubDie = new Mock<IDie>();
@@ -130,7 +135,8 @@ public void PlayerRollDieWithMaxFaceValue()
 ###Mock
 Mock – Like Indirect Inputs that flow back to SUT from its collaborators, there are also Indirect Outputs. Indirect outputs are tricky to test as they don’t return to SUT and are encapsulated by collaborator. Hence it becomes quite difficult to assert on them from a SUT standpoint. This is where behavior verification kicks in. Using behavior verification we can set expectations for SUT to exhibit the right behavior during its interactions with collaborators. Classic example of this is logging. When a SUT invokes logger it might quite difficult for us to assert on the actual log store (file, database, etc.). But what we can do is assert that logger is invoked by SUT. Below is an example that shows a typical mock in action
 
-```java
+```cs
+[TestMethod]
 public void ModuleThrowExceptionInvokesLogger()
 {
    var mock = new Mock<ILogger>();
@@ -145,7 +151,8 @@ public void ModuleThrowExceptionInvokesLogger()
 ###Spy
 Spy – Spy is a variation of behavior verification. Instead of setting up behavior expectations, Spy records calls made to the collaborator. SUT then can later assert the recordings of Spy. Below is variation of Logger shown for Mock. Focus on this test is to count the number of times Log is invoked on Logger. It’s doesn’t care about the inputs passed to Log, it just records the Log calls and asserts them. Complex Spy objects can also leverage callback features of moq framework.
 
-```java
+```cs
+[TestMethod]
 public void ModuleThrowExceptionInvokesLoggerOnlyOnce()
 {
    var spyLogger = new Mock<ILogger>();
@@ -158,32 +165,222 @@ public void ModuleThrowExceptionInvokesLoggerOnlyOnce()
 }
 ```
 
-##Robolectric
+##Problems In Unit Testing Android Applications
+1) Android framework code has to run on the emulator or on the device
 
+The android.jar file that you get with the Android SDK does not contain the Android framework code. It just has method stubs that throw a run time exception. The actual implementation lies on the device or on the emulator.
+
+As a result, tests have to be run on the device or emulator. So, every time you run a test it has go through steps like dexing, packaging and installing on the emulator or device. Needless to say that it will be SLOW!
+
+2) Mocking the Android framework code is Hard
+
+One of the approaches to solving the first problem is to mock out the Android classes so that you can run the code in JVM. But the problem with that is this - many methods in the Android framework are declared as final, making them impossible to mock through sub-classing. It also has many utilities that are static methods, which are also difficult to mock.
+
+Frameworks such as PowerMock or jmockit can solve the above problems for you but this will lead to tests that are harder to read and maintain.
+
+
+##Robolectric
 Robolectric is a JUnit4-based testing framework that allows to run unit tests on desktop JVM while using Android API.
+
+Robolectric has replaced all Android classes by so-called shadow objects
 
 * Based on JUnit 4 framework
 * Runs unit tests on desktop without any device or emulator
-* Be able to use Android APIs includes `android-support-v4, android-multidex, google-play-services, google-maps, apache-httpclient`
+* Be able to test Android APIs includes `android-support-v4, android-multidex, google-play-services, google-maps, apache-httpclient`
 * Be able to use and tests Android Resources
-* Be able to use 3rd party libraries
+* Be able to test 3rd party libraries
 * Is not an integration tests
 
-Some other aspects
-* Support up to **SDK version 21**
+Robolectric is a unit test framework that allows you to test-drive the development of your Android app. Robolectric has replaced all Android classes by so-called shadow objects. Robolectric sits between your code and the Android OS code intercepting calls and redirecting them to shadow objects, making it possible to run your tests inside a regular JVM.
 
+This effectively means you can run your tests on your desktop, without having to wait for steps like dexing, packaging etc as previously mentioned. This significantly reduces the cycle time for a test and helps you iterate faster and refactor your code with confidence.
 
+This also means you don't have to take the approach of mocking the Android framework code as discussed previously. This way Robolectric solves both of our problems.
 
 ###Shadow Objects
 The Robolectric testing framework provides "shadow objects" that override certain aspects of the Android SDK. These objects allow the code being tested to execute outside of the Android environment. At times, it's useful to manipulate these shadow objects to achieve some expected result.
 
-###Set ups
+Robolectric intercepts the loading of Android classes under test. It rewrites the method bodies of Android classes using javassist. It binds the new shadow objects to new Android objects. Any method calls to the Android object are forwarded to the shadow object's method of same signature, if it exists.
+
+View and Resource Loading
+
+Robolectric handles inflation of views, resource loading, and others that have been  implemented in native C code on Android devices. This allows tests to do most things you could do on a real device.
+
+For example, it parses all the files that are under the resources directory like layout files, and builds a view object tree made of Android view objects and of course their shadows. This allows you to test your code that uses these resources.
+
+####Why do you need Shadows in your tests?
+
+Shadows exist to add additional methods that can be used in tests to inspect the state of the underlying Android object. For example, many Android objects have setters for certain values, but no getters. We can add getters to the shadows and use them in test to assert on the underlying object.
+
+####Robolectric built-in Shadows
+
+Robolectric  has defined many shadow classes, which modify or extend the behavior of classes in the Android OS. When an Android class is instantiated, Robolectric looks for a corresponding shadow class, and if it finds one it creates a shadow object to associate with it. Every time a method is invoked on an Android class, Robolectric ensures that the method corresponding to the shadow class is invoked first (if there is one), so that it can work its magic.
+
+Robolectric has provided Shadows for most of the Android classes, but it lets you create your own Shadows as well just in case you need a Shadow that is not there in the Shadows provided by Robolectric.
+
+###View and Resource Loading
+Robolectric handles inflation of views, resource loading, and others that have been  implemented in native C code on Android devices. This allows tests to do most things you could do on a real device.
+
+For example, it parses all the files that are under the resources directory like layout files, and builds a view object tree made of Android view objects and of course their shadows. This allows you to test your code that uses these resources.
+
+###Setup
 **build.gradle**
 ```java
 dependencies {
     // ...other dependencies
     testCompile 'junit:junit:4.12'
     testCompile 'org.robolectric:robolectric:3.0-rc2'
+}
+```
+
+**Android Studio Build Variants**
+Set you Build Variants' test artifact as Unit Tests.
+
+
+###Example
+This example shows Robolectric and Mokito test code example for sample application  [MVP Example](https://github.com/TheFinestArtist/MVP-Example).  
+*You can find whole source code from [here](https://github.com/TheFinestArtist/Robolectric-Example)*  
+
+**MainActivityTest**
+```java
+@RunWith(RobolectricGradleTestRunner.class)
+@Config(constants = BuildConfig.class, emulateSdk = 21, manifest = "src/main/AndroidManifest.xml")
+public class MainActivityTest {
+
+    private MainActivity activity;
+    private TextView userInfoTextView;
+    private EditText fullName;
+    private EditText email;
+
+    @Before
+    public void setup() {
+        activity = Robolectric.buildActivity(MainActivity.class).create().get();
+        userInfoTextView = (TextView) activity.findViewById(R.id.userInfo);
+        fullName = (EditText) activity.findViewById(R.id.fullName);
+        email = (EditText) activity.findViewById(R.id.email);
+    }
+
+    @Test
+    public void notNull() {
+        assertNotNull(activity);
+    }
+
+    @Test
+    public void fullNameShouldUpdateUserInfoTextView() {
+        fullName.setText("Leonardo");
+        assertTrue(userInfoTextView.getText().toString().contains("Leonardo"));
+    }
+
+    @Test
+    public void emailShouldUpdateUserInfoTextView() {
+        email.setText("contact@thefinestartist.com");
+        assertTrue(userInfoTextView.getText().toString().contains("contact@thefinestartist.com"));
+    }
+
+    @Test
+    public void fullNameAndEmailShouldUpdateUserInfoTextView() {
+        fullName.setText("Leonardo");
+        email.setText("contact@thefinestartist.com");
+        assertTrue(userInfoTextView.getText().toString().contains("Leonardo"));
+        assertTrue(userInfoTextView.getText().toString().contains("contact@thefinestartist.com"));
+    }
+}
+```
+
+**UserTest**
+```java
+@RunWith(RobolectricGradleTestRunner.class)
+@Config(constants = BuildConfig.class, emulateSdk = 21, manifest = "src/main/AndroidManifest.xml")
+public class UserTest {
+
+    private User user;
+
+    @Before
+    public void setup() {
+        user = new User();
+    }
+
+    @Test
+    public void notNull() {
+        assertNotNull(user);
+    }
+
+    @Test
+    public void fullNameShouldUpdate() {
+        user.setFullName("Leonardo");
+        assertEquals(user.getFullName(), "Leonardo");
+    }
+
+    @Test
+    public void emailShouldUpdate() {
+        user.setEmail("contact@thefinestartist.com");
+        assertEquals(user.getEmail(), "contact@thefinestartist.com");
+    }
+
+    @Test
+    public void fullNameShouldUpdateToString() {
+        user.setFullName("Leonardo");
+        assertEquals(user.toString(), "FullName : Leonardo\nEmail : null");
+    }
+
+    @Test
+    public void emailShouldUpdateToString() {
+        user.setEmail("contact@thefinestartist.com");
+        assertEquals(user.toString(), "FullName : null\nEmail : contact@thefinestartist.com");
+    }
+
+    @Test
+    public void fullNameAndEmailShouldUpdateToString() {
+        user.setFullName("Leonardo");
+        user.setEmail("contact@thefinestartist.com");
+        assertEquals(user.toString(), "FullName : Leonardo\nEmail : contact@thefinestartist.com");
+    }
+}
+```
+
+**MainPresenterTest**
+```java
+@RunWith(RobolectricGradleTestRunner.class)
+@Config(constants = BuildConfig.class, emulateSdk = 21, manifest = "src/main/AndroidManifest.xml")
+public class MainPresenterTest {
+
+    @Mock
+    private MainPresenter.View view;
+    private MainPresenter presenter;
+    private User user;
+
+    @Before
+    public void setup() throws NoSuchFieldException, IllegalAccessException {
+        MockitoAnnotations.initMocks(this);
+        presenter = new MainPresenter(view);
+
+        Field field = MainPresenter.class.getDeclaredField("user");
+        field.setAccessible(true);
+
+        user = (User) field.get(presenter);
+    }
+
+    @Test
+    public void notNull() {
+        assertNotNull(presenter);
+        assertNotNull(view);
+        assertNotNull(user);
+    }
+
+    @Test
+    public void updateFullNameTest() {
+        presenter.updateFullName("Leonardo");
+        assertEquals(user.getFullName(), "Leonardo");
+        verify(view).updateUserInfoTextView(user.toString());
+    }
+
+    @Test
+    public void updateEmailTest() {
+        presenter.updateEmail("contact@thefinestartist.com");
+        assertEquals(user.getEmail(), "contact@thefinestartist.com");
+        verify(view).updateUserInfoTextView(user.toString());
+    }
+
 }
 ```
 

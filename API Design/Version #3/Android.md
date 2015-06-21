@@ -97,14 +97,17 @@ public class User extends BaseObject {
    @RealmIgnore
    private String fullnameUpper;
 
-   // Working On
    private static final String VALIDATION_REGEX_URL = "(@)?(href=')?(HREF=')?(HREF=\")?(href=\")?(http://)?[a-zA-Z_0-9\\-]+(\\.\\w[a-zA-Z_0-9\\-]+)+(/[#&\\n\\-=?\\+\\%/\\.\\w]+)?";
-   @RealmValidation(VALIDATION_REGEX_URL)
+   @RealmValidation(
+      regex = VALIDATION_REGEX_URL
+   )
    private String profileUrl;
 
-   // Working On
    @RealmUnique
-   @RealmValidation({Min: 5, Max: 20})
+   @RealmValidation(
+      minLength = 5,
+      maxLength = 20
+   )
    private String username;
 
    private Settings settings;
