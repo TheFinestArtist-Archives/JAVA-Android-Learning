@@ -1,6 +1,7 @@
 ####Kind of work I want to do for Realm
 * Read and understand whole code from C++, Objective-C, Java, Ruby
 * Find out better API design for both Mobile Developer and Realm Developer
+* Make an ORM using Realm
 * Re-design website for better UX & UI
 * Re-design Corporate Identity
 
@@ -12,3 +13,6 @@
 
 ####Basic work I can cover
 * Answer questions from developers in Realm Korea Facebook Group
+
+####Etc
+* I think my dad can help to make branch company in Korean since he is a notable accountant
