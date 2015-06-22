@@ -51,6 +51,7 @@ The relational model is centered on this idea: the organization of data into col
 ##NoSQL (Not only SQL)
 
 ###Document Database
+A document-oriented database is a computer program designed for storing, retrieving, and managing document-oriented information, also known as semi-structured data. Document-oriented databases are one of the main categories of NoSQL databases and the popularity of the term "document-oriented database" (or "document store") has grown with the use of the term NoSQL itself.
 
 **Data Model**
 * Collection of documents
@@ -72,6 +73,7 @@ The relational model is centered on this idea: the organization of data into col
 
 
 ###Key-value Database
+A key-value store, or key-value database, is a computer program designed for storing, retrieving, and managing associative arrays, a data structure more commonly known today as a dictionary or hash. Dictionaries contain a collection of objects, or records, which in turn have many different fields within them, each containing data. These records are stored and retrieved using a key that uniquely identifies the record, and is used to quickly find the data within the database.
 
 **Data Model**
 * Global key-value mapping
@@ -95,9 +97,9 @@ The relational model is centered on this idea: the organization of data into col
 > Mem-cached
 
 ###Big Table
+BigTable maps two arbitrary string values (row key and column key) and timestamp (hence three-dimensional mapping) into an associated arbitrary byte array. It is not a relational database and can be better defined as a sparse, distributed multi-dimensional sorted map. BigTable is designed to scale into the petabyte range across "hundreds or thousands of machines, and to make it easy to add more machines [to] the system and automatically start taking advantage of those resources without any reconfiguration".
 
 **Pros**
-* Support semi-structure data
 * Naturally indexed
 * Scalable
 
@@ -155,7 +157,7 @@ Generally refers to adding more processors and RAM, buying a more expensive and 
 * (sometimes) uses less network hardware than scaling horizontally (this is a whole different topic that we can discuss later)
 
 **Cons**
-* PRICE, PRICE, PRICE
+* PRICE
 * Greater risk of hardware failure causing bigger outages
 * generally severe vendor lock-in and limited upgradeability in the future
 
