@@ -165,8 +165,7 @@ I assume this things must have cleared your understanding of DAO up to certain e
 ##Major ORM Solutions
 
 ###Speed
-ORMLite < GreenDAO
-SugarORM < Active Android < DB Flow
+ORMLite < Active Android < DB Flow < GreenDAO
 
 ###ORMLite
 OrmLite is a Java ORM with SQL databases support. It can be used anywhere Java is used, such as JDBC connections, Spring, and also Android. It makes heavy usage of annotations.
@@ -284,13 +283,105 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 ```
 
 ###GreenDAO
+When it comes to performance, ‘fast’ and GreenDAO are synonymous. As stated on its website, “most entities can be inserted, updated and loaded at rates of several thousand entities per second”. If it wasn’t that good, these apps wouldn’t be using it. Compared to OrmLite, it is almost 4.5 times faster.
+
+* Uses code generation to avoid reflection
+* Offers read and write object
+* Creating Table with schema
+   * Have to create schema using DaoGenerator
+* Expressing query
+   * Able to user raw query
+* Hard to understand the concept of DaoGenerator, DaoMaster, DaoSession, DaoRepository
+
 
 **Supporting Database**
 `SQLite`
 
+**Modeling Objects**
+```java
+Entity user = schema.addEntity("User");
+user.addIdProperty();
+user.addStringProperty("name");
+user.addStringProperty("password");
+user.addIntProperty("yearOfBirth");
+```
+
+**Modeling Relations**
+```java
+// One to many
+Property pictureIdProperty = user.addLongProperty("pictureId").getProperty();
+user.addToOne(picture, pictureIdProperty);
+
+// Many to many
+Property customerId = order.addLongProperty("customerId").notNull().getProperty();
+ToMany customerToOrders = customer.addToMany(order, customerId);
+customerToOrders.setName("orders"); // Optional
+customerToOrders.orderAsc(orderDate); // Optional
+```
+
+**DAO**
+```java
+DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this, "example-db", null);
+SQLiteDatabase db = helper.getWritableDatabase();
+DaoMaster daoMaster = new DaoMaster(db);
+daoSession = daoMaster.newSession();
+BoxDao boxDao = daoSession.getBoxDao();
+
+public class BoxRepository {
+
+    public static void insertOrUpdate(Context context, Box box) {
+        getBoxDao(context).insertOrReplace(box);
+    }
+
+    public static void clearBoxes(Context context) {
+        getBoxDao(context).deleteAll();
+    }
+
+    public static void deleteBoxWithId(Context context, long id) {
+        getBoxDao(context).delete(getBoxForId(context, id));
+    }
+
+    public static List<Box> getAllBoxes(Context context) {
+        return getBoxDao(context).loadAll();
+    }
+
+    public static Box getBoxForId(Context context, long id) {
+        return getBoxDao(context).load(id);
+    }
+
+    private static BoxDao getBoxDao(Context c) {
+        return ((DaoExampleApplication) c.getApplicationContext()).getDaoSession().getBoxDao();
+    }
+}
+
+Box box = new Box();  
+box.setId(5);
+box.setName("My box");  
+box.setSlots(39);  
+box.setDescription("This is my box. I can put in it anything I wish.");  
+BoxRepository.insertOrUpdate(context, box);  
+```
+
+**Queries**
+```java
+QueryBuilder qb = userDao.queryBuilder();
+qb.where(Properties.FirstName.eq("Joe"),
+qb.or(Properties.YearOfBirth.gt(1970),
+qb.and(Properties.YearOfBirth.eq(1970), Properties.MonthOfBirth.ge(10))));
+List youngJoes = qb.list();
+
+// Raw Query
+Query query = userDao.queryBuilder().where(new StringCondition("_ID IN " + "(SELECT USER_ID FROM USER_MESSAGE WHERE READ_FLAG = 0)").build();
+List users = query.list();
+```
+
 ###Active Android
-Much like other ORMs, ActiveAndroid helps you store and retrieve records from SQLite without writing SQL queries.
+Much like other ORMs, ActiveAndroid helps you store and retrieve records from SQLite without writing SQL queries.  
+* Using with content provider
+* Migration is not type safe  
 * No many to many relation supported
+* Using lots of reflections
+* Difficulty with complex join
 
 **Supporting Database**
 `SQLite`
@@ -368,9 +459,109 @@ ALTER TABLE Items ADD COLUMN color INTEGER;
 
 
 ###DB Flow
+A robust, powerful, and very simple ORM android database library with annotation processing.  
+The library is built on speed, performance, and approachability. It not only eliminates most boiler-plate code for dealing with databases, but also provides a powerful and simple API to manage interactions.
+* One of the fastest ORM
+* Fullset API (ModelView, observer, multiple database)
+* Supports Observer to observe CRUD of each table
+* Very nice migration API
 
-**Supporting Database**
+**Supporting Database**  
 `SQLite`
+
+**Objects**
+```java
+@Table(databaseName = ColonyDatabase.NAME)
+public class Queen extends BaseModel {
+
+  @Column
+  @PrimaryKey(autoincrement = true)
+  long id;
+
+  @Column
+  String name;
+
+}
+```
+
+**Relations**
+```java
+// One to one
+@Table(databaseName = ColonyDatabase.NAME)
+public class Queen extends BaseModel {
+
+  @Column
+  @ForeignKey(
+    references = {@ForeignKeyReference(columnName = "colony_id",
+                    columnType = Long.class,
+                    foreignColumnName = "id")},
+    saveForeignKeyModel = false)
+  Colony colony;
+}
+
+// One to many
+@Table(databaseName = ColonyDatabase.NAME)
+public class Ant extends BaseModel {
+
+  @Column
+  @ForeignKey(
+    references = {@ForeignKeyReference(columnName = "queen_id",
+                    columnType = Long.class,
+                    foreignColumnName = "id")},
+    saveForeignKeyModel = false)
+  ForeignKeyContainer<Queen> queen;
+
+}
+
+// Many to many
+@ModelContainer
+@Table(databaseName = ColonyDatabase.NAME)
+public class Queen extends BaseModel {
+
+  private List<Ant> ants;
+
+  @OneToMany(methods = {OneToMany.Method.ALL})
+  public List<Ant> getMyAnts() {
+    if(ants == null) {
+      ants = new Select()
+              .from(Ant.class)
+              .where(Condition.column(Ant$Table.QUEEN_QUEEN_ID).is(id))
+              .queryList();
+    }
+    return ants;
+  }
+}
+```
+
+**Queries**
+```java
+// Nested conditions
+CombinedCondition
+  .begin(CombinedCondition
+    .begin(Condition.column(MyTable$Table.NAME).is("Test"))
+      .and(Condition.column(MyTable$Table.RANK).eq(8))
+  .or(CominedCondition
+    .begin(Condition.column(MyTable$Table.NAME).is("Bob"))
+      .and(Condition.column(MyTable$Table.RANK).eq(6))))
+```
+
+**Migrations**
+```java
+@Migration(version = 2, databaseName = AppDatabase.NAME)
+public class Migration1 extends UpdateTableMigration<TestModel> {
+
+    @Override
+    public void onPreMigrate() {
+      // Simple ALTER TABLE migration wraps the statements into a nice builder notation
+      addColumn(Long.class, "timestamp");
+      // UPDATE TestModel SET deviceType = "phablet" WHERE screenSize > 5.7 AND screenSize < 7;
+      set(Condition.column(TestModel$Table.DEVICETYPE)
+        .is("phablet"))
+        .where(Condition.column(TestModel$Table.SCREENSIZE).greaterThan(5.7),
+               Condition.column(TestModel$Table.SCREENSIZE).lessThan(7))
+    }
+}
+```
 
 ###Parse
 Parse has ORM inside the library which supports both local and server database. You can CRUD object and save it into local database or server.  
@@ -416,7 +607,6 @@ relation.add(authorTwo);
 relation.add(authorThree);
 ```
 
-
 **Queries**
 ```java
 ParseQuery<ParseObject> query = ParseQuery.getQuery("GameScore");
@@ -455,7 +645,56 @@ query.whereGreaterThanOrEqualTo("wins", 50);
 No local migration supported.
 
 ###Firebase
+All Firebase database data is stored as JSON objects. There are no tables or records. When we add data to the JSON tree, it becomes a key in the existing JSON structure
 
+**Objects**
+```java
+Firebase ref = new Firebase("https://docs-examples.firebaseio.com/android/saving-data/fireblog");
+public class User {
+   private int birthYear;
+   private String fullName;
+
+   public User() {}
+
+   public User(String fullName, int birthYear) {
+      this.fullName = fullName;
+      this.birthYear = birthYear;
+   }
+
+   public long getBirthYear() {
+      return birthYear;
+   }
+
+   public String getFullName() {
+      return fullName;
+   }
+}
+
+User alanisawesome = new User("Alan Turing", 1912);
+User gracehop = new User("Grace Hopper", 1906);
+
+Firebase usersRef = ref.child("users");
+
+Map<String, User> users = new HashMap<String, User>();
+users.put("alanisawesome", alanisawesome);
+users.put("gracehop", gracehop);
+
+usersRef.setValue(users);
+```
+
+**Queries**
+```java
+Firebase scoresRef = new Firebase("https://dinosaur-facts.firebaseio.com/scores");
+Query queryRef = scoresRef.orderByValue();
+
+queryRef.addChildEventListener(new ChildEventListener() {
+   @Override
+   public void onChildAdded(DataSnapshot snapshot, String previousChildKey) {
+      System.out.println("The " + snapshot.getKey() + " dinosaur's score is " + snapshot.getValue());
+   }
+   // ....
+});
+```
 
 ##Author
 ```
