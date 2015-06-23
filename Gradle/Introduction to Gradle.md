@@ -161,5 +161,5 @@ It's hard to discuss Gradle without Groovy language. [Groovy](goo.gl/rQ0WkW) is 
 ```
 Name     : Leonardo Taehwan Kim
 Email    : contact@thefinestartist.com
-Website  : https://www.thefinestartist.com
+Website  : http://www.thefinestartist.com
 ```

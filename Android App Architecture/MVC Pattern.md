@@ -209,5 +209,5 @@ Original MVC Pattern is not appropriate design pattern for Android in such reaso
 ```
 Name     : Leonardo Taehwan Kim
 Email    : contact@thefinestartist.com
-Website  : https://www.thefinestartist.com
+Website  : http://www.thefinestartist.com
 ```

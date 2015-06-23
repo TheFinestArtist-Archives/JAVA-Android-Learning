@@ -166,5 +166,5 @@ Designing structure more like object-oriented makes it easy to test. MVP pattern
 ```
 Name     : Leonardo Taehwan Kim
 Email    : contact@thefinestartist.com
-Website  : https://www.thefinestartist.com
+Website  : http://www.thefinestartist.com
 ```

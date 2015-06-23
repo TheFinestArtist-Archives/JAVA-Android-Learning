@@ -451,5 +451,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 ```
 Name     : Leonardo Taehwan Kim
 Email    : contact@thefinestartist.com
-Website  : https://www.thefinestartist.com
+Website  : http://www.thefinestartist.com
 ```

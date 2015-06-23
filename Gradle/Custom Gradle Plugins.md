@@ -231,5 +231,5 @@ ext.greetingFile = "$buildDir/hello.txt"
 ```
 Name     : Leonardo Taehwan Kim
 Email    : contact@thefinestartist.com
-Website  : https://www.thefinestartist.com
+Website  : http://www.thefinestartist.com
 ```
