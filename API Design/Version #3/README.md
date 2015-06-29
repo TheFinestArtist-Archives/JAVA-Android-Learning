@@ -2,15 +2,9 @@ Better if
 
 1. Thread independent RealmObject
 2. No Transactions
-3. Better with Auto Migration
-
-Observer is kind of iOS system stuff.
-For Android we use subscribing system.
-
-Need more research on Observer and take the strong point from each OS system
-
-Observer in Android is so powerful, it is very hard to implements it perfectly
-
+3. Observer
+4. No RealmObject//RLMObject
+5. Better with Auto Migration
 
 Current Realm API is too database.
 

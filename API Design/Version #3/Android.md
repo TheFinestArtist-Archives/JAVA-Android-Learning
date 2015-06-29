@@ -59,6 +59,17 @@ RealmObject
 RealmList<? extends RealmObject>
 ```
 
+####RealmObject, RealmList
+```java
+public abstract class RealmObject {
+   public void save() { ... }
+   public void saveInBackground() { ... }
+}
+
+public class RealmList<E extends RealmObject> extends RealmObject implements List<E> {
+}
+```
+
 ####Models
 ```java
 /**
@@ -75,68 +86,76 @@ public class BaseObject extends RealmObject {
 
    @RealmPrimaryKey
    @RealmFieldName("_id")
-   private int id;
+   public int id;
 
-   private Date createdAt;
-   private Date updatedAt;
-
-   public int getId() { return this.id; }
-   public Date getCreatedAt() { return this.createdAt; }
-   public Date getUpdatedAt() { return this.updatedAt; }
+   public Date createdAt;
+   public Date updatedAt;
 }
 
 @RealmClassName("_User")
 public class User extends BaseObject {
 
    @RealmUnique
-   private String email;
+   public String email;
 
    @RealmIndex
    private String fullname;
 
+   public String getFullname() {
+      return this.fullname;
+   }
+
+   public void setFullname(@Nonnull String fullname) {
+      this.fullname = fullname;
+      this.fullnameUpper = fullname.toUpperCase();
+   }
+
    @RealmIgnore
    private String fullnameUpper;
+
+   public String getFullnameUpper() {
+      return this.fullnameUpper;
+   }
 
    private static final String VALIDATION_REGEX_URL = "(@)?(href=')?(HREF=')?(HREF=\")?(href=\")?(http://)?[a-zA-Z_0-9\\-]+(\\.\\w[a-zA-Z_0-9\\-]+)+(/[#&\\n\\-=?\\+\\%/\\.\\w]+)?";
    @RealmValidation(
       regex = VALIDATION_REGEX_URL
    )
-   private String profileUrl;
+   public String profileUrl;
 
    @RealmUnique
    @RealmValidation(
       minLength = 5,
       maxLength = 20
    )
-   private String username;
+   public String username;
 
-   private Settings settings;
+   public Settings settings;
 
-   private RealmList<Pet> pets;
+   public RealmList<Pet> pets;
 }
 
 public class Settings extends RealmObject {
 
    @RelamDefault(true)
-   private boolean isNotificationOn;
+   public boolean isNotificationOn;
 
-   private RealmList<Payment> payments;
+   public RealmList<Payment> payments;
 }
 
 public class Payment extends BaseObject {
-
-   private String cardType;
-   private String cardNumber;
-   private String cardHolderName;
-   private int expiredYear;
-   private int expiredMonth;
-   private int cvc;
+   public String cardType;
+   public String cardNumber;
+   public String cardHolderName;
+   public int expiredYear;
+   public int expiredMonth;
+   public int cvc;
 }
 
 // Using with Enum
 public class Pet extends BaseObject {
 
-   private String name;
+   public String name;
    private String type;
 
    public PetType getType() {
@@ -176,10 +195,10 @@ public class Pet extends BaseObject {
 ####Construct RealmObject
 ```java
 User user = new User();
-user.setId(1);
-user.setCreatedAt(new Date());
-user.setUpdatedAt(new Date());
-user.setEmail("contact@thefinestartist.com");
+user.id = 1;
+user.createdAt = new Date();
+user.updatedAt = new Date();
+user.email = "contact@thefinestartist.com";
 user.setFullname("Leonardo Taehwan Kim");
 ```
 

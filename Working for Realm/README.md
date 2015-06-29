@@ -10,6 +10,10 @@
 * Make a speech about introduction of Realm
 * Make a workshop to explain how to use Realm wisely
 * Make a sample application to suggest ways to use Realm for many kinds of application (includes Network, Feed, App doesn't have any server-side, etc) (covering both iOS & Android)
+* Make a regular speech about Mobile development.
+   * From Android to iOS (matching every class and methods from Android to iOS)
+   * How to use Database in Mobile
+   * How to use some kind of library
 
 ####Basic work I can cover
 * Answer questions from developers in Realm Korea Facebook Group
