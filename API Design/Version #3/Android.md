@@ -1,5 +1,7 @@
 #Android API Design
 
+**Realm is a service/company name. And Realm serves a mobile database called RealmDatabase.**
+
 ##Application
 ```java
 public class BaseApplication extends Application {
@@ -297,14 +299,15 @@ RealmQuery.Builder queryBuilder = new RealmQuery.Builder()
    .includeAll() // Try not to use this methods
    // .includeAllDeeply() // Don't ever use this methods
    .whereEqualTo("playerName", "Dan Stemkoski")
+   .whereEqualTo("playerName", Arrays.asList({"Jonathan Walsh", "Dario Wunsch", "Shawn Simon"})
    .whereNotEqualTo("playerName", "Michael Yabuti")
+   .whereNotEqualTo("playerName", Arrays.asList({"Jonathan Walsh", "Dario Wunsch", "Shawn Simon"})
    .whereGreaterThan("playerAge", 18)
    .whereGreaterThanOrEqualTo("wins", 50)
    .whereLessThan("wins", 50)
    .whereLessThanOrEqualTo("wins", 50)
    .orderByAscending("score", "playerName")
    .orderByDescending("score", "playerName")
-   .whereContainedIn("playerName", Arrays.asList({"Jonathan Walsh", "Dario Wunsch", "Shawn Simon"}))
    .whereExists("score")
    .whereDoesNotExist("score");
 
@@ -387,10 +390,7 @@ User user = User.fromJson(String string);
 User user = User.fromJson(JsonObject object);
 
 user.toJsonString();
-user.toJson();
-
-OldUser oldUser = new OldUser();
-User user = User.fromObject(oldUser);
+user.toJsonObject();
 ```
 
 ##Migration
