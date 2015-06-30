@@ -338,22 +338,26 @@ query.findSomeInBackground(10, 30, new OnRealmUpdatedListener<RealmList<User>>()
 ##RealmObserver
 ```java
 RealmQuery query = queryBuilder.build();
-RealmObserver observer = new RealmObserver(query, new OnRealmUpdatedListener<User>() {
+RealmObserver<User> observer = new RealmObserver<>(query);
+observer.addOnRealmUpdatedListener(new OnRealmUpdatedListener<User>() {
    public void onUpdated(User user, RealmException exception) {}
 });
 
 User user = query.findFirst();
-RealmObserver observer = new RealmObserver(user, new OnRealmUpdatedListener<User>() {
+RealmObserver<User> observer = new RealmObserver(user);
+observer.addOnRealmUpdatedListener(new OnRealmUpdatedListener<User>() {
    public void onUpdated(User user, RealmException exception) {}
 });
 
-RealmObserver observer = new RealmObserver(query, new OnRealmUpdatedListener<RealmList<User>>() {
+RealmObserver<RealmList<User>> observer = new RealmObserver(query);
+observer.addOnRealmUpdatedListener(new OnRealmUpdatedListener<RealmList<User>>() {
    public void onUpdated(RealmList<User> users, RealmException exception) {}
 });
 
 // This would have different results from the upper RealmObserver
 RealmList<User> friends = query.findAll();
-RealmObserver observer = new RealmObserver(friends, new OnRealmUpdatedListener<RealmList<User>>() {
+RealmObserver<RealmList<User>> observer = new RealmObserver(friends);
+observer.addOnRealmUpdatedListener(new OnRealmUpdatedListener<RealmList<User>>() {
    public void onUpdated(RealmList<User> users, RealmException exception) {}
 });
 ```
@@ -371,7 +375,16 @@ public class RealmException extends exception {}
 ####Usage
 ```java
 public class RealmAdapter extends BaseAdapter implements OnRealmUpdatedListener<RealmList<Post>> {
+
+   RealmList<Post> posts;
+
    public RealmAdapter() {}
+
+   @Override
+   public void onUpdated(RealmList<Post> posts, RealmException exception) {
+      this.posts = posts;
+      notifyDataSetChanged();
+   }
 }
 
 RealmAdapter adapter = new RealmAdapter();
