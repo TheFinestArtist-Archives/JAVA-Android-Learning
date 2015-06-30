@@ -16,7 +16,7 @@ public class BaseApplication extends Application {
 
 ####Default Database
 ```java
-Realm.getDatabase();
+Realm.getDefaultDatabase();
 Realm.getDatabase(DefaultDatabase.class);
 ```
 
@@ -25,14 +25,21 @@ Realm.getDatabase(DefaultDatabase.class);
 // RealmDatabase are abstract class
 public class SecondaryDatabase extends RealmDatabase {
 
+   @Override
    public String getFileName() {
-      return "secondary";
+      return "secondary"; // Realm always uses .realm as file extension
    }
 
    // Cached database will only use memory (not using file system)
    // Cached database will automatically deleted or garbage collected whenever Application is removed from memory
+   @Override
    public boolean forCache() {
       realm false;
+   }
+
+   @Override
+   public byte[] getEncryptionKey() {
+      return null; // null for no encryption
    }
 }
 ```
