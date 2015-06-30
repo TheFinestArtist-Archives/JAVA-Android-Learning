@@ -244,7 +244,9 @@ public abstract class RealmObject {
 }
 
 public class RealmList<E extends RealmObject> extends RealmObject implements List<E> {
-   ...
+   public RealmList(RealmObject... objects) {
+      ...
+   }
 }
 ```
 
