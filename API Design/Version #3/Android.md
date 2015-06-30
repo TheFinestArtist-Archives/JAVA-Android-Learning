@@ -1,6 +1,6 @@
 #Android API Design
 
-**Realm is a service/company name. And Realm serves a mobile database called RealmDatabase.**
+####Realm is a service/company name. And Realm serves a mobile database called RealmDatabase.
 
 ##Application
 ```java
