@@ -4,11 +4,11 @@
 ```java
 public class BaseApplication extends Application {
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        Realm.initialize(this);
-    }
+   @Override
+   public void onCreate() {
+      super.onCreate();
+      Realm.initialize(this);
+   }
 }
 ```
 
@@ -71,6 +71,17 @@ public class RealmList<E extends RealmObject> extends RealmObject implements Lis
 ```
 
 ####Models
+**Rule #1**  
+Create every field in public and don't bother to create a `getter` and `setter`  
+**Rule #2**  
+Use `setter` only if the data type of the field and parameter is different (e.g. `setDate(String date)`)  
+
+**Why?**  
+A model class will never be a library class. (No need to follow java conventions.)  
+A model class usually has no method or function which have high dependency on each field.
+In other language, they usually make fields in public without `setter` and `getter`.  
+Easy in integrating Gson or other mapping libraries.
+
 ```java
 /**
  * Annotations
@@ -156,7 +167,7 @@ public class Payment extends BaseObject {
 public class Pet extends BaseObject {
 
    public String name;
-   private String type;
+   private String type; // This field can only be accessed by setter and getter for safety and usability
 
    public PetType getType() {
       return PetType.fromAttribute(this.type);
@@ -246,23 +257,23 @@ public void saveInBackground (Class<? extends RealmDatabase> clazz, RealmTransac
 **RealmQuery can't be modified after it's build** (Mainly because of RealmObserver)
 ```java
 RealmQuery.Builder queryBuilder = new RealmQuery.Builder()
-                                                .from(SecondaryDatabase.class)
-                                                .of(User.class)
-                                                .include("settings", "pets")
-                                                // .includeDeeply("settings", "payments")
-                                                .includeAll() // Try not to use this methods
-                                                // .includeAllDeeply() // Don't ever use this methods
-                                                .whereEqualTo("playerName", "Dan Stemkoski")
-                                                .whereNotEqualTo("playerName", "Michael Yabuti")
-                                                .whereGreaterThan("playerAge", 18)
-                                                .whereGreaterThanOrEqualTo("wins", 50)
-                                                .whereLessThan("wins", 50)
-                                                .whereLessThanOrEqualTo("wins", 50)
-                                                .orderByAscending("score", "playerName")
-                                                .orderByDescending("score", "playerName")
-                                                .whereContainedIn("playerName", Arrays.asList({"Jonathan Walsh", "Dario Wunsch", "Shawn Simon"}))
-                                                .whereExists("score")
-                                                .whereDoesNotExist("score");
+   .from(SecondaryDatabase.class)
+   .of(User.class)
+   .include("settings", "pets")
+   // .includeDeeply("settings", "payments")
+   .includeAll() // Try not to use this methods
+   // .includeAllDeeply() // Don't ever use this methods
+   .whereEqualTo("playerName", "Dan Stemkoski")
+   .whereNotEqualTo("playerName", "Michael Yabuti")
+   .whereGreaterThan("playerAge", 18)
+   .whereGreaterThanOrEqualTo("wins", 50)
+   .whereLessThan("wins", 50)
+   .whereLessThanOrEqualTo("wins", 50)
+   .orderByAscending("score", "playerName")
+   .orderByDescending("score", "playerName")
+   .whereContainedIn("playerName", Arrays.asList({"Jonathan Walsh", "Dario Wunsch", "Shawn Simon"}))
+   .whereExists("score")
+   .whereDoesNotExist("score");
 
 RealmQuery query = queryBuilder.build();
 
