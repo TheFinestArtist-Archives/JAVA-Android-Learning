@@ -69,8 +69,6 @@ RealmList<? extends RealmObject>
 ####RealmObject, RealmList
 ```java
 public abstract class RealmObject {
-   public void save() { ... }
-   public void saveInBackground() { ... }
 }
 
 public class RealmList<E extends RealmObject> extends RealmObject implements List<E> {
@@ -221,6 +219,27 @@ user.setFullname("Leonardo Taehwan Kim");
 ```
 
 ####Save RealmObject
+```java
+public abstract class RealmObject {
+   public void save() { ... }
+   public void save(Class<? extends RealmDatabase> clazz) { ... }
+   public void save(RealmTransaction transaction) { ... }
+   public void save(Class<? extends RealmDatabase> clazz, RealmTransaction transaction) { ... }
+
+   public void saveInBackground() { ... }
+   public void saveInBackground(Class<? extends RealmDatabase> clazz) { ... }
+   public void saveInBackground(RealmTransaction transaction) { ... }
+   public void saveInBackground(OnRealmUpdatedListener listener) { ... }
+   public void saveInBackground(Class<? extends RealmDatabase> clazz, RealmTransaction transaction) { ... }
+   public void saveInBackground(Class<? extends RealmDatabase> clazz, OnRealmUpdatedListener listener) { ... }
+   public void saveInBackground(RealmTransaction transaction, OnRealmUpdatedListener listener) { ... }
+   public void saveInBackground(Class<? extends RealmDatabase> clazz, RealmTransaction transaction, OnRealmUpdatedListener listener) { ... }
+}
+
+public class RealmList<E extends RealmObject> extends RealmObject implements List<E> {
+}
+```
+
 Basically, saving does createOrUpdate.
 ```java
 User user;
@@ -255,9 +274,6 @@ new RealmList<RealmObject>(user, pet, pets).saveInBackground(new OnRealmUpdatedL
 user.save(RealmTransaction.CREATE);
 user.save(RealmTransaction.UPDATE);
 user.save(RealmTransaction.CREATE_OR_UPDATE); // default option
-
-public void save (Class<? extends RealmDatabase> clazz, RealmTransaction transaction, RealmBaseObject baseObject);
-public void saveInBackground (Class<? extends RealmDatabase> clazz, RealmTransaction transaction, RealmBaseObject baseObject, OnRealmUpdatedListener listener);
 ```
 
 ##RealmQuery
@@ -331,14 +347,11 @@ RealmObserver observer = new RealmObserver(friends, new OnRealmUpdatedListener<R
 ##OnRealmUpdatedListener
 One single listener for all. The `onUpdated` method will be run in the UI thread.
 ```java
-public interface OnRealmUpdatedListener<E extends RealmBaseObject> {
+public interface OnRealmUpdatedListener<E extends RealmObject> {
    void onUpdated(E baseObject, RealmException exception);
 }
 
 public class RealmException extends exception {}
-
-public class RealmObject extends RealmBaseObject{}
-public class RealmList<E extends RealmObject> extends RealmBaseObject implements List {}
 ```
 
 ####Usage
@@ -360,13 +373,11 @@ RealmObserver observer = new RealmObserver(query, adapter);
 
 ##Gson & Json Support
 ```java
-User user = User.fromJsonString();
-User user = User.fromJson();
-User user = User.fromGson();
+User user = User.fromJson(String string);
+User user = User.fromJson(JsonObject object);
 
 user.toJsonString();
 user.toJson();
-user.toGson();
 
 OldUser oldUser = new OldUser();
 User user = User.fromObject(oldUser);
