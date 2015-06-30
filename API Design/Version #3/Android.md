@@ -69,9 +69,11 @@ RealmList<? extends RealmObject>
 ####RealmObject, RealmList
 ```java
 public abstract class RealmObject {
+   ...
 }
 
 public class RealmList<E extends RealmObject> extends RealmObject implements List<E> {
+   ...
 }
 ```
 
@@ -90,11 +92,16 @@ Easy in integrating Gson or other mapping libraries.
 ```java
 /**
  * Annotations
+ *
  * @RealmClassName
+ * @RealmFieldName
+ *
  * @RealmPrimaryKey
  * @RealmUnique
  * @RealmIndex
  * @RealmIgnore
+ *
+ * @RelamDefault
  * @RealmValidation
  */
 
@@ -237,6 +244,7 @@ public abstract class RealmObject {
 }
 
 public class RealmList<E extends RealmObject> extends RealmObject implements List<E> {
+   ...
 }
 ```
 
