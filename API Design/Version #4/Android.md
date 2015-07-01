@@ -7,34 +7,34 @@ public class BaseApplication extends Application {
    @Override
    public void onCreate() {
       super.onCreate();
-      Realm.initialize(this);
+      Real.initialize(this);
    }
 }
 ```
 
-##RealmDatabase
+##RealDatabase
 
 ####Default Database
 ```java
-Realm.getDefaultDatabase();
-Realm.getDatabase(DefaultDatabase.class);
+Real.getDefaultDatabase();
+Real.getDatabase(DefaultDatabase.class);
 ```
 
 ####Custom Database
 ```java
-// RealmDatabase are abstract class
-public class SecondaryDatabase extends RealmDatabase {
+// RealDatabase are abstract class
+public class SecondaryDatabase extends RealDatabase {
 
    @Override
    public String getFileName() {
-      return "secondary"; // Realm always uses .realm as file extension
+      return "secondary"; // Real always uses .Real as file extension
    }
 
    // Cached database will only use memory (not using file system)
    // Cached database will automatically deleted or garbage collected whenever Application is removed from memory
    @Override
    public boolean forCache() {
-      realm false;
+      Real false;
    }
 
    @Override
@@ -46,10 +46,10 @@ public class SecondaryDatabase extends RealmDatabase {
 
 ####getDatabase
 ```java
-Realm.getDatabase(SecondaryDatabase.class);
+Real.getDatabase(SecondaryDatabase.class);
 ```
 
-##RealmObject
+##RealObject
 
 ####Fields
 ```java
@@ -62,17 +62,17 @@ double
 String
 Date
 byte[]
-RealmObject
-RealmList<? extends RealmObject>
+RealObject
+RealList<? extends RealObject>
 ```
 
-####RealmObject, RealmList
+####RealObject, RealList
 ```java
-public abstract class RealmObject {
+public abstract class RealObject {
    ...
 }
 
-public class RealmList<E extends RealmObject> extends RealmObject implements List<E> {
+public class RealList<E extends RealObject> extends RealObject implements List<E> {
    ...
 }
 ```
@@ -93,52 +93,52 @@ Easy in integrating Gson or other mapping libraries.
 /**
  * Annotations
  *
- * @RealmClassName
- * @RealmFieldName
+ * @RealClassName
+ * @RealFieldName
  *
- * @RealmPrimaryKey
- * @RealmUnique
- * @RealmIndex
- * @RealmIgnore
+ * @RealPrimaryKey
+ * @RealUnique
+ * @RealIndex
+ * @RealIgnore
  *
  * @RelamDefault
- * @RealmValidation
+ * @RealValidation
  */
 
-public class BaseObject extends RealmObject {
+public class BaseObject extends RealObject {
 
-   @RealmPrimaryKey
-   @RealmFieldName("_id")
+   @RealPrimaryKey
+   @RealFieldName("_id")
    public int id;
 
    public Date createdAt;
    public Date updatedAt;
 }
 
-@RealmClassName("_User")
+@RealClassName("_User")
 public class User extends BaseObject {
 
-   @RealmUnique
+   @RealUnique
    public String email;
 
-   @RealmIndex
+   @RealIndex
    public String fullname;
 
    public String getFullnameUpper() {
       return this.fullnameUpper;
    }
 
-   @RealmIgnore
+   @RealIgnore
    public String sessionId;
 
    private static final String VALIDATION_REGEX_URL = "(@)?(href=')?(HREF=')?(HREF=\")?(href=\")?(http://)?[a-zA-Z_0-9\\-]+(\\.\\w[a-zA-Z_0-9\\-]+)+(/[#&\\n\\-=?\\+\\%/\\.\\w]+)?";
-   @RealmValidation(
+   @RealValidation(
       regex = VALIDATION_REGEX_URL
    )
    public String profileUrl;
 
-   @RealmUnique
-   @RealmValidation(
+   @RealUnique
+   @RealValidation(
       minLength = 5,
       maxLength = 20
    )
@@ -146,15 +146,15 @@ public class User extends BaseObject {
 
    public Settings settings;
 
-   public RealmList<Pet> pets;
+   public RealList<Pet> pets;
 }
 
-public class Settings extends RealmObject {
+public class Settings extends RealObject {
 
    @RelamDefault(true)
    public boolean isNotificationOn;
 
-   public RealmList<Payment> payments;
+   public RealList<Payment> payments;
 }
 
 public class Payment extends BaseObject {
@@ -206,7 +206,7 @@ public class Pet extends BaseObject {
 }
 ```
 
-####Construct RealmObject
+####Construct RealObject
 ```java
 User user = new User();
 user.id = 1;
@@ -216,26 +216,26 @@ user.email = "contact@thefinestartist.com";
 user.fullname = "Leonardo Taehwan Kim";
 ```
 
-####Save RealmObject
+####Save RealObject
 ```java
-public abstract class RealmObject {
+public abstract class RealObject {
    public void save() { ... }
-   public void save(Class<? extends RealmDatabase> clazz) { ... }
-   public void save(RealmTransaction transaction) { ... }
-   public void save(Class<? extends RealmDatabase> clazz, RealmTransaction transaction) { ... }
+   public void save(Class<? extends RealDatabase> clazz) { ... }
+   public void save(RealTransaction transaction) { ... }
+   public void save(Class<? extends RealDatabase> clazz, RealTransaction transaction) { ... }
 
    public void saveInBackground() { ... }
-   public void saveInBackground(Class<? extends RealmDatabase> clazz) { ... }
-   public void saveInBackground(RealmTransaction transaction) { ... }
-   public void saveInBackground(OnRealmUpdatedListener listener) { ... }
-   public void saveInBackground(Class<? extends RealmDatabase> clazz, RealmTransaction transaction) { ... }
-   public void saveInBackground(Class<? extends RealmDatabase> clazz, OnRealmUpdatedListener listener) { ... }
-   public void saveInBackground(RealmTransaction transaction, OnRealmUpdatedListener listener) { ... }
-   public void saveInBackground(Class<? extends RealmDatabase> clazz, RealmTransaction transaction, OnRealmUpdatedListener listener) { ... }
+   public void saveInBackground(Class<? extends RealDatabase> clazz) { ... }
+   public void saveInBackground(RealTransaction transaction) { ... }
+   public void saveInBackground(OnRealUpdatedListener listener) { ... }
+   public void saveInBackground(Class<? extends RealDatabase> clazz, RealTransaction transaction) { ... }
+   public void saveInBackground(Class<? extends RealDatabase> clazz, OnRealUpdatedListener listener) { ... }
+   public void saveInBackground(RealTransaction transaction, OnRealUpdatedListener listener) { ... }
+   public void saveInBackground(Class<? extends RealDatabase> clazz, RealTransaction transaction, OnRealUpdatedListener listener) { ... }
 }
 
-public class RealmList<E extends RealmObject> extends RealmObject implements List<E> {
-   public RealmList(RealmObject... objects) {
+public class RealList<E extends RealObject> extends RealObject implements List<E> {
+   public RealList(RealObject... objects) {
       ...
    }
 }
@@ -245,42 +245,42 @@ Basically, saving does createOrUpdate.
 ```java
 User user;
 Pet pet;
-RealmList<Pet> pets;
+RealList<Pet> pets;
 
 user.save();
 user.saveInBackground();
-user.saveInBackground(new OnRealmUpdatedListener<User>() {
-   public void onUpdated(User user, RealmException exception) {}
+user.saveInBackground(new OnRealUpdatedListener<User>() {
+   public void onUpdated(User user, RealException exception) {}
 });
 
 user.save(SecondaryDatabase.class);
 user.saveInBackground(SecondaryDatabase.class);
-user.saveInBackground(SecondaryDatabase.class, new OnRealmUpdatedListener<User>() {
-   public void onUpdated(User user, RealmException exception) {}
+user.saveInBackground(SecondaryDatabase.class, new OnRealUpdatedListener<User>() {
+   public void onUpdated(User user, RealException exception) {}
 });
 
 pets.save();
 pets.saveInBackground();
-pets.saveInBackground(new OnRealmUpdatedListener<RealmList<Pet>>() {
-   public void onUpdated(RealmList<Pet> pets, RealmException exception) {}
+pets.saveInBackground(new OnRealUpdatedListener<RealList<Pet>>() {
+   public void onUpdated(RealList<Pet> pets, RealException exception) {}
 });
 
-// Saving Multiple RealmObjects and RealmList at once
-new RealmList<RealmObject>(user, pet, pets).save();
-new RealmList<RealmObject>(user, pet, pets).saveInBackground(new OnRealmUpdatedListener<RealmList<RealmObject>>() {
-   public void onUpdated(RealmList<RealmObject> updates, RealmException exception) {}
+// Saving Multiple RealObjects and RealList at once
+new RealList<RealObject>(user, pet, pets).save();
+new RealList<RealObject>(user, pet, pets).saveInBackground(new OnRealUpdatedListener<RealList<RealObject>>() {
+   public void onUpdated(RealList<RealObject> updates, RealException exception) {}
 });
 
 // You can also set whether to create or update or createOrUpdate to make transaction faster
-user.save(RealmTransaction.CREATE);
-user.save(RealmTransaction.UPDATE);
-user.save(RealmTransaction.CREATE_OR_UPDATE); // default option
+user.save(RealTransaction.CREATE);
+user.save(RealTransaction.UPDATE);
+user.save(RealTransaction.CREATE_OR_UPDATE); // default option
 ```
 
-##RealmQuery
-**RealmQuery can't be modified after it's build** (Mainly because of RealmObserver)
+##RealQuery
+**RealQuery can't be modified after it's build** (Mainly because of RealObserver)
 ```java
-RealmQuery.Builder queryBuilder = new RealmQuery.Builder()
+RealQuery.Builder queryBuilder = new RealQuery.Builder()
    .from(SecondaryDatabase.class)
    .of(User.class)
    .include("settings", "pets")
@@ -300,90 +300,90 @@ RealmQuery.Builder queryBuilder = new RealmQuery.Builder()
    .whereExists("score")
    .whereDoesNotExist("score");
 
-RealmQuery query = queryBuilder.build();
+RealQuery query = queryBuilder.build();
 
 User user = query.findFirst();
-query.findFirstInBackground(new OnRealmUpdatedListener<User>() {
-   public void onUpdated(User user, RealmException exception) {}
+query.findFirstInBackground(new OnRealUpdatedListener<User>() {
+   public void onUpdated(User user, RealException exception) {}
 });
 
-RealmList<User> friends = query.findAll();
-query.findAllInBackground(new OnRealmUpdatedListener<RealmList<User>>() {
-   public void onUpdated(RealmList<User> friends, RealmException exception) {}
+RealList<User> friends = query.findAll();
+query.findAllInBackground(new OnRealUpdatedListener<RealList<User>>() {
+   public void onUpdated(RealList<User> friends, RealException exception) {}
 });
 
 // Paging
-RealmList<User> friends = query.findSome(10); // Find maximum 10 users
-RealmList<User> friends = query.findSome(10, 30); // Find maximum 10 users skipping first 30 users
-query.findSomeInBackground(10, new OnRealmUpdatedListener<User>() {
-   public void onUpdated(RealmList<User> friends, RealmException exception) {}
+RealList<User> friends = query.findSome(10); // Find maximum 10 users
+RealList<User> friends = query.findSome(10, 30); // Find maximum 10 users skipping first 30 users
+query.findSomeInBackground(10, new OnRealUpdatedListener<User>() {
+   public void onUpdated(RealList<User> friends, RealException exception) {}
 });
-query.findSomeInBackground(10, 30, new OnRealmUpdatedListener<RealmList<User>>() {
-   public void onUpdated(RealmList<User> friends, RealmException exception) {}
+query.findSomeInBackground(10, 30, new OnRealUpdatedListener<RealList<User>>() {
+   public void onUpdated(RealList<User> friends, RealException exception) {}
 });
 ```
 
-##RealmObserver
+##RealObserver
 ```java
-RealmQuery query = queryBuilder.build();
-RealmObserver<User> observer = new RealmObserver<>(query);
-observer.addOnRealmUpdatedListener(new OnRealmUpdatedListener<User>() {
-   public void onUpdated(User user, RealmException exception) {}
+RealQuery query = queryBuilder.build();
+RealObserver<User> observer = new RealObserver<>(query);
+observer.addOnRealUpdatedListener(new OnRealUpdatedListener<User>() {
+   public void onUpdated(User user, RealException exception) {}
 });
 
 User user = query.findFirst();
-RealmObserver<User> observer = new RealmObserver(user);
-observer.addOnRealmUpdatedListener(new OnRealmUpdatedListener<User>() {
-   public void onUpdated(User user, RealmException exception) {}
+RealObserver<User> observer = new RealObserver(user);
+observer.addOnRealUpdatedListener(new OnRealUpdatedListener<User>() {
+   public void onUpdated(User user, RealException exception) {}
 });
 
-RealmObserver<RealmList<User>> observer = new RealmObserver(query);
-observer.addOnRealmUpdatedListener(new OnRealmUpdatedListener<RealmList<User>>() {
-   public void onUpdated(RealmList<User> users, RealmException exception) {}
+RealObserver<RealList<User>> observer = new RealObserver(query);
+observer.addOnRealUpdatedListener(new OnRealUpdatedListener<RealList<User>>() {
+   public void onUpdated(RealList<User> users, RealException exception) {}
 });
 
-// This would have different results from the upper RealmObserver
-RealmList<User> friends = query.findAll();
-RealmObserver<RealmList<User>> observer = new RealmObserver(friends);
-observer.addOnRealmUpdatedListener(new OnRealmUpdatedListener<RealmList<User>>() {
-   public void onUpdated(RealmList<User> users, RealmException exception) {}
+// This would have different results from the upper RealObserver
+RealList<User> friends = query.findAll();
+RealObserver<RealList<User>> observer = new RealObserver(friends);
+observer.addOnRealUpdatedListener(new OnRealUpdatedListener<RealList<User>>() {
+   public void onUpdated(RealList<User> users, RealException exception) {}
 });
 ```
 
-##OnRealmUpdatedListener
+##OnRealUpdatedListener
 One single listener for all. The `onUpdated` method will be run in the UI thread.
 ```java
-public interface OnRealmUpdatedListener<E extends RealmObject> {
-   void onUpdated(E baseObject, RealmException exception);
+public interface OnRealUpdatedListener<E extends RealObject> {
+   void onUpdated(E baseObject, RealException exception);
 }
 
-public class RealmException extends exception {}
+public class RealException extends exception {}
 ```
 
 ####Usage
 ```java
-public class RealmAdapter extends BaseAdapter implements OnRealmUpdatedListener<RealmList<Post>> {
+public class RealAdapter extends BaseAdapter implements OnRealUpdatedListener<RealList<Post>> {
 
-   RealmList<Post> posts;
+   RealList<Post> posts;
 
-   public RealmAdapter() {}
+   public RealAdapter() {}
 
    @Override
-   public void onUpdated(RealmList<Post> posts, RealmException exception) {
+   public void onUpdated(RealList<Post> posts, RealException exception) {
       this.posts = posts;
       notifyDataSetChanged();
    }
 }
 
-RealmAdapter adapter = new RealmAdapter();
+RealAdapter adapter = new RealAdapter();
 
 Post post = new Post();
-new RealmList<Post>(post).saveInBackground(adapter);
+new RealList<Post>(post).saveInBackground(adapter);
 
-RealmQuery query = new RealmQuery.Builder().of(Post.class).build();
+RealQuery query = new RealQuery.Builder().of(Post.class).build();
 query.findAllInBackground(adapter);
 
-RealmObserver observer = new RealmObserver(query, adapter);
+RealObserver observer = new RealObserver(query, adapter);
 ```
 
 ##Gson & Json Support
@@ -403,9 +403,9 @@ public class BaseApplication extends Application {
    @Override
    public void onCreate() {
       super.onCreate();
-      Realm.initialize(this);
-      Realm.setAutoMigration();
-      Realm.setAutoMigration(SecondaryDatabase.class);
+      Real.initialize(this);
+      Real.setAutoMigration();
+      Real.setAutoMigration(SecondaryDatabase.class);
    }
 }
 ```

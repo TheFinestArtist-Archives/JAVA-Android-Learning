@@ -1,4 +1,4 @@
-#New Convention for Android (Deprecated)
+#New Convention for Android
 
 ##Application
 ```

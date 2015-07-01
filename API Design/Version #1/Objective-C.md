@@ -1,4 +1,4 @@
-#New Convention for Objective-C (Deprecated)
+#New Convention for Objective-C
 
 ##RLMDatabase
 
