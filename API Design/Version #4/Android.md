@@ -386,10 +386,20 @@ query.findAllInBackground(adapter);
 RealObserver observer = new RealObserver(query, adapter);
 ```
 
-##Gson & Json Support
+##Json Support
 ```java
-User user = User.fromJson(String string);
-User user = User.fromJson(JsonObject object);
+public abstract class RealObject {
+   public static T fromJson(String string, Class<T> clazz) { ... }
+   public static T fromJson(JsonObject object, Class<T> clazz) { ... }
+
+   public String toJsonString() { ... }
+   public JsonObject toJsonObject() { ... }
+}
+```
+
+```java
+User user = RealObject.fromJson(String string, User.class);
+User user = RealObject.fromJson(JsonObject object, User.class);
 
 user.toJsonString();
 user.toJsonObject();
