@@ -397,6 +397,7 @@ public abstract class RealObject {
 }
 ```
 
+####Usage
 ```java
 User user = RealObject.fromJson(String string, User.class);
 User user = RealObject.fromJson(JsonObject object, User.class);
