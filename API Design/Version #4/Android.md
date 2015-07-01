@@ -389,8 +389,8 @@ RealObserver observer = new RealObserver(query, adapter);
 ##Json Support
 ```java
 public abstract class RealObject {
-   public static T fromJson(String string, Class<T> clazz) { ... }
-   public static T fromJson(JsonObject object, Class<T> clazz) { ... }
+   public static T fromJson(Class<T> clazz, String string) { ... }
+   public static T fromJson(Class<T> clazz, JsonObject object) { ... }
 
    public String toJsonString() { ... }
    public JsonObject toJsonObject() { ... }
@@ -399,8 +399,8 @@ public abstract class RealObject {
 
 ####Usage
 ```java
-User user = RealObject.fromJson(String string, User.class);
-User user = RealObject.fromJson(JsonObject object, User.class);
+User user = RealObject.fromJson(User.class, String string);
+User user = RealObject.fromJson(User.class, JsonObject object);
 
 user.toJsonString();
 user.toJsonObject();
