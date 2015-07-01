@@ -129,7 +129,7 @@ public class User extends BaseObject {
    }
 
    @RealmIgnore
-   private String sessionId;
+   public String sessionId;
 
    private static final String VALIDATION_REGEX_URL = "(@)?(href=')?(HREF=')?(HREF=\")?(href=\")?(http://)?[a-zA-Z_0-9\\-]+(\\.\\w[a-zA-Z_0-9\\-]+)+(/[#&\\n\\-=?\\+\\%/\\.\\w]+)?";
    @RealmValidation(
@@ -213,7 +213,7 @@ user.id = 1;
 user.createdAt = new Date();
 user.updatedAt = new Date();
 user.email = "contact@thefinestartist.com";
-user.setFullname("Leonardo Taehwan Kim");
+user.fullname = "Leonardo Taehwan Kim";
 ```
 
 ####Save RealmObject
@@ -400,13 +400,13 @@ user.toJsonObject();
 // Auto Migration
 public class BaseApplication extends Application {
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        Realm.initialize(this);
-        Realm.setAutoMigration();
-        Realm.setAutoMigration(SecondaryDatabase.class);
-    }
+   @Override
+   public void onCreate() {
+      super.onCreate();
+      Realm.initialize(this);
+      Realm.setAutoMigration();
+      Realm.setAutoMigration(SecondaryDatabase.class);
+   }
 }
 ```
 
