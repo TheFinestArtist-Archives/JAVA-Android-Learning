@@ -407,18 +407,20 @@ user.toJsonObject();
 ```
 
 ##Migration
+Use Migration API in Realm-Java
 ```java
 // Auto Migration
-public class BaseApplication extends Application {
-
-   @Override
-   public void onCreate() {
-      super.onCreate();
-      Real.initialize(this);
-      Real.setAutoMigration();
-      Real.setAutoMigration(SecondaryDatabase.class);
-   }
-}
+// public class BaseApplication extends Application {
+//
+//    @Override
+//    public void onCreate() {
+//       super.onCreate();
+//       Real.initialize(this);
+//       Real.setAutoMigration(true);
+//       Real.setAutoMigration(DefaultDatabase.class);
+//       Real.setAutoMigration(SecondaryDatabase.class);
+//    }
+// }
 ```
 
 ##More
