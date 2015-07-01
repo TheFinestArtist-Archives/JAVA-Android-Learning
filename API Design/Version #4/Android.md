@@ -55,7 +55,7 @@ Real.getDatabase(SecondaryDatabase.class);
 ```java
 boolean
 short
-ìnt
+int
 long
 float
 double
