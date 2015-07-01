@@ -105,7 +105,7 @@ Easy in integrating Gson or other mapping libraries.
  * @RealValidation
  */
 
-public class BaseObject extends RealObject {
+public class Base extends RealObject {
 
    @RealPrimaryKey
    @RealFieldName("_id")
@@ -116,7 +116,7 @@ public class BaseObject extends RealObject {
 }
 
 @RealClassName("_User")
-public class User extends BaseObject {
+public class User extends Base {
 
    @RealUnique
    public String email;
@@ -157,7 +157,7 @@ public class Settings extends RealObject {
    public RealList<Payment> payments;
 }
 
-public class Payment extends BaseObject {
+public class Payment extends Base {
    public String cardType;
    public String cardNumber;
    public String cardHolderName;
@@ -167,7 +167,7 @@ public class Payment extends BaseObject {
 }
 
 // Using with Enum
-public class Pet extends BaseObject {
+public class Pet extends Base {
 
    public String name;
    private String type; // This field can only be accessed by setter and getter for safety and usability
@@ -354,7 +354,7 @@ observer.addOnRealUpdatedListener(new OnRealUpdatedListener<RealList<User>>() {
 One single listener for all. The `onUpdated` method will be run in the UI thread.
 ```java
 public interface OnRealUpdatedListener<E extends RealObject> {
-   void onUpdated(E baseObject, RealException exception);
+   void onUpdated(E RealObject, RealException exception);
 }
 
 public class RealException extends exception {}
