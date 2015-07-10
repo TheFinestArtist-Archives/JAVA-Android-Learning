@@ -20,7 +20,7 @@ Whenever user action occurs, controller will take care if this. It will receives
 fullName.addTextChangedListener(new TextWatcher() {
    @Override
    public void onTextChanged(CharSequence s, int start, int before, int count) {
-       user.setFullName(String.valueOf(fullName.getText()));
+      user.setFullName(String.valueOf(fullName.getText()));
    }
 });
 ```
@@ -88,101 +88,101 @@ Here shows simple example how you can uses these component in MVC pattern. [Gith
 // Model
 public class User extends Observable {
 
-    private String fullName;
-    private String email;
+   private String fullName;
+   private String email;
 
-    public void setEmail(String email) {
-        this.email = email;
-        updateViews();
-    }
+   public void setEmail(String email) {
+      this.email = email;
+      updateViews();
+   }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-        updateViews();
-    }
+   public void setFullName(String fullName) {
+      this.fullName = fullName;
+      updateViews();
+   }
 
-    @Override
-    public String toString() {
-        return "FullName : " + fullName + "\nEmail : " + email;
-    }
+   @Override
+   public String toString() {
+      return "FullName : " + fullName + "\nEmail : " + email;
+   }
 
-    private void updateViews() {
-        setChanged();
-        notifyObservers(this);
-    }
+   private void updateViews() {
+      setChanged();
+      notifyObservers(this);
+   }
 }
 
 // View
 public class UserInfoTextView extends TextView implements Observer {
 
-    public UserInfoTextView(Context context) {
-        super(context, null);
-    }
+   public UserInfoTextView(Context context) {
+      super(context, null);
+   }
 
-    public UserInfoTextView(Context context, AttributeSet attrs) {
-        super(context, attrs);
-    }
+   public UserInfoTextView(Context context, AttributeSet attrs) {
+      super(context, attrs);
+   }
 
-    public UserInfoTextView(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-    }
+   public UserInfoTextView(Context context, AttributeSet attrs, int defStyleAttr) {
+      super(context, attrs, defStyleAttr);
+   }
 
-    @Override
-    public void update(Observable observable, Object data) {
-        if (data instanceof User)
-            setText(data.toString());
-    }
+   @Override
+   public void update(Observable observable, Object data) {
+      if (data instanceof User)
+         setText(data.toString());
+   }
 }
 
 // Controller
 public class MainActivity extends AppCompatActivity {
 
-    User user;
-    UserInfoTextView userInfoTextView;
-    EditText fullName;
-    EditText email;
+   User user;
+   UserInfoTextView userInfoTextView;
+   EditText fullName;
+   EditText email;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        userInfoTextView = (UserInfoTextView) findViewById(R.id.userInfo);
-        fullName = (EditText) findViewById(R.id.fullName);
-        email = (EditText) findViewById(R.id.email);
+   @Override
+   protected void onCreate(Bundle savedInstanceState) {
+      super.onCreate(savedInstanceState);
+      setContentView(R.layout.activity_main);
+      userInfoTextView = (UserInfoTextView) findViewById(R.id.userInfo);
+      fullName = (EditText) findViewById(R.id.fullName);
+      email = (EditText) findViewById(R.id.email);
 
-        user  = new User();
-        user.addObserver(userInfoTextView);
+      user  = new User();
+      user.addObserver(userInfoTextView);
 
-        fullName.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
+      fullName.addTextChangedListener(new TextWatcher() {
+         @Override
+         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+         }
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                user.setFullName(String.valueOf(fullName.getText()));
-            }
+         @Override
+         public void onTextChanged(CharSequence s, int start, int before, int count) {
+            user.setFullName(String.valueOf(fullName.getText()));
+         }
 
-            @Override
-            public void afterTextChanged(Editable s) {
-            }
-        });
-        email.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
+         @Override
+         public void afterTextChanged(Editable s) {
+         }
+      });
+      
+      email.addTextChangedListener(new TextWatcher() {
+         @Override
+         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+         }
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                user.setEmail(String.valueOf(email.getText()));
+         @Override
+         public void onTextChanged(CharSequence s, int start, int before, int count) {
+            user.setEmail(String.valueOf(email.getText()));
+         }
 
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-            }
-        });
-    }
+         @Override
+         public void afterTextChanged(Editable s) {
+         }
+      });
+   }
 }
 ```
 

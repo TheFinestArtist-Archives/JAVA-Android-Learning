@@ -22,7 +22,7 @@ This part is redundant with `User -> Controller` in MVC Pattern. Presenter handl
 fullName.addTextChangedListener(new TextWatcher() {
    @Override
    public void onTextChanged(CharSequence s, int start, int before, int count) {
-       user.setFullName(String.valueOf(fullName.getText()));
+      user.setFullName(String.valueOf(fullName.getText()));
    }
 });
 ```
@@ -43,102 +43,103 @@ Developer usually uses Activity or Fragment as a presenter but here shows a bett
 // Model
 public class User {
 
-    private String fullName;
-    private String email;
+   private String fullName;
+   private String email;
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+   public void setEmail(String email) {
+      this.email = email;
+   }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
+   public void setFullName(String fullName) {
+      this.fullName = fullName;
+   }
 
-    @Override
-    public String toString() {
-        return "FullName : " + fullName + "\nEmail : " + email;
-    }
+   @Override
+   public String toString() {
+      return "FullName : " + fullName + "\nEmail : " + email;
+   }
 }
 
 // View
 public class MainActivity extends AppCompatActivity implements MainPresenter.View {
 
-    MainPresenter mainPresenter;
+   MainPresenter mainPresenter;
 
-    TextView userInfoTextView;
-    EditText fullName;
-    EditText email;
+   TextView userInfoTextView;
+   EditText fullName;
+   EditText email;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        mainPresenter = new MainPresenter(this);
+   @Override
+   protected void onCreate(Bundle savedInstanceState) {
+      super.onCreate(savedInstanceState);
+      setContentView(R.layout.activity_main);
+      mainPresenter = new MainPresenter(this);
 
-        userInfoTextView = (TextView) findViewById(R.id.userInfo);
-        fullName = (EditText) findViewById(R.id.fullName);
-        email = (EditText) findViewById(R.id.email);
+      userInfoTextView = (TextView) findViewById(R.id.userInfo);
+      fullName = (EditText) findViewById(R.id.fullName);
+      email = (EditText) findViewById(R.id.email);
 
-        fullName.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
+      fullName.addTextChangedListener(new TextWatcher() {
+         @Override
+         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+         }
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                mainPresenter.updateFullName(s.toString());
-            }
+         @Override
+         public void onTextChanged(CharSequence s, int start, int before, int count) {
+            mainPresenter.updateFullName(s.toString());
+         }
 
-            @Override
-            public void afterTextChanged(Editable s) {
-            }
-        });
-        email.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
+         @Override
+         public void afterTextChanged(Editable s) {
+         }
+      });
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                mainPresenter.updateEmail(s.toString());
-            }
+      email.addTextChangedListener(new TextWatcher() {
+         @Override
+         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+         }
 
-            @Override
-            public void afterTextChanged(Editable s) {
-            }
-        });
-    }
+         @Override
+         public void onTextChanged(CharSequence s, int start, int before, int count) {
+            mainPresenter.updateEmail(s.toString());
+         }
 
-    @Override
-    public void updateUserInfoTextView(String info) {
-        userInfoTextView.setText(info);
-    }
+         @Override
+         public void afterTextChanged(Editable s) {
+         }
+      });
+   }
+
+   @Override
+   public void updateUserInfoTextView(String info) {
+   userInfoTextView.setText(info);
+   }
 }
 
 // Presenter
 public class MainPresenter {
 
-    User user;
-    View view;
+   User user;
+   View view;
 
-    public MainPresenter(View view) {
-        this.view = view;
-        user  = new User();
-    }
+   public MainPresenter(View view) {
+      this.view = view;
+      user  = new User();
+   }
 
-    public void updateFullName(String fullName) {
-        user.setFullName(fullName);
-        view.updateUserInfoTextView(user.toString());
-    }
+   public void updateFullName(String fullName) {
+      user.setFullName(fullName);
+      view.updateUserInfoTextView(user.toString());
+   }
 
-    public void updateEmail(String email) {
-        user.setEmail(email);
-        view.updateUserInfoTextView(user.toString());
-    }
+   public void updateEmail(String email) {
+      user.setEmail(email);
+      view.updateUserInfoTextView(user.toString());
+   }
 
-    public interface View {
-        void updateUserInfoTextView(String info);
-    }
+   public interface View {
+      void updateUserInfoTextView(String info);
+   }
 }
 ```
 

@@ -48,3 +48,10 @@
 
 * Xcode finds most of the errors in it's compile time.
 * Android Studio
+
+
+* Android Sliding Pager Tab
+* iOS Tab
+
+
+* Hardware customization from vender Android
