@@ -1,11 +1,34 @@
 #Royal
 * RoyalBrowser
 * RoyalTransaction
-* RoyalExport => Decrept
+* RoyalExport => Decrypt
 * RoyalDatabase
 * For-Loop Backward
 * Realm Encryption => use xml or hardcode or code sign
 * Extended RealmList
+
+#RoyalExample
+Concept
+* Realm is super fast, don't bother to make a background thread to save it.
+
+https://github.com/android10/Android-CleanArchitecture
+https://github.com/antoniolg/androidmvp
+
+* Butterknife
+* Retrofit
+* RecyclerView
+* ListView
+* CardView
+* SwipeRefreshLayout
+* Infinite Scroll
+* PhotoView
+* View Pager
+
+ViewType (CRUD feature added)
+1. Feed (Facebook/Twitter, Multiple ViewType, Like/Follow/Comment)
+2. Message
+3. Map
+
 
 ```java
 RoyalBrowser.browse("default", "");
