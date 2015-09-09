@@ -1,0 +1,26 @@
+/* Android Theme */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+.prettyprint {
+  background: #f7f7f7;
+  font-family: Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+  font-size: 13px;
+  line-height: 18px;
+  overflow: auto;
+  width: auto;
+  border: solid 1px #ddd;
+  padding: 1em;
+  margin:0 0 1em 0;
+  white-space: pre;
+  word-wrap: normal;
+}
+
+.str { color: #800; } /* Code string */
+.kwd { color: #008; }
+.typ { color: #606; }
+.lit { color: #066; }
+.pun { color: #660; }
+.pln { color: #000; }
+.tag { color: #008; }
+.atn { color: #828; }
+.atv { color: #800; } /* XML string */
+.dec { color: #606; }

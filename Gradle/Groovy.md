@@ -1,11 +1,11 @@
-#Groovy
+# Groovy
 
-####Basic [Syntax](http://www.groovy-lang.org/syntax.html) and [Semantics](http://www.groovy-lang.org/semantics.html) of Groovy
+#### Basic [Syntax](http://www.groovy-lang.org/syntax.html) and [Semantics](http://www.groovy-lang.org/semantics.html) of Groovy
 
-##Difference with JAVA
+## Difference with JAVA
 
    1. Default imports
-   ```java
+   <pre class="prettyprint">
    import java.io.*
    import java.lang.*
    import java.math.BigDecimal
@@ -14,11 +14,11 @@
    import java.util.*
    import groovy.lang.*
    import groovy.util.*
-   ```
+   </pre>
 
    2. Multi-Methods
    In Groovy, the methods which will be invoked are chosen at runtime.
-   ```java
+   <pre class="prettyprint">
    int method(String arg) {
       return 1;
    }
@@ -28,27 +28,27 @@
    Object o = "Object";
    // result will be 1 in Groovy, 2 in Java
    int result = method(o);
-   ```
+   </pre>
 
    3. Array initializers
    In Groovy, the { …​ } block is reserved for closures.
-   ```java
+   <pre class="prettyprint">
    // Cannot create array literals with this syntax:
    int[] array = { 1, 2, 3}
    int[] array = [1,2,3]
-   ```
+   </pre>
 
    4. Static Inner classes
-   ```java
+   <pre class="prettyprint">
    class A {
       static class B {}
    }
 
    new A.B()
-   ```
+   </pre>
 
    5. Anonymous Inner Classes
-   ```java
+   <pre class="prettyprint">
    import java.util.concurrent.CountDownLatch
    import java.util.concurrent.TimeUnit
 
@@ -62,27 +62,28 @@
    }, 0)
 
    assert called.await(10, TimeUnit.SECONDS)
-   ```
+   </pre>
 
    6. Lambdas
-   ```java
+   <pre class="prettyprint">
    // Java 8 Lambda support
-   Runnable run = () -> System.out.println("Run");
+   Runnable run = () -&gt; System.out.println("Run");
    list.forEach(System.out::println);
 
    // Groovy Lambda support
    Runnable run = { println 'run' }
    list.each { println it } // or list.each(this.&println)
-   ```
+   </pre>
 
-   7. Behavior of ```==```
-   In Java ```==``` means equality of primitive types or identity for objects.  
-   In Groovy ```==``` translates to ```a.compareTo(b)==0```, iff they are Comparable, and ```a.equals(b)``` otherwise. To check for identity, there is is. E.g. a.is(b).
+   7. Behavior of <code id="inline">==</code>
+   In Java <code id="inline">==</code> means equality of primitive types or identity for objects.  
+   In Groovy <code id="inline">==</code> translates to <code id="inline">a.compareTo(b)==0</code>, iff they are Comparable, and <code id="inline">a.equals(b)</code> otherwise. To check for identity, there is is. E.g. a.is(b).
 
-##Syntax
+## Syntax
 
    1. Comments
-   ```java
+
+   <pre class="prettyprint">
    // a standalone single line comment
    println "hello" // a comment till the end of the line
 
@@ -91,13 +92,14 @@
    println "hello" /* a multiline comment starting
                       at the end of a statement */
    println 1 /* one */ + 2 /* two */
-   ```
+   </pre>
 
    2. Identifiers
 
       * Normal Identifiers
       Identifiers start with a letter, a dollar or an underscore. They cannot start with a number.
-      ```java
+
+      <pre class="prettyprint">
       // valid identifiers
       def name
       def item3
@@ -108,7 +110,7 @@
       def 3tier
       def a+b
       def a#b
-      ```
+      </pre>
 
       * Quoted identifiers
 
@@ -117,34 +119,35 @@
 
       * Single quoted string
       Single quoted strings are plain java.lang.String and don’t support interpolation.
-      ```java
+      <pre class="prettyprint">
       'a single quoted string'
-      ```
+      </pre>
 
       * String concatenation
-      ```java
+      <pre class="prettyprint">
       assert 'ab' == 'a' + 'b'
-      ```
+      </pre>
 
       * Triple single quoted string
       Triple single quoted strings are for multiline.
-      ```java
+      <pre class="prettyprint">
       def startingAndEndingWithANewline = '''
       line one
       line two
       line three
       '''
-      ```
+      </pre>
 
       * Double quoted string
       Double quoted strings are plain java.lang.String if there’s no interpolated expression, but are groovy.lang.GString instances if interpolation is present.
-      ```java
+      <pre class="prettyprint">
       "a double quoted string"
-      ```
+      </pre>
 
       * String interpolation
       Any Groovy expression can be interpolated in all string literals, apart from single and triple single quoted strings. Interpolation is the act of replacing a placeholder in the string with its value upon evaluation of the string. The placeholder expressions are surrounded by ${} or prefixed with $ for dotted expressions. The expression value inside the placeholder is evaluated to its string representation when the GString is passed to a method taking a String as argument by calling toString() on that expression.
-      ```java
+
+      <pre class="prettyprint">
       def name = 'Guillaume' // a plain string
       def greeting = "Hello ${name}"
       assert greeting.toString() == 'Hello Guillaume'
@@ -154,11 +157,12 @@
 
       def person = [name: 'Guillaume', age: 36]
       assert "$person.name is $person.age years old" == 'Guillaume is 36 years old'
-      ```
+      </pre>
 
       * Triple double quoted string
       Triple double quoted strings behave like double quoted strings, with the addition that they are multiline, like the triple single quoted strings.
-      ```java
+
+      <pre class="prettyprint">
       def name = 'Groovy'
       def template = """
           Dear Mr ${name},
@@ -171,13 +175,13 @@
       """
 
       assert template.toString().contains('Groovy')
-      ```
+      </pre>
 
    4. Lists  
    Groovy uses a comma-separated list of values, surrounded by square brackets.  
-   Groovy lists are plain JDK ```java.util.List```.  
-   The concrete list implementation used when defining list literals are ```java.util.ArrayList``` by default.
-   ```java
+   Groovy lists are plain JDK <code id="inline">.util.List</code>.  
+   The concrete list implementation used when defining list literals are <code id="inline">.util.ArrayList</code> by default.
+   <pre class="prettyprint">
    def numbers = [1, 2, 3]
 
    // list is an instance of Java’s java.util.List interface
@@ -196,10 +200,10 @@
 
    LinkedList otherLinked = [3, 4, 5]
    assert otherLinked instanceof java.util.LinkedList
-   ```
+   </pre>
 
    You can access elements of the list with the [] subscript operator (both for reading and setting values).  
-   ```java
+   <pre class="prettyprint">
    def letters = ['a', 'b', 'c', 'd']
 
    assert letters[0] == 'a'
@@ -211,18 +215,18 @@
    letters[2] = 'C'
    assert letters[2] == 'C'
 
-   // Use the << leftShift operator to append an element at the end of the list
-   letters << 'e'
+   // Use the &lt;&lt; leftShift operator to append an element at the end of the list
+   letters &lt;&lt; 'e'
    assert letters[ 4] == 'e'
    assert letters[-1] == 'e'
 
    assert letters[1, 3] == ['b', 'd']
    assert letters[2..4] == ['C', 'd', 'e']
-   ```
+   </pre>
 
    5. Arrays  
    Groovy reuses the list notation for arrays, but to make such literals arrays, you need to explicitely define the type of the array through coercion or type declaration.
-   ```java
+   <pre class="prettyprint">
    String[] arrStr = ['Ananas', 'Banana', 'Kiwi']  
 
    assert arrStr instanceof String[]
@@ -232,11 +236,11 @@
 
    assert numArr instanceof int[]
    assert numArr.size() == 3
-   ```
+   </pre>
 
    6. Maps  
    Maps associate keys to values, separating keys and values with colons, and each key/value pairs with commas, and the whole keys and values surrounded by square brackets.
-   ```java
+   <pre class="prettyprint">
    def colors = [red: '#FF0000', green: '#00FF00', blue: '#0000FF']
 
    assert colors['red'] == '#FF0000'
@@ -249,18 +253,18 @@
    assert colors['yellow'] == '#FFFF00'
 
    assert colors instanceof java.util.LinkedHashMap
-   ```
+   </pre>
 
-##Semantics
+## Semantics
    1. Variable definition  
    Variables can be defined using either their type (like String) or by using the keyword def
-   ```java
+   <pre class="prettyprint">
    String x
    def o
-   ```
+   </pre>
 
    2. Variable assignment
-   ```java
+   <pre class="prettyprint">
    x = 1
    x = new java.util.Date()
    x = -3.1499392
@@ -272,10 +276,10 @@
 
    def (int i, String j) = [10, 'foo']
    assert i == 10 && j == 'foo'
-   ```
+   </pre>
 
    3. If/Else
-   ```java
+   <pre class="prettyprint">
    if ( ... ) {
        ...
    } else if (...) {
@@ -283,10 +287,10 @@
    } else {
        ...
    }
-   ```
+   </pre>
 
    4. Switch/Case
-   ```java
+   <pre class="prettyprint">
    def x = 1.23
    def result = ""
 
@@ -312,10 +316,10 @@
    }
 
    assert result == "number"
-   ```
+   </pre>
 
    5. For in loop
-   ```java
+   <pre class="prettyprint">
    // iterate over a range
    def x = 0
    for ( i in 0..9 ) {
@@ -360,11 +364,11 @@
        list.add(c)
    }
    assert list == ["a", "b", "c"]
-   ```
+   </pre>
 
 ## Author
-```
+<pre class="prettyprint">
 Name     : Leonardo Taehwan Kim
 Email    : contact@thefinestartist.com
 Website  : http://www.thefinestartist.com
-```
+</pre>
